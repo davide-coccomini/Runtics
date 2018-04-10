@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView, View,Image, Button,TableWrapper,Cell,TouchableOpacity} from 'react-native';
+import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity,Alert,Text} from 'react-native';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
@@ -9,17 +9,18 @@ import {
   List,
   Toast,
   ListItem,
-  Text,
   Icon,
   Left,
   Body,
   Right,
+  Spinner,
   Separator
 } from 'native-base';
-import { Table, Row, Rows } from 'react-native-table-component';
-import CountDown from 'react-native-countdown-component';
+import { Table,TableWrapper, Row, Rows,Cell } from 'react-native-table-component';
+import CountdownCircle from 'react-native-countdown-circle';
 import * as actions from './matchActions';
 
+ 
 
 class App extends React.Component {
   constructor(props) {
@@ -33,11 +34,18 @@ class App extends React.Component {
     this.props.actions.starting_game();
   }
   componentWillReceiveProps(nextProps){
-    this.state = {
+    const newState = {
       tableData: nextProps.data.grid,
       score:0
     }
+    this.setState(newState)
+    
   }
+   
+  _alertIndex(index) {
+    Alert.alert(`This is row ${index + 1}`);
+  }
+ 
 render () {
   const state = this.state;
   const {navigate} = this.props.navigation;
@@ -53,30 +61,30 @@ render () {
       <Container>
       <Header style={styles.header}>
       <Left>
-          <CountDown
-          until={this.props.navigation.state.params.time}
-          onFinish={() => navigate('Report')}
-          size={20}
-          timeToShow={["M","S"]}
-          digitBgColor='#092D4B'
-          digitTxtColor="white"
-          timeTxtColor="white"
-          />
+      <CountdownCircle
+            seconds={this.props.navigation.state.params.time}
+            radius={30}
+            borderWidth={2}
+            color="#092D4B"
+            bgColor="#092D4B"
+            textStyle={{ fontSize: 20, color:"white" }}
+            onTimeElapsed={() => navigate('Report')}
+        />
+         
       </Left>
       <Right>
             <Text style={styles.score}>0</Text>
       </Right>
     </Header>
       <View style={styles.container}>
- 
-        <Table borderStyle={{borderWidth: 2, borderColor: 'black'}}>
+     <Table borderStyle={{borderWidth: 2, borderColor: 'black'}}>
           <Rows data={state.tableData} textStyle={styles.text} style={styles.cell}>
           {
             state.tableData.map((rowData, index) => (
               <TableWrapper key={index}>
                 {
                   rowData.map((cellData, cellIndex) => (
-                    <Cell key={cellIndex} data={cellIndex === 3 ? element(cellData, index) : cellData} textStyle={styles.text}/>
+                    <Cell key={cellIndex} data={element(cellData, index)} textStyle={styles.text}/>
                   ))
                 }
               </TableWrapper>
@@ -90,6 +98,16 @@ render () {
 }
 
 }
+function renderItem(item) {
+  return (
+      <View style={styles.item}>
+          <View style={styles.content}>
+              <Text style={styles.text}>{item}</Text>
+          </View>
+      </View>
+  );
+}
+
 function mapStateToProps(state) {
   console.log(state.Match.data.grid);
   return {data: state.Match.data, loading: state.Match.loading};
@@ -135,4 +153,5 @@ const styles = StyleSheet.create({
      fontWeight:"bold",
      color:"white"
   },
+
 });
