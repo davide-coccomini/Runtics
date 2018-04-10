@@ -14,9 +14,10 @@ import {
   Left,
   Body,
   Right,
+  Spinner,
   Separator
 } from 'native-base';
-
+import * as actions from './levelsActions';
 
 class App extends React.Component {
 
@@ -26,6 +27,7 @@ class App extends React.Component {
           matrix:[]
         }
       }
+
 render () {
     const {navigate} = this.props.navigation;
 
@@ -38,7 +40,7 @@ render () {
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={require("../../images/logo.png")} />
             </View>
-              <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() => navigate('Match',{time:150,rows:5})}>
+              <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() =>{ navigate('Match',{time:150}); this.props.actions.setting_level()}}>
                 <Text style={styles.buttonText}>EASY</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainerMedium}  onPress={() => navigate('Match',{time:120})}>
@@ -111,4 +113,17 @@ const styles = StyleSheet.create({
     }
   });
   
-export default App;
+  function mapStateToProps(state) {
+    console.log(state.Levels.data.grid);
+    return {data: state.Levels.data, loading: state.Levels.loading};
+  }
+  
+  function mapDispatchToProps(dispatch) {
+    return {
+      actions: bindActionCreators(actions, dispatch)
+    };
+  }
+  
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(App);
+  

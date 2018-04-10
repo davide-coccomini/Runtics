@@ -1,12 +1,22 @@
 import {call, put,takeEvery} from 'redux-saga/effects';
 import * as Actions from './matchActions';
+import * as LevelsActions from '../Levels/levelsActions';
 
 var matrix;
 var rows = 10;
 var cols = 5;
 var paths = new Array();
 var contatore = 0;
-
+function * setting_level(action,level){
+    try {
+        var response = 5
+        yield put(LevelsActions.setted_level(response))
+    }catch(e){
+        yield put(LevelsActions.set_level_error());
+        console.error(e);
+    }
+    return;
+}
 function * starting_game(action){
     try {
         var response = yield call(generate);
@@ -115,6 +125,7 @@ function searchPath(x,y,sum, isChild, xp, yp){
 export default function * root() {
     yield * 
     [
-        takeEvery(Actions.types.STARTING_GAME, starting_game)
+        takeEvery(Actions.types.STARTING_GAME, starting_game),
+        takeEvery(LevelsActions.types.SETTING_LEVEL, setting_level)
     ]
 }

@@ -15,6 +15,7 @@ import {
   Left,
   Body,
   Right,
+  Spinner,
   Separator
 } from 'native-base';
 
