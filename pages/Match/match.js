@@ -41,21 +41,20 @@ class App extends React.Component {
     this.setState(newState)
     
   }
-   
-  _alertIndex(index) {
-    Alert.alert(`This is row ${index + 1}`);
+  cellClick(value) {
+    curScore = this.state.score 
+    newScore = curScore + value 
+
+    this.setState({
+        score: newScore
+    })
   }
- 
+
 render () {
   const state = this.state;
   const {navigate} = this.props.navigation;
-  const element = (data, index) => (
-    <TouchableOpacity onPress={() => this._alertIndex(index)}>
-      <View style={styles.btn}>
-        <Text style={styles.btnText}>button</Text>
-      </View>
-    </TouchableOpacity>
-  );
+  const cols =  state.cols
+  const rows =  state.rows
   
     return(
       <Container>
@@ -73,43 +72,31 @@ render () {
          
       </Left>
       <Right>
-            <Text style={styles.score}>0</Text>
+            <Text style={styles.score}>{state.score}</Text>
       </Right>
     </Header>
-      <View style={styles.container}>
-     <Table borderStyle={{borderWidth: 2, borderColor: 'black'}}>
-          <Rows data={state.tableData} textStyle={styles.text} style={styles.cell}>
-          {
-            state.tableData.map((rowData, index) => (
-              <TableWrapper key={index}>
-                {
-                  rowData.map((cellData, cellIndex) => (
-                    <Cell key={cellIndex} data={element(cellData, index)} textStyle={styles.text}/>
-                  ))
-                }
-              </TableWrapper>
-            ))
-          }
-          </Rows>
-        </Table>
+      <View style={styles.tableContainer}>
+      {
+        state.tableData.map((rowData, index)  => (
+          <View key={index} style={styles.rowContainer}>
+              {
+                rowData.map((cellData, cellIndex) => (
+                    <TouchableOpacity key={cellIndex} style={styles.cellContainer} onPress={() => {this.cellClick(cellData)}}> 
+                      <Text style={styles.cellText}>{cellData}</Text>
+                    </TouchableOpacity>
+                ))
+              }
+          </View>
+        ))
+      }
       </View>
       </Container>
     )
 }
 
 }
-function renderItem(item) {
-  return (
-      <View style={styles.item}>
-          <View style={styles.content}>
-              <Text style={styles.text}>{item}</Text>
-          </View>
-      </View>
-  );
-}
 
 function mapStateToProps(state) {
-  console.log(state.Match.data.grid);
   return {data: state.Match.data, loading: state.Match.loading};
 }
 
@@ -123,11 +110,8 @@ function mapDispatchToProps(dispatch) {
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 
+
 const styles = StyleSheet.create({
-  container: { 
-    flex: 1,
-    padding: 16,
-  },
   header:{
     height:80,
     paddingBottom:5,
@@ -137,21 +121,46 @@ const styles = StyleSheet.create({
     shadowOpacity:1,
     marginTop:5
   },
-  cell: {
-    width:"100%",
-    height:40,
-    backgroundColor: "#092D4B",
-  },
   score: {
     fontSize:23,
     marginRight:15,
     color:"white",
     fontWeight: "bold"
   },
-  text: { 
-     textAlign: 'center',
-     fontWeight:"bold",
-     color:"white"
+  tableContainer: { 
+    flexDirection: 'column',
+    alignItems: "center",
+    marginTop:5
   },
+  rowContainer:{
+    height:50,
+    flexDirection: 'row',
+    backgroundColor: 'black',
+    borderRadius:5
+  },
+  cellContainer: {
+    width:50,
+    aspectRatio: 1,
+    backgroundColor: "#092D4B",
+    borderRadius: 5,
+    justifyContent: 'center',
+    borderWidth:1,
+    borderColor:"black"
+  },
+  cellContainerClicked: {
+    width:50,
+    aspectRatio: 1,
+    backgroundColor: "white",
+    borderRadius: 5,
+    justifyContent: 'center',
+    borderWidth:1,
+    borderColor:"black"
+  },
+  cellText: { 
+    textAlign: 'center',
+    fontWeight:"bold",
+    color:"white",
+  },
+
 
 });

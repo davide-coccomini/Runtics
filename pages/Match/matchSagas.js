@@ -3,8 +3,8 @@ import * as Actions from './matchActions';
 import * as LevelsActions from '../Levels/levelsActions';
 
 var matrix;
-var rows = 10;
-var cols = 5;
+var rows = 9;
+var cols = 6;
 var paths = new Array();
 var contatore = 0;
 function * setting_level(action,level){
@@ -50,6 +50,8 @@ function generate(){
      }
      var response = {
          grid: matrix,
+         rows: rows,
+         cols: cols,
          maxScore: maxScore
      }
     return response;
