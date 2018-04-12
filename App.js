@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView,Image, View, Button, BackgroundImage} from 'react-native';
+import {StyleSheet, ScrollView,Image, View, Button, BackgroundImage,StatusBar} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import React, {Component} from 'react';
 import Navigation from './router';
@@ -12,8 +12,13 @@ export default class App extends Component {
   render() {
     return (
       <LinearGradient colors={['#164593', '#2b62bc', '#0073BB']} style={styles.linearGradient}>
+       
       <Provider store={Store}>
         <Root style={styles.root}>
+            <StatusBar
+            backgroundColor="#164593"
+            barStyle="light-content"
+          />
           <Navigator/>
         </Root>
       </Provider>
