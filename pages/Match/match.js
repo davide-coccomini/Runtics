@@ -16,7 +16,6 @@ import {
   Spinner,
   Separator
 } from 'native-base';
-import { Table,TableWrapper, Row, Rows,Cell } from 'react-native-table-component';
 import CountdownCircle from 'react-native-countdown-circle';
 import * as actions from './matchActions';
 
@@ -27,7 +26,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       tableData: [],
-      score: 0,  
+      score: 0,
+      rows:0,  
+      cols: 0,
+      lastClicked: -1,
+      lastValue: 9999
     }
   }
   componentWillMount(){
@@ -36,20 +39,79 @@ class App extends React.Component {
   componentWillReceiveProps(nextProps){
     const newState = {
       tableData: nextProps.data.grid,
-      score:0
+      score:0,
+      rows: nextProps.data.rows,
+      cols: nextProps.data.cols
     }
     this.setState(newState)
-    
   }
-  cellClick(value) {
+  isAdjacency(x,y){
+    if(x+1 < this.state.rows){
+      if(this.state.tableData[x+1][y].id==this.state.lastClicked){
+        return true;
+      }
+    }
+    if(x-1 >= 0){
+      if(this.state.tableData[x-1][y].id==this.state.lastClicked){
+        return true;
+      }
+    }
+    if(y+1 < this.state.cols){
+      if(this.state.tableData[x][y+1].id==this.state.lastClicked){
+        return true;
+      }
+    }
+    if(y-1 >=0){
+      if(this.state.tableData[x][y-1].id==this.state.lastClicked){
+        return true;
+      }
+    }
+   return false;
+  }
+  resetClickedCells(){
+    for(var i=0; i<this.state.rows; i++){
+      for(var j=0; j<this.state.cols; j++){
+        this.state.tableData[i][j].clicked = false
+      }
+    }
+  }
+  cellClick(id) {
+    if(id==this.state.lastClicked){
+      return
+    }
+    var x,y
+    for(var i=0; i<this.state.rows; i++){
+      for(var j=0; j<this.state.cols;j++){
+        if(this.state.tableData[i][j].id == id){
+          x=i
+          y=j
+          if(this.state.tableData[i][j].clicked)
+            value = -this.state.tableData[i][j].number
+          else
+            value = this.state.tableData[i][j].number
+          break
+        }
+      }
+    }
+    if(this.state.lastClicked==-1){
+      this.state.lastClicked = id
+    }else{
+      if(!this.isAdjacency(x,y) || this.state.tableData[x][y].number>=this.state.lastValue){
+        this.resetClickedCells()
+        this.state.score = 0
+      }
+      
+    }
+    this.state.lastClicked = id
+    this.state.tableData[x][y].clicked = !this.state.tableData[x][y].clicked
+    this.state.lastValue = this.state.tableData[x][y].number
     curScore = this.state.score 
     newScore = curScore + value 
-
     this.setState({
         score: newScore
     })
   }
-
+ 
 render () {
   const state = this.state;
   const {navigate} = this.props.navigation;
@@ -81,8 +143,8 @@ render () {
           <View key={index} style={styles.rowContainer}>
               {
                 rowData.map((cellData, cellIndex) => (
-                    <TouchableOpacity key={cellIndex} style={styles.cellContainer} onPress={() => {this.cellClick(cellData)}}> 
-                      <Text style={styles.cellText}>{cellData}</Text>
+                    <TouchableOpacity key={cellIndex}  style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer} onPress={() => {this.cellClick(cellData.id)}}> 
+                      <Text style={styles.cellText}>{cellData.number}</Text>
                     </TouchableOpacity>
                 ))
               }
@@ -150,7 +212,7 @@ const styles = StyleSheet.create({
   cellContainerClicked: {
     width:50,
     aspectRatio: 1,
-    backgroundColor: "white",
+    backgroundColor: "#0097EC",
     borderRadius: 5,
     justifyContent: 'center',
     borderWidth:1,

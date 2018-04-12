@@ -1,4 +1,4 @@
-import {call, put,takeEvery} from 'redux-saga/effects';
+import {call, put,takeEvery, select} from 'redux-saga/effects';
 import * as Actions from './matchActions';
 import * as LevelsActions from '../Levels/levelsActions';
 
@@ -7,9 +7,13 @@ var rows = 9;
 var cols = 6;
 var paths = new Array();
 var contatore = 0;
+
 function * setting_level(action,level){
+
     try {
-        var response = 5
+        const state = yield select((id)=>id)
+        console.log(state)
+        var response = 5 // example, this should be the data to set, i don't know if it makes sense
         yield put(LevelsActions.setted_level(response))
     }catch(e){
         yield put(LevelsActions.set_level_error());
@@ -29,12 +33,15 @@ function * starting_game(action){
 
 function generate(){
     matrix = new Array();
+    var index = 0;
     for(var i = 0; i<rows; i++){
         matrix[i] = new Array();
         for(var j = 0; j<cols; j++){
             var rand = Math.random() * 20;
             var randomNumber = Math.floor(rand+1); 
-            matrix[i][j] = randomNumber;
+            var status = {id: index, number: randomNumber, clicked: false};
+            matrix[i][j] = status;
+            index++;
         }
      }
      for(var i=0; i<rows; i++){

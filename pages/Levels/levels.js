@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
   });
   
   function mapStateToProps(state) {
-    console.log(state.Levels.data.grid);
     return {data: state.Levels.data, loading: state.Levels.loading};
   }
   
