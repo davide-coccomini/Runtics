@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity} from 'react-native';
+import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity,StatusBar} from 'react-native';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
@@ -26,7 +26,9 @@ render () {
     const {navigate} = this.props.navigation;
 
     return (
+     
         <View style={styles.container}>
+        
          {this.props.loading
             ? <Spinner/>
             : null}
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
       alignItems: "center",
-      flexGrow: 0.3,
+      flexGrow: 0.35,
       marginTop:35,
       justifyContent: "center",
       alignItems: "center",
