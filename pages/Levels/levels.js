@@ -17,7 +17,7 @@ import {
   Spinner,
   Separator
 } from 'native-base';
-import * as actions from './levelsActions';
+import * as actions from '../Match/matchActions';
 
 class App extends React.Component {
 
@@ -33,23 +33,21 @@ render () {
 
     return (
         <View style={styles.container}>
-         {this.props.loading
-            ? <Spinner/>
-            : null}
+        
           <View behavior="padding" style={styles.container}>
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={require("../../images/logo.png")} />
             </View>
-              <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() =>{ navigate('Match',{time:150}); this.props.actions.setting_level()}}>
+              <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() =>{ navigate('Match'); this.props.actions.starting_game(1)}}>
                 <Text style={styles.buttonText}>EASY</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerMedium}  onPress={() => navigate('Match',{time:120})}>
+              <TouchableOpacity style={styles.buttonContainerMedium}  onPress={() =>{ navigate('Match'); this.props.actions.starting_game(2)}}>
                 <Text style={styles.buttonText}>MEDIUM</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerHard}  onPress={() => navigate('Match',{time:90})}>
+              <TouchableOpacity style={styles.buttonContainerHard}  onPress={() => { navigate('Match'); this.props.actions.starting_game(3)}}>
                 <Text style={styles.buttonText}>HARD</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerInsane}  onPress={() => navigate('Match',{time:5})}>
+              <TouchableOpacity style={styles.buttonContainerInsane}  onPress={() => { navigate('Match'); this.props.actions.starting_game(4)}}>
                 <Text style={styles.buttonText}>INSANE</Text>
               </TouchableOpacity>
           </View>
@@ -64,7 +62,7 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
       alignItems: "center",
-      flexGrow: 0.3,
+      flexGrow: 0.35,
       marginTop:35,
       justifyContent: "center",
       alignItems: "center",
@@ -114,7 +112,7 @@ const styles = StyleSheet.create({
   });
   
   function mapStateToProps(state) {
-    return {data: state.Levels.data, loading: state.Levels.loading};
+    return { };
   }
   
   function mapDispatchToProps(dispatch) {

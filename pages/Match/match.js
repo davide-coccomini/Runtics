@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity,Alert,Text} from 'react-native';
+import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity,Alert,Text,StatusBar} from 'react-native';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
@@ -17,33 +17,49 @@ import {
   Separator
 } from 'native-base';
 import CountdownCircle from 'react-native-countdown-circle';
-import * as actions from './matchActions';
-
+import * as actions from '../Report/reportActions';
  
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+  
     this.state = {
-      tableData: [],
+      tableData: props.data.grid,
       score: 0,
-      rows:0,  
-      cols: 0,
+      rows:props.data.rows,  
+      cols: props.data.cols,
+      time: props.data.time,
+      maxScore: props.data.maxScore,
       lastClicked: -1,
-      lastValue: 9999
+      lastValue: 9999,
     }
   }
-  componentWillMount(){
-    this.props.actions.starting_game();
-  }
+  
   componentWillReceiveProps(nextProps){
+  this.countdown.restartCount();
     const newState = {
       tableData: nextProps.data.grid,
       score:0,
       rows: nextProps.data.rows,
-      cols: nextProps.data.cols
+      cols: nextProps.data.cols,
+      time: nextProps.data.time,
+      maxScore: maxScore
     }
     this.setState(newState)
+  }
+ 
+  checkWin(newScore){
+    const {navigate} = this.props.navigation;
+    if(newScore==this.state.maxScore){
+      navigate("Report")
+      const payload = {
+        score: newScore, 
+        maxScore: maxScore,
+        win: true
+      }
+      this.props.actions.ending_game(payload)
+    }
   }
   isAdjacency(x,y){
     if(x+1 < this.state.rows){
@@ -61,7 +77,7 @@ class App extends React.Component {
         return true;
       }
     }
-    if(y-1 >=0){
+    if(y-1 >= 0){
       if(this.state.tableData[x][y-1].id==this.state.lastClicked){
         return true;
       }
@@ -76,9 +92,7 @@ class App extends React.Component {
     }
   }
   cellClick(id) {
-    if(id==this.state.lastClicked){
-      return
-    }
+    
     var x,y
     for(var i=0; i<this.state.rows; i++){
       for(var j=0; j<this.state.cols;j++){
@@ -93,14 +107,15 @@ class App extends React.Component {
         }
       }
     }
-    if(this.state.lastClicked==-1){
+    if(this.state.lastClicked==-1){ // se è la prima cella cliccata
       this.state.lastClicked = id
     }else{
       if(!this.isAdjacency(x,y) || this.state.tableData[x][y].number>=this.state.lastValue){
         this.resetClickedCells()
         this.state.score = 0
+        if(value<0) // evita che il punteggio vada in negativo qualora si ricominciasse un percorso con una cella già cliccata
+          value = -value
       }
-      
     }
     this.state.lastClicked = id
     this.state.tableData[x][y].clicked = !this.state.tableData[x][y].clicked
@@ -110,6 +125,7 @@ class App extends React.Component {
     this.setState({
         score: newScore
     })
+    this.checkWin(newScore)
   }
  
 render () {
@@ -121,15 +137,30 @@ render () {
     return(
       <Container>
       <Header style={styles.header}>
+        <StatusBar
+            backgroundColor="#164593"
+            barStyle="light-content"
+        />
       <Left>
       <CountdownCircle
-            seconds={this.props.navigation.state.params.time}
+            ref = {ref => this.countdown = ref}
+            seconds={state.time}
             radius={30}
             borderWidth={2}
             color="#092D4B"
             bgColor="#092D4B"
             textStyle={{ fontSize: 20, color:"white" }}
-            onTimeElapsed={() => navigate('Report')}
+         
+            onTimeElapsed={() => {
+                                
+                                  navigate('Report'); 
+                                  const payload = {
+                                                    score: state.score, 
+                                                    maxScore: state.maxScore, 
+                                                    win: false} 
+                                  this.props.actions.ending_game(payload)
+                                }
+                          }
         />
          
       </Left>
@@ -157,21 +188,6 @@ render () {
 }
 
 }
-
-function mapStateToProps(state) {
-  return {data: state.Match.data, loading: state.Match.loading};
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  };
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-
 
 const styles = StyleSheet.create({
   header:{
@@ -201,7 +217,6 @@ const styles = StyleSheet.create({
     borderRadius:5
   },
   cellContainer: {
-    width:50,
     aspectRatio: 1,
     backgroundColor: "#092D4B",
     borderRadius: 5,
@@ -222,7 +237,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight:"bold",
     color:"white",
+    fontSize:18
   },
 
 
 });
+
+
+function mapStateToProps(state) {
+  return {data: state.Match.data, loading: state.Match.loading};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
