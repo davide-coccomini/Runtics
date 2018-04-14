@@ -47,8 +47,14 @@ render () {
               <TouchableOpacity style={styles.buttonContainerHard}  onPress={() => { navigate('Match'); this.props.actions.starting_game(3)}}>
                 <Text style={styles.buttonText}>HARD</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerInsane}  onPress={() => { navigate('Match'); this.props.actions.starting_game(4)}}>
+              <TouchableOpacity style={styles.buttonContainerVeryHard}  onPress={() => { navigate('Match'); this.props.actions.starting_game(4)}}>
+                <Text style={styles.buttonText}>VERY HARD</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainerInsane}  onPress={() => { navigate('Match'); this.props.actions.starting_game(5)}}>
                 <Text style={styles.buttonText}>INSANE</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainerImpossible}  onPress={() => { navigate('Match'); this.props.actions.starting_game(6)}}>
+                <Text style={styles.buttonText}>IMPOSSIBLE</Text>
               </TouchableOpacity>
           </View>
         </View>
@@ -93,12 +99,26 @@ const styles = StyleSheet.create({
         marginLeft:"10%",
         marginTop:5
     },
+    buttonContainerVeryHard:{
+      backgroundColor: "#791900",
+      paddingVertical: 15,
+      width:"80%",
+      marginLeft:"10%",
+      marginTop:5
+    },
     buttonContainerInsane:{
         backgroundColor: "#b800c1",
         paddingVertical: 15,
         width:"80%",
         marginLeft:"10%",
         marginTop:5
+    },
+    buttonContainerImpossible:{
+      backgroundColor: "#050505",
+      paddingVertical: 15,
+      width:"80%",
+      marginLeft:"10%",
+      marginTop:5
     },
     buttonText: {
       textAlign: "center",
