@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'rn-viewpager';
 
 import {
-  Container,
   Header,
   Content,
   List,
@@ -91,6 +90,26 @@ render () {
                         </View>
                     </View>
                     <View>
+                        <View style={styles.tableContainer}>
+                        {
+                            state.tableData1.map((rowData, index)  => (
+                            <View key={index} style={styles.rowContainer}>
+                                {
+                                    rowData.map((cellData, cellIndex) => (
+                                        <TouchableOpacity key={cellIndex} disabled={true}  style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer}> 
+                                        <Text style={styles.cellText}>{cellData.number}</Text>
+                                        </TouchableOpacity>
+                                    ))
+                                }
+                            </View>
+                            ))
+                        }
+                        </View>
+                        <View style={styles.textContainer}>
+                        <Text style={styles.text}>In this case 10 -> 9 -> 7 -> 6 -> 5 -> 3 -> 1 is the best path findable. It is decreasing and all the number are adjacent to each other. Diagonal is not admitted ...</Text>
+                        </View>
+                    </View>
+                    <View>
                     <View style={styles.tableContainer}>
                         {
                             state.tableData1.map((rowData, index)  => (
@@ -143,7 +162,7 @@ render () {
     );
 }
 _renderDotIndicator() {
-    return <PagerDotIndicator pageCount={3} />;
+    return <PagerDotIndicator pageCount={4} />;
 }
 }
 
@@ -171,7 +190,7 @@ const styles = StyleSheet.create({
     tableContainer: { 
         flexDirection: 'column',
         alignItems: "center",
-        marginTop:"30%"
+        marginTop:"10%"
       },
       rowContainer:{
         height:50,
