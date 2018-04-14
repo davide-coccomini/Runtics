@@ -31,8 +31,10 @@ class App extends React.Component {
       cols: props.data.cols,
       time: props.data.time,
       maxScore: props.data.maxScore,
+      bestPath: props.data.bestPath,
+      level: props.data.level,
       lastClicked: -1,
-      lastValue: 9999,
+      lastValue: 9999
     }
   }
   
@@ -44,19 +46,27 @@ class App extends React.Component {
       rows: nextProps.data.rows,
       cols: nextProps.data.cols,
       time: nextProps.data.time,
-      maxScore: maxScore
+      level: nextProps.data.level,
+      maxScore: nextProps.data.maxScore,
+      bestPath: nextProps.data.bestPath
     }
     this.setState(newState)
   }
  
   checkWin(newScore){
     const {navigate} = this.props.navigation;
-    if(newScore==this.state.maxScore){
+    if(newScore>=this.state.maxScore){
       navigate("Report")
       const payload = {
+        time: 99999,
         score: newScore, 
         maxScore: maxScore,
-        win: true
+        win: true,
+        rows: rows,
+        cols: cols,
+        tableData: tableData,
+        bestPath: bestPath,
+        level: level
       }
       this.props.actions.ending_game(payload)
     }
@@ -157,7 +167,13 @@ render () {
                                   const payload = {
                                                     score: state.score, 
                                                     maxScore: state.maxScore, 
-                                                    win: false} 
+                                                    win: false,
+                                                    rows: rows,
+                                                    cols: cols,
+                                                    tableData: state.tableData,
+                                                    bestPath: state.bestPath,
+                                                    level: state.level
+                                                  } 
                                   this.props.actions.ending_game(payload)
                                 }
                           }
@@ -168,14 +184,14 @@ render () {
             <Text style={styles.score}>{state.score}</Text>
       </Right>
     </Header>
-      <View style={styles.tableContainer}>
+      <View style={[styles.tableContainer, state.level==1 ? {marginTop: 100}: state.level==2? {marginTop:75}:state.level == 3 ? {marginTop:50}: state.level == 4 ? {marginTop:25}:state.level == 5 ?{marginTop:20}:{marginTop:0} ]}>
       {
         state.tableData.map((rowData, index)  => (
-          <View key={index} style={styles.rowContainer}>
+          <View key={index} style={[styles.rowContainer,  state.level==1 ? {height: 75}: state.level==2? {height:50}:state.level == 3 ? {height:50}:state.level == 4 ? {height:40}:{height:35}]}>
               {
                 rowData.map((cellData, cellIndex) => (
                     <TouchableOpacity key={cellIndex}  style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer} onPress={() => {this.cellClick(cellData.id)}}> 
-                      <Text style={styles.cellText}>{cellData.number}</Text>
+                      <Text style={[styles.cellText,state.level==1 ? {fontSize: 20}: state.level==2? {fontSize:18}:state.level == 3 ? {fontSize:15}:{fontSize:12}]}>{cellData.number}</Text>
                     </TouchableOpacity>
                 ))
               }
@@ -211,7 +227,6 @@ const styles = StyleSheet.create({
     marginTop:5
   },
   rowContainer:{
-    height:50,
     flexDirection: 'row',
     backgroundColor: 'black',
     borderRadius:5
@@ -225,7 +240,6 @@ const styles = StyleSheet.create({
     borderColor:"black"
   },
   cellContainerClicked: {
-    width:50,
     aspectRatio: 1,
     backgroundColor: "#0097EC",
     borderRadius: 5,
@@ -237,7 +251,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight:"bold",
     color:"white",
-    fontSize:18
   },
 
 

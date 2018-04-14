@@ -39,8 +39,8 @@ render () {
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Levels')}>
                 <Text style={styles.buttonText}>NEW GAME</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Levels')}>
-                <Text style={styles.buttonText}>SCORES</Text>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Tutorial')}>
+                <Text style={styles.buttonText}>HOW TO PLAY</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Levels')}>
                 <Text style={styles.buttonText}>SETTINGS</Text>
