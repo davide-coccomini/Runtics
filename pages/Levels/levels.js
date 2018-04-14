@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
       alignItems: "center",
-      flexGrow: 0.35,
+      flexGrow: 0.55,
       marginTop:35,
       justifyContent: "center",
       alignItems: "center",
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   });
   
   function mapStateToProps(state) {
-    return { };
+    return {}
   }
   
   function mapDispatchToProps(dispatch) {

@@ -22,8 +22,10 @@ import * as actions from '../Report/reportActions';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    console.log("props",props)
     var matrix = this.generateResultTable(props.data.tableData,props.data.bestPath,props.data.rows,props.data.cols)
-    console.log("matrix",matrix)
+    var pathLabel = this.generatePathLabel(props.data.tableData,props.data.bestPath)
+    
     this.state = {
       score: props.data.score,
       maxScore: props.data.maxScore,
@@ -31,12 +33,14 @@ class App extends React.Component {
       tableData: matrix,
       rows: props.data.rows,
       cols: props.data.cols,
-      level: props.data.level
+      level: props.data.level,
+      pathLabel: pathLabel
     }
   }
   componentWillReceiveProps(nextProps){
     var matrix = this.generateResultTable(nextProps.data.tableData,nextProps.data.bestPath,nextProps.data.rows,nextProps.data.cols)
-    console.log("matrix",matrix)
+    var pathLabel = this.generatePathLabel(nextProps.data.tableData,nextProps.data.bestPath)
+    
     const newState = {
       score: nextProps.data.score,
       maxScore: nextProps.data.maxScore,
@@ -44,9 +48,18 @@ class App extends React.Component {
       tableData: matrix,
       rows: nextProps.data.rows,
       cols: nextProps.data.cols,
-      level: nextProps.data.level
+      level: nextProps.data.level,
+      pathLabel: pathLabel
     }
     this.setState(newState)
+  }
+  generatePathLabel(grid,path){
+    var pathLabel = ""
+    
+    for(i=path.length-1; i>=0; i--){
+      pathLabel += "("+grid[path[i][0]][path[i][1]].number+")"
+    }
+    return pathLabel
   }
   generateResultTable(grid,path,rows,cols){
     for(var i=0; i<rows; i++){
@@ -73,7 +86,7 @@ render () {
     const {navigate} = this.props.navigation;
     const state = this.state;
     return (
-      <Container style={styles.container}>
+      <Container>
         <Header style={[styles.header,state.win ? {backgroundColor:"#41A700"}:{backgroundColor:"#D32323"}]}>
         <StatusBar
             backgroundColor="#164593"
@@ -86,9 +99,12 @@ render () {
               <Text style={styles.textScore}>TO WIN{"\n"}{state.maxScore}</Text>
           </Right>
         </Header>
-
         <View>
-          <Text style={styles.label}>A good path was ...</Text>
+         <Text style={state.win ? styles.titleWin : styles.titleLose}>{state.win ? "You win" : "You lose"}</Text>
+         </View>
+        <View>
+        <View>
+          <Text style={styles.label}>A good path was {state.pathLabel}...</Text>
         </View>
         <View style={styles.tableContainer}>
         {
@@ -97,7 +113,7 @@ render () {
                 {
                   rowData.map((cellData, cellIndex) => (
 
-                      <TouchableOpacity key={cellIndex}  style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer} > 
+                      <TouchableOpacity key={cellIndex}   disabled={true} style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer} > 
                         <Text style={[styles.cellText,state.level==1 ? {fontSize: 20}: state.level==2? {fontSize:18}:state.level == 3 ? {fontSize:15}:{fontSize:12}]}>{cellData.number}</Text>
                       </TouchableOpacity>
                   ))
@@ -107,7 +123,7 @@ render () {
         }
         </View>
         <View >
-        
+        </View>
           <View behavior="padding" style={styles.buttonView}>
       
               <TouchableOpacity style={styles.button}  onPress={() => navigate('Levels')}>
@@ -141,13 +157,13 @@ const styles = StyleSheet.create({
     titleWin: {
       fontWeight: "bold",
       color: "#41A700",
-      fontSize:20,
+      fontSize:35,
       alignSelf: "center",
     },
     titleLose: {
       fontWeight:"bold",
       color:"#D32323",
-      fontSize:50,
+      fontSize:35,
       alignSelf: "center",
       justifyContent: 'center', 
     },
@@ -183,11 +199,13 @@ const styles = StyleSheet.create({
     color:"white",
   },
     header:{
-      height:"30%",
+      height:80,
+      paddingBottom:5,
+      paddingTop:5,
+      backgroundColor:0,
       borderWidth:0,
       shadowOpacity:1,
-      marginTop:5,
-      marginBottom:0
+      marginTop:5
     },
     buttonView: {
       flex:1,

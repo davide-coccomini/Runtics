@@ -3,7 +3,7 @@ import * as Actions from './matchActions';
 
 var matrix;
 var paths = new Array();
-var contatore = 0;
+var pathCounter = 0;
 
 
 function * starting_game(action){
@@ -24,7 +24,7 @@ function setLevel(level){
         return {   
             rows: 4,
             cols: 4,
-            time: 3,
+            time: 200,
             max: 15,
             level: level
         }
@@ -34,7 +34,7 @@ function setLevel(level){
         return {
             rows: 6,
             cols: 5,
-            time: 2,
+            time: 190,
             max: 25,
             level: level
         }
@@ -44,7 +44,7 @@ function setLevel(level){
          return{
             rows: 7,
             cols: 6,
-            time: 2,
+            time: 170,
             neg: false,
             max: 80,
             level: level
@@ -55,7 +55,7 @@ function setLevel(level){
          return {
             rows: 10,
             cols: 7,
-            time: 2,
+            time: 160,
             max: 150,
             level: level
          }
@@ -64,15 +64,15 @@ function setLevel(level){
          return {
             rows: 11,
             cols: 8,
-            time: 2,
-            max: 160,
+            time: 160,
+            max: 180,
             level: level
          }
         case 6:
          return {
-            rows: 12,
+            rows: 11,
             cols: 9,
-            time: 2,
+            time: 150,
             max: 220,
             level: level
          }
@@ -95,9 +95,10 @@ function generate(config){
             index++;
         }
      }
+     pathCounter = 0
      for(var i=0; i<rows; i++){
          for(var j=0; j<cols;j++){
-           searchPath(i,j,matrix[i][j].number,false,-1,-1, rows, cols); // Ricerca di tutti i possibili percorsi
+           searchPath(i,j,matrix[i][j].number,false,-1,-1,-1, rows, cols); // Ricerca di tutti i possibili percorsi
          }
      }
      maxScore = 0;
@@ -108,7 +109,9 @@ function generate(config){
            maxIndex = i;
        }
      }
-     var bestPath = findBestPath(maxIndex)
+     
+     var bestPath = findBestPath(maxIndex,matrix,rows,cols)
+     
      var response = {
          grid: matrix,
          rows: rows,
@@ -121,30 +124,61 @@ function generate(config){
     return response;
    }
    
-function findBestPath(index){
+function findBestPath(index,matrix,rows,cols){
     var bestPath = new Array();
     var leaf = [paths[index].coordX,paths[index].coordY];
     bestPath.push(leaf)
-    
-    while(paths[index].parentId!=-1) {
+    var node
+    while((paths[index].parentId!=-1)){
             index = paths[index].parentId
-            var node = [paths[index].coordX,paths[index].coordY]
+            node = [paths[index].coordX,paths[index].coordY]
             bestPath.push(node)
     }
- return bestPath
+
+    var x = node[0]
+    var y = node[1]
+    var max = 0
+    var coordMax = [0,0]
+    if(x+1 < rows){
+        if(matrix[x+1][y].number>max){
+            max = matrix[x+1][y].number
+            coordMax = [x+1,y]
+        }
+    }
+    if(x-1 >= 0){
+        if(matrix[x-1][y].number>max){
+            max = matrix[x-1][y].number
+            coordMax = [x-1,y]
+        }
+    }
+    if(y+1 < cols){
+        if(matrix[x][y+1].number>max){
+            max = matrix[x][y+1].number
+            coordMax = [x,y+1]
+        }
+    }
+    if(y-1 >= 0){
+        if(matrix[x][y-1].number>max){
+            max = matrix[x][y-1].number
+            coordMax = [x,y-1]
+        }
+    }
+    bestPath.push(coordMax) // la root
+ return bestPath 
 }
-function searchPath(x,y,sum, isChild, xp, yp, rows, cols){
+function searchPath(x,y,sum, isChild, xp, yp, parentId, rows, cols){
+
+
     if(x>=rows || y>=cols || x<0 || y<0){
         return;
     }
-    var id;
-    var idParent;
+    
     if(x+1<rows){
         if((matrix[x][y].number>matrix[x+1][y].number)){
          var pSum = sum + matrix[x+1][y].number;
          if(!isChild){
             var pathElementRoot = {
-                id: paths.length,
+                id: pathCounter,
                 coordX: x,
                 coordY: y,
                 parentX: x,
@@ -153,25 +187,30 @@ function searchPath(x,y,sum, isChild, xp, yp, rows, cols){
                 pointSum: matrix[x][y].number
             }
             paths.push(pathElementRoot);
+            pathCounter++
          }
        
          var pathElement = {
-             id: paths.length,
+             id: pathCounter,
              coordX: x+1,
              coordY: y,
              parentX: x,
              parentY: y,
-             parentId: paths.length-1,
+             parentId: parentId,
              pointSum: pSum
          }
          paths.push(pathElement);
-         searchPath(x+1,y,pSum,true,x,y, rows, cols);
+         pathCounter++
+         searchPath(x+1,y,pSum,true,x,y,pathCounter-1, rows, cols);
+         
         }
     }
     if(x-1>=0){
-        if(!isChild){
+        if((matrix[x][y].number>matrix[x-1][y].number)){
+         var pSum = sum + matrix[x-1][y].number;
+         if(!isChild){
             var pathElementRoot = {
-                id: paths.length,
+                id: pathCounter,
                 coordX: x,
                 coordY: y,
                 parentX: x,
@@ -180,80 +219,85 @@ function searchPath(x,y,sum, isChild, xp, yp, rows, cols){
                 pointSum: matrix[x][y].number
             }
             paths.push(pathElementRoot);
+            pathCounter++
          }
-        if((matrix[x][y].number>matrix[x-1][y].number)){
-         var pSum = sum + matrix[x-1][y].number;
          var pathElement = {
-             id: paths.length,
+             id: pathCounter,
              coordX: x-1,
              coordY: y,
              parentX: x,
              parentY: y,
-             parentId: paths.length-1,
+             parentId: parentId,
              pointSum: pSum 
          }
          paths.push(pathElement);
-         searchPath(x-1,y,pSum,true,x,y, rows, cols);
+         pathCounter++
+         searchPath(x-1,y,pSum,true,x,y,pathCounter-1, rows, cols);
         }
     
     }
   
     if(y+1<cols){
-        if(!isChild){
-            var pathElementRoot = {
-                id: paths.length,
-                coordX: x,
-                coordY: y,
-                parentX: x,
-                parentY: y,
-                parentId: -1,
-                pointSum: matrix[x][y].number
-            }
-            paths.push(pathElementRoot);
-         }
         if((matrix[x][y].number>matrix[x][y+1].number)){
             var pSum = sum + matrix[x][y+1].number;
+            if(!isChild){
+                var pathElementRoot = {
+                    id: pathCounter,
+                    coordX: x,
+                    coordY: y,
+                    parentX: x,
+                    parentY: y,
+                    parentId: -1,
+                    pointSum: matrix[x][y].number
+                }
+                pathCounter++
+                paths.push(pathElementRoot);
+             }
             var pathElement = {
-                id: paths.length,
+                id: pathCounter,
                 coordX: x,
                 coordY: y+1,
                 parentX: x,
                 parentY: y,
-                parentId: paths.length-1,
+                parentId: parentId,
                 pointSum: pSum
             }
             paths.push(pathElement);
-            searchPath(x,y+1,pSum,true,x,y, rows, cols);
+            pathCounter++
+            searchPath(x,y+1,pSum,true,x,y,pathCounter-1, rows, cols);
         }
     }
    
     if(y-1>=0){
-        if(!isChild){
-            var pathElementRoot = {
-                id: paths.length,
-                coordX: x,
-                coordY: y,
-                parentX: x,
-                parentY: y,
-                parentId: -1,
-                pointSum: matrix[x][y].number
-            }
-            paths.push(pathElementRoot);
-         }
+       
         if((matrix[x][y].number>matrix[x][y-1].number)){
+            if(!isChild){
+                var pathElementRoot = {
+                    id: pathCounter,
+                    coordX: x,
+                    coordY: y,
+                    parentX: x,
+                    parentY: y,
+                    parentId: -1,
+                    pointSum: matrix[x][y].number
+                }
+                paths.push(pathElementRoot);
+                pathCounter++
+             }
          var pSum = sum + matrix[x][y-1].number;
          var pathElement = {
-             id: paths.length,
+             id: pathCounter,
              coordX: x,
              coordY: y-1,
              parentX: x,
              parentY: y,
-             parentId: paths.length-1,
+             parentId: parentId,
              pointSum: pSum 
          }
          
          paths.push(pathElement);
-         searchPath(x,y-1,pSum,true,x,y, rows, cols);
+         pathCounter++
+         searchPath(x,y-1,pSum,true,x,y,pathCounter-1, rows, cols);
         }
     }
   

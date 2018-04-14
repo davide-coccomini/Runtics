@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity,Alert,Text,StatusBar} from 'react-native';
+import {StyleSheet, ScrollView, View,Image, Button,BackHandler,TouchableOpacity,Alert,Text,StatusBar} from 'react-native';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
@@ -34,7 +34,9 @@ class App extends React.Component {
       bestPath: props.data.bestPath,
       level: props.data.level,
       lastClicked: -1,
-      lastValue: 9999
+      root: -1,
+      lastValue: 9999,
+      left: false
     }
   }
   
@@ -47,27 +49,34 @@ class App extends React.Component {
       cols: nextProps.data.cols,
       time: nextProps.data.time,
       level: nextProps.data.level,
+      lastClicked: -1,
+      root: -1,
       maxScore: nextProps.data.maxScore,
-      bestPath: nextProps.data.bestPath
+      bestPath: nextProps.data.bestPath,
+      left: false
     }
     this.setState(newState)
   }
  
   checkWin(newScore){
     const {navigate} = this.props.navigation;
+  
+    
+
     if(newScore>=this.state.maxScore){
       navigate("Report")
       const payload = {
         time: 99999,
         score: newScore, 
-        maxScore: maxScore,
+        maxScore: this.state.maxScore,
         win: true,
-        rows: rows,
-        cols: cols,
-        tableData: tableData,
-        bestPath: bestPath,
-        level: level
+        rows: this.state.rows,
+        cols: this.state.cols,
+        tableData: this.state.tableData,
+        bestPath: this.state.bestPath,
+        level: this.state.level
       }
+      
       this.props.actions.ending_game(payload)
     }
   }
@@ -119,10 +128,12 @@ class App extends React.Component {
     }
     if(this.state.lastClicked==-1){ // se è la prima cella cliccata
       this.state.lastClicked = id
+      this.state.root = id
     }else{
       if(!this.isAdjacency(x,y) || this.state.tableData[x][y].number>=this.state.lastValue){
         this.resetClickedCells()
         this.state.score = 0
+        this.state.root = this.state.tableData[x][y].id
         if(value<0) // evita che il punteggio vada in negativo qualora si ricominciasse un percorso con una cella già cliccata
           value = -value
       }
@@ -143,9 +154,15 @@ render () {
   const {navigate} = this.props.navigation;
   const cols =  state.cols
   const rows =  state.rows
-  
+  BackHandler.addEventListener('hardwareBackPress', function() {
+    state.left = true
+  });
+
     return(
       <Container>
+            {this.props.loading
+            ? <Spinner/>
+            : null}
       <Header style={styles.header}>
         <StatusBar
             backgroundColor="#164593"
@@ -162,7 +179,7 @@ render () {
             textStyle={{ fontSize: 20, color:"white" }}
          
             onTimeElapsed={() => {
-                                
+                                if(!state.left){
                                   navigate('Report'); 
                                   const payload = {
                                                     score: state.score, 
@@ -176,6 +193,7 @@ render () {
                                                   } 
                                   this.props.actions.ending_game(payload)
                                 }
+                              }
                           }
         />
          
@@ -184,14 +202,22 @@ render () {
             <Text style={styles.score}>{state.score}</Text>
       </Right>
     </Header>
-      <View style={[styles.tableContainer, state.level==1 ? {marginTop: 100}: state.level==2? {marginTop:75}:state.level == 3 ? {marginTop:50}: state.level == 4 ? {marginTop:25}:state.level == 5 ?{marginTop:20}:{marginTop:0} ]}>
+      <View style={[styles.tableContainer, state.level==1 ? {marginTop: 100}: state.level==2? {marginTop:75}:state.level == 3 ? {marginTop:50}: state.level == 4 ? {marginTop:25}:state.level == 5 ?{marginTop:20}:{marginTop:5} ]}>
       {
         state.tableData.map((rowData, index)  => (
           <View key={index} style={[styles.rowContainer,  state.level==1 ? {height: 75}: state.level==2? {height:50}:state.level == 3 ? {height:50}:state.level == 4 ? {height:40}:{height:35}]}>
               {
                 rowData.map((cellData, cellIndex) => (
                     <TouchableOpacity key={cellIndex}  style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer} onPress={() => {this.cellClick(cellData.id)}}> 
-                      <Text style={[styles.cellText,state.level==1 ? {fontSize: 20}: state.level==2? {fontSize:18}:state.level == 3 ? {fontSize:15}:{fontSize:12}]}>{cellData.number}</Text>
+                      <Text style={[styles.cellText,
+                                state.level==1 && cellData.id==state.root ? {fontSize:24, color:"#FEC011"}:
+                                state.level==1 && cellData.id!=state.root ? {fontSize:20, color:"white"}:
+                                state.level==2 && cellData.id==state.root ? {fontSize:22, color:"#FEC011"}:
+                                state.level==2 && cellData.id!=state.root ? {fontSize:18, color:"white"}:
+                                state.level==3 && cellData.id==state.root ? {fontSize:19, color:"#FEC011"}:
+                                state.level==3 && cellData.id!=state.root ? {fontSize:15, color:"white"}:
+                                cellData.id==state.root ? {fontSize:16, color:"#FEC011"}:{fontSize:12, color:"white"}]}
+                      >{cellData.number}</Text>
                     </TouchableOpacity>
                 ))
               }
@@ -250,7 +276,6 @@ const styles = StyleSheet.create({
   cellText: { 
     textAlign: 'center',
     fontWeight:"bold",
-    color:"white",
   },
 
 
