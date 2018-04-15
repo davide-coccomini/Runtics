@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView,Image, View, Button, BackgroundImage,StatusBar} from 'react-native';
+import {StyleSheet, ScrollView,Image, View, Button, BackgroundImage,StatusBar,AppState} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import React, {Component} from 'react';
 import Navigation from './router';
@@ -13,9 +13,66 @@ import {
   PublisherBanner,
   AdMobRewarded,
 } from 'react-native-admob'
+import { AppRegistry } from 'react-native';
+import TrackPlayer from 'react-native-track-player';
+
+
+
 
 export default class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      pause:false,
+      appState: AppState.currentState
+    };
+
+    AppRegistry.registerComponent('example', () => App);
+    TrackPlayer.registerEventHandler(module.exports = async (data) => {
+      if(data.type == 'playback-state') {
+          TrackPlayer.play();
+      }else if(data.state==2){
+        TrackPlayer.stop()
+        console.log("ciao")
+      }else{}
+        
+      console.log("data",data.state)
+  });
+    // Creates the player
+    TrackPlayer.setupPlayer().then(async () => {
+    
+        // Adds a track to the queue
+        await TrackPlayer.add({
+            id: '1',
+            url: require('./music/background.mp3'),
+        });
+        TrackPlayer.updateOptions({
+          stopWithApp: true
+      });
+        TrackPlayer.setVolume(0.5);
+        // Starts playing it
+        TrackPlayer.play();
+        
+
+    });
+  }
+  componentDidMount() {
+    AppState.addEventListener('change', this._handleAppStateChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeEventListener('change', this._handleAppStateChange);
+  }
+
+  
+  _handleAppStateChange = (nextAppState) => {
+    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      TrackPlayer.stop()
+    }
+    this.setState({appState: nextAppState});
+  }
   render() {
+
     return (
       <Container>
       <LinearGradient colors={['#164593', '#2b62bc', '#0073BB']} style={styles.linearGradient}>
@@ -40,9 +97,7 @@ export default class App extends Component {
     );
   }
 }
-const audio_options = {
-  source:{local: require('./music/background.mp3')}  
-}
+
 const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
@@ -56,11 +111,9 @@ const styles = StyleSheet.create({
   },
   bannerContent: {
     alignSelf: 'stretch',
-    textAlign: 'center',
     width:"100%"
   },
   banner: {
     alignSelf: 'stretch',
-    textAlign: 'center',
   }
 });

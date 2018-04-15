@@ -10,9 +10,11 @@
     "native-base": "^2.4.1",
     "react": "16.3.1",
     "react-native": "0.55.1",
+    "react-native-admob": "^2.0.0-beta.4",
     "react-native-countdown-circle": "^3.0.0",
     "react-native-countdown-component": "^1.6.0",
     "react-native-linear-gradient": "^2.4.0",
+    "react-native-sound": "^0.10.9",
     "react-native-square-grid": "^1.0.4",
     "react-native-swipe-gestures": "^1.0.2",
     "react-native-swipe-view": "^3.0.1",
@@ -23,7 +25,8 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^4.9.1",
     "redux-saga": "^0.16.0",
-    "remote-redux-devtools": "^0.5.12"
+    "remote-redux-devtools": "^0.5.12",
+    "rn-viewpager": "^1.2.9"
   },
   "devDependencies": {
     "babel-jest": "22.4.3",
