@@ -41,7 +41,7 @@ render () {
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Tutorial')}>
                 <Text style={styles.buttonText}>HOW TO PLAY</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Levels')}>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Settings')}>
                 <Text style={styles.buttonText}>SETTINGS</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={()=>{ return BackHandler.exitApp();}}>
