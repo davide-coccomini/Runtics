@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView,Image, View, Button, BackgroundImage,StatusBar,AppState} from 'react-native';
+import {StyleSheet, ScrollView,Image, View, Button, BackgroundImage,StatusBar,AppState,Alert} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import React, {Component} from 'react';
 import Navigation from './router';
@@ -6,13 +6,8 @@ import {Root} from "native-base";
 import Navigator from './router';
 import { Provider } from 'react-redux';
 import Store from './redux/store';
-import {Container} from 'native-base'
-import {
-  AdMobBanner,
-  AdMobInterstitial,
-  PublisherBanner,
-  AdMobRewarded,
-} from 'react-native-admob'
+import {Container} from 'native-base';
+import Banner from './components/banner';
 import { AppRegistry } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
 
@@ -25,18 +20,32 @@ export default class App extends Component {
     this.state = {
       pause:false,
       appState: AppState.currentState
-    };
-
-    AppRegistry.registerComponent('example', () => App);
+    }
+    AppRegistry.registerComponent('backgroundMusic', () => App);
     TrackPlayer.registerEventHandler(module.exports = async (data) => {
-      if(data.type == 'playback-state') {
-          TrackPlayer.play();
-      }else if(data.state==2){
-        TrackPlayer.stop()
-        console.log("ciao")
-      }else{}
-        
-      console.log("data",data.state)
+      switch(data.type) {
+        case 'remote-play':
+            TrackPlayer.play();
+            break;
+        case 'remote-pause':
+            TrackPlayer.pause();
+            break;
+        case 'remote-stop':
+            TrackPlayer.stop();
+            break;
+        case 'remote-next':
+            TrackPlayer.skipToNext();
+            break;
+        case 'remote-previous':
+            TrackPlayer.skipToPrevious();
+            break;
+        case 'remote-seek':
+            TrackPlayer.seekTo(data.position);
+            break;
+      
+  
+     
+    }
   });
     // Creates the player
     TrackPlayer.setupPlayer().then(async () => {
@@ -49,28 +58,27 @@ export default class App extends Component {
         TrackPlayer.updateOptions({
           stopWithApp: true
       });
-        TrackPlayer.setVolume(0.5);
-        // Starts playing it
-        TrackPlayer.play();
-        
-
-    });
+      TrackPlayer.setVolume(0.4);
+      // Starts playing it
+      TrackPlayer.play();
+  });
   }
-  componentDidMount() {
-    AppState.addEventListener('change', this._handleAppStateChange);
-  }
-
-  componentWillUnmount() {
-    AppState.removeEventListener('change', this._handleAppStateChange);
-  }
-
-  
-  _handleAppStateChange = (nextAppState) => {
-    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-      TrackPlayer.stop()
+ 
+     
+    componentDidMount(){
+      AppState.addEventListener('change', this._handleAppStateChange);
     }
-    this.setState({appState: nextAppState});
-  }
+    componentWillUnmount(){
+      AppState.removeEventListener('change', this._handleAppStateChange);
+    }
+    _handleAppStateChange(currentAppState) {
+      if(currentAppState == "background") {
+        TrackPlayer.setVolume(0);
+      } 
+      if(currentAppState == "active") {
+        TrackPlayer.setVolume(0.4);
+      }
+    }
   render() {
 
     return (
@@ -86,13 +94,7 @@ export default class App extends Component {
         </Root>
       </Provider>
       </LinearGradient>
-      <View style={styles.bannerContent}>
-         <AdMobBanner style={styles.banner}
-         adSize="fullBanner"
-         adUnitID="ca-app-pub-7269857134561204/8704787773"
-         testDevices={[AdMobBanner.simulatorId]}
-         onAdFailedToLoad={error => console.error(error)}/>
-       </View>
+      <Banner />
        </Container>
     );
   }
@@ -109,11 +111,5 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
   },
-  bannerContent: {
-    alignSelf: 'stretch',
-    width:"100%"
-  },
-  banner: {
-    alignSelf: 'stretch',
-  }
+  
 });
