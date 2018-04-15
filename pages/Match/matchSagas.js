@@ -44,7 +44,7 @@ function setLevel(level){
          return{
             rows: 7,
             cols: 6,
-            time: 170,
+            time: 180,
             neg: false,
             max: 80,
             level: level
@@ -55,7 +55,7 @@ function setLevel(level){
          return {
             rows: 10,
             cols: 7,
-            time: 160,
+            time: 170,
             max: 150,
             level: level
          }
@@ -90,7 +90,7 @@ function generate(config){
             var rand = Math.random() * max;
             var randomNumber = Math.floor(rand+1); 
 
-            var status = {id: index, number: randomNumber, clicked: false};
+            var status = {id: index, x:i, y:j, number: randomNumber, clicked: false};
             matrix[i][j] = status;
             index++;
         }

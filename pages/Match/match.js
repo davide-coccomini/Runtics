@@ -18,7 +18,7 @@ import {
 } from 'native-base';
 import CountdownCircle from 'react-native-countdown-circle';
 import * as actions from '../Report/reportActions';
- 
+
 
 class App extends React.Component {
   constructor(props) {
@@ -110,22 +110,12 @@ class App extends React.Component {
       }
     }
   }
-  cellClick(id) {
-    
-    var x,y
-    for(var i=0; i<this.state.rows; i++){
-      for(var j=0; j<this.state.cols;j++){
-        if(this.state.tableData[i][j].id == id){
-          x=i
-          y=j
-          if(this.state.tableData[i][j].clicked)
-            value = -this.state.tableData[i][j].number
+  cellClick(id,x,y) {
+          if(this.state.tableData[x][y].clicked)
+            value = -this.state.tableData[x][y].number
           else
-            value = this.state.tableData[i][j].number
-          break
-        }
-      }
-    }
+            value = this.state.tableData[x][y].number
+      
     if(this.state.lastClicked==-1){ // se è la prima cella cliccata
       this.state.lastClicked = id
       this.state.root = id
@@ -208,7 +198,7 @@ render () {
           <View key={index} style={[styles.rowContainer,  state.level==1 ? {height: 75}: state.level==2? {height:50}:state.level == 3 ? {height:50}:state.level == 4 ? {height:40}:{height:35}]}>
               {
                 rowData.map((cellData, cellIndex) => (
-                    <TouchableOpacity key={cellIndex}  style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer} onPress={() => {this.cellClick(cellData.id)}}> 
+                    <TouchableOpacity key={cellIndex}  style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer} onPress={() => {this.cellClick(cellData.id,cellData.x,cellData.y)}}> 
                       <Text style={[styles.cellText,
                                 state.level==1 && cellData.id==state.root ? {fontSize:24, color:"#FEC011"}:
                                 state.level==1 && cellData.id!=state.root ? {fontSize:20, color:"white"}:
