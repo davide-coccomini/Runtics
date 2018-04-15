@@ -202,7 +202,7 @@ render () {
             <Text style={styles.score}>{state.score}</Text>
       </Right>
     </Header>
-      <View style={[styles.tableContainer, state.level==1 ? {marginTop: 100}: state.level==2? {marginTop:75}:state.level == 3 ? {marginTop:50}: state.level == 4 ? {marginTop:25}:state.level == 5 ?{marginTop:20}:{marginTop:5} ]}>
+      <View style={[styles.tableContainer, state.level==1 ? {marginTop: 70}: state.level==2? {marginTop:55}:state.level == 3 ? {marginTop:40}: state.level == 4 ? {marginTop:5}:state.level == 5 ?{marginTop:10}:{marginTop:5} ]}>
       {
         state.tableData.map((rowData, index)  => (
           <View key={index} style={[styles.rowContainer,  state.level==1 ? {height: 75}: state.level==2? {height:50}:state.level == 3 ? {height:50}:state.level == 4 ? {height:40}:{height:35}]}>

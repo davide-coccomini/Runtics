@@ -19,7 +19,6 @@ import {
   Separator
 } from 'native-base';
 
-
 class App extends React.Component {
 
 render () {

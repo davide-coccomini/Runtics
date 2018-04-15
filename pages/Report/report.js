@@ -18,11 +18,15 @@ import {
   H1
 } from 'native-base';
 import * as actions from '../Report/reportActions';
+import {
+  AdMobInterstitial,
+} from 'react-native-admob'
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log("props",props)
+    this.generateAd();
     var matrix = this.generateResultTable(props.data.tableData,props.data.bestPath,props.data.rows,props.data.cols)
     var pathLabel = this.generatePathLabel(props.data.tableData,props.data.bestPath)
     
@@ -38,6 +42,7 @@ class App extends React.Component {
     }
   }
   componentWillReceiveProps(nextProps){
+    this.generateAd();
     var matrix = this.generateResultTable(nextProps.data.tableData,nextProps.data.bestPath,nextProps.data.rows,nextProps.data.cols)
     var pathLabel = this.generatePathLabel(nextProps.data.tableData,nextProps.data.bestPath)
     
@@ -52,6 +57,11 @@ class App extends React.Component {
       pathLabel: pathLabel
     }
     this.setState(newState)
+  }
+  generateAd(){
+    AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
+    AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+    AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
   }
   generatePathLabel(grid,path){
     var pathLabel = ""
