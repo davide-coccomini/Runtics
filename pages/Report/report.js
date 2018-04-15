@@ -59,6 +59,7 @@ class App extends React.Component {
     this.setState(newState)
   }
   generateAd(){
+    
     AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
     AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
     AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
@@ -119,12 +120,12 @@ render () {
         <View style={styles.tableContainer}>
         {
           state.tableData.map((rowData, index)  => (
-            <View key={index} style={[styles.rowContainer,  state.level==1 ? {height: 45}: state.level==2? {height:40}:state.level == 3 ? {height:35}:state.level == 4 ? {height:30}:{height:25}]}>
+            <View key={index} style={[styles.rowContainer,  state.level==1 ? {height: 45}: state.level==2? {height:35}:state.level == 3 ? {height:25}:state.level == 4 ? {height:20}:{height:18}]}>
                 {
                   rowData.map((cellData, cellIndex) => (
 
                       <TouchableOpacity key={cellIndex}   disabled={true} style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer} > 
-                        <Text style={[styles.cellText,state.level==1 ? {fontSize: 20}: state.level==2? {fontSize:18}:state.level == 3 ? {fontSize:15}:{fontSize:12}]}>{cellData.number}</Text>
+                        <Text style={[styles.cellText,state.level==1 ? {fontSize: 18}: state.level==2? {fontSize:14}:state.level == 3 ? {fontSize:10}:{fontSize:8}]}>{cellData.number}</Text>
                       </TouchableOpacity>
                   ))
                 }
