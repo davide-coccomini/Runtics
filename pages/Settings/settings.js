@@ -16,9 +16,12 @@ import {
     Spinner,
     Separator
   } from 'native-base';
+import {updatePlayBack} from './settingsActions'
+
+import * as actions from './settingsActions'
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
 import TrackPlayer from 'react-native-track-player';
-
-
   
 
 
@@ -29,6 +32,20 @@ export default class App extends Component {
         pause:false,
       };
      }
+     
+        componentWillUnmount() {
+            AppState.removeEventListener('change', this._handleStateChange);
+        }
+    
+
+    
+     _playPause() {
+        if(this.props.state == TrackPlayer.STATE_PAUSED) {
+            TrackPlayer.play();
+        } else {
+            TrackPlayer.pause();
+        }
+    }
      render() {
         return (
             <View style={styles.container}>  
@@ -37,27 +54,31 @@ export default class App extends Component {
                         <Text style={styles.musicText}>Music</Text>
                     </View>
                     <View style={styles.buttonView}>
-                        <TouchableOpacity onPress={() => manageMusic()} style={styles.button}><Text style={styles.buttonText}>{TrackPlayer.getState()?"DISABLE":"UNABLE"}</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={this._playPause.bind(this)} style={styles.button}><Text style={styles.buttonText}>{this.props.state == TrackPlayer.STATE_PAUSED?"ENABLE":"DISABLE"}</Text></TouchableOpacity>
                     </View>
+                </View>
+                <View style={styles.footer}>
+                    <Text style={styles.footerText}>Royalty Free Music from Bensound{"\n"}App created by Davide Coccomini</Text>
                 </View>
             </View>
         )
      }
 }
-function manageMusic(){
-   if(TrackPlayer.getState()){
-    TrackPlayer.stop()
-    TrackPlayer.setVolume(0)
-   }else{
-    TrackPlayer.setVolume(0)
-   }
 
- }
+function mapStateToProps(state) {
+    console.log("state",state)
+    return {
+        state: state.Settings.state
+    };
+}
+
+module.exports = connect(mapStateToProps)(App);
 
 const styles = StyleSheet.create({
 
     container: {
-        flex:1
+        flex:1,
+        marginTop:25
     },
     musicView: {
         flexDirection: 'row',
@@ -89,6 +110,13 @@ const styles = StyleSheet.create({
         color: "#FFF",
         fontWeight: "700"
       },
-
-
+      footer: {
+        alignSelf:"center",
+        marginTop:"120%"
+      },
+      footerText: {
+        color:"white",
+        fontSize:10,
+        textAlign:"center"
+      }
 })

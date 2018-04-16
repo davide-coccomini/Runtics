@@ -1,4 +1,9 @@
-module.exports = async (data) => {
+
+import TrackPlayer from 'react-native-track-player';
+import {playbackState} from './settingsActions'
+
+async function eventHandler(store, data) {
+
     switch(data.type) {
         case 'remote-play':
             TrackPlayer.play();
@@ -21,11 +26,10 @@ module.exports = async (data) => {
         case 'playback-state':
             store.dispatch(playbackState(data.state));
             break;
-        case 'playback-track-changed':
-            store.dispatch(playbackTrack(data.nextTrack));
-            break;
-        case 'playback-error':
-            Alert.alert('An error ocurred', data.error);
-            break;
+
     }
+};
+
+module.exports = function(store) {
+    return eventHandler.bind(null, store);
 };
