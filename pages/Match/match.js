@@ -150,6 +150,7 @@ render () {
 
     return(
       <Container>
+        {console.log("propsmatch",this.props)}
             {this.props.loading
             ? <Spinner/>
             : null}
@@ -197,7 +198,8 @@ render () {
         state.tableData.map((rowData, index)  => (
           <View key={index} style={[styles.rowContainer,  state.level==1 ? {height: 75}: state.level==2? {height:50}:state.level == 3 ? {height:50}:state.level == 4 ? {height:40}:{height:35}]}>
               {
-                rowData.map((cellData, cellIndex) => (
+                rowData.map((cellData, cellIndex) => {
+                return (
                     <TouchableOpacity key={cellIndex}  style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer} onPress={() => {this.cellClick(cellData.id,cellData.x,cellData.y)}}> 
                       <Text style={[styles.cellText,
                                 state.level==1 && cellData.id==state.root ? {fontSize:24, color:"#FEC011"}:
@@ -209,7 +211,7 @@ render () {
                                 cellData.id==state.root ? {fontSize:16, color:"#FEC011"}:{fontSize:12, color:"white"}]}
                       >{cellData.number}</Text>
                     </TouchableOpacity>
-                ))
+                )}) 
               }
           </View>
         ))

@@ -33,7 +33,9 @@ render () {
 
     return (
         <View style={styles.container}>
-        
+        {console.log("props",this.props)}
+       {this.state.loading ? <Spinner /> : null} 
+         
           <View behavior="padding" style={styles.container}>
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={require("../../images/logo.png")} />
@@ -132,7 +134,7 @@ const styles = StyleSheet.create({
   });
   
   function mapStateToProps(state) {
-    return {}
+    return {data: state.Match.data, loading: state.Match.loading};
   }
   
   function mapDispatchToProps(dispatch) {

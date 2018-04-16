@@ -10,7 +10,7 @@ import {Container} from 'native-base';
 import Banner from './components/banner';
 import { AppRegistry } from 'react-native';
 import TrackPlayer from 'react-native-track-player';
-
+import createEventHandler from './pages/Settings/player-handler';
 
 
 
@@ -21,32 +21,12 @@ export default class App extends Component {
       pause:false,
       appState: AppState.currentState
     }
-    AppRegistry.registerComponent('backgroundMusic', () => App);
-    TrackPlayer.registerEventHandler(module.exports = async (data) => {
-      switch(data.type) {
-        case 'remote-play':
-            TrackPlayer.play();
-            break;
-        case 'remote-pause':
-            TrackPlayer.pause();
-            break;
-        case 'remote-stop':
-            TrackPlayer.stop();
-            break;
-        case 'remote-next':
-            TrackPlayer.skipToNext();
-            break;
-        case 'remote-previous':
-            TrackPlayer.skipToPrevious();
-            break;
-        case 'remote-seek':
-            TrackPlayer.seekTo(data.position);
-            break;
+    
       
+    AppRegistry.registerComponent('backgroundMusic', () => createApp(Store));
+    TrackPlayer.registerEventHandler(createEventHandler(Store));
   
-     
-    }
-  });
+    
     // Creates the player
     TrackPlayer.setupPlayer().then(async () => {
     
@@ -56,7 +36,8 @@ export default class App extends Component {
             url: require('./music/background.mp3'),
         });
         TrackPlayer.updateOptions({
-          stopWithApp: true
+          stopWithApp: true,
+          icon: null
       });
       TrackPlayer.setVolume(0.4);
       // Starts playing it
@@ -83,13 +64,15 @@ export default class App extends Component {
 
     return (
       <Container>
+         <StatusBar
+            backgroundColor="#164593"
+            barStyle="light-content"
+            hidden={true}
+          />
       <LinearGradient colors={['#164593', '#2b62bc', '#0073BB']} style={styles.linearGradient}>
       <Provider store={Store}>
         <Root style={styles.root}>
-            <StatusBar
-            backgroundColor="#164593"
-            barStyle="light-content"
-          />
+           
           <Navigator/>
         </Root>
       </Provider>

@@ -1,5 +1,5 @@
 {
-  "name": "BestRun",
+  "name": "Runtics",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,25 +7,19 @@
     "test": "jest"
   },
   "dependencies": {
-    "native-base": "^2.4.1",
+    "native-base": "^2.4.2",
     "react": "16.3.1",
-    "react-native": "0.55.1",
+    "react-native": "0.55.2",
     "react-native-admob": "^2.0.0-beta.4",
     "react-native-countdown-circle": "^3.0.0",
-    "react-native-countdown-component": "^1.6.0",
     "react-native-linear-gradient": "^2.4.0",
-    "react-native-sound": "^0.10.9",
-    "react-native-square-grid": "^1.0.4",
-    "react-native-swipe-gestures": "^1.0.2",
-    "react-native-swipe-view": "^3.0.1",
-    "react-native-table-component": "^1.1.7",
+    "react-native-track-player": "^0.2.3",
     "react-navigation": "^1.5.11",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-persist": "^4.9.1",
     "redux-saga": "^0.16.0",
-    "remote-redux-devtools": "^0.5.12",
     "rn-viewpager": "^1.2.9"
   },
   "devDependencies": {
