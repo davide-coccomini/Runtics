@@ -4,6 +4,7 @@ import Levels from './pages/Levels/levels';
 import Match from './pages/Match/match';
 import Report from './pages/Report/report';
 import Tutorial from './pages/Tutorial/tutorial';
+import Settings from './pages/Settings/settings';
 
 export default Routes = TabNavigator({
     Home: {
@@ -20,6 +21,9 @@ export default Routes = TabNavigator({
     },
     Tutorial: {
         screen: Tutorial
+    },
+    Settings: {
+        screen: Settings
     }
 },{
     initialRouteName: 'Home',
