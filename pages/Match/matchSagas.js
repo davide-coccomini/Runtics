@@ -1,6 +1,6 @@
 import {call, put,takeEvery, select} from 'redux-saga/effects';
 import * as Actions from './matchActions';
-
+import Store from '../../redux/store';
 var matrix;
 var paths = new Array();
 var pathCounter = 0;
@@ -24,7 +24,7 @@ function setLevel(level){
         return {   
             rows: 4,
             cols: 4,
-            time: 170,
+            time: 10,
             min: 1,
             max: 15,
             level: level
@@ -47,7 +47,6 @@ function setLevel(level){
             rows: 7,
             cols: 6,
             time: 160,
-            neg: false,
             min: 10,
             max: 100,
             level: level
@@ -119,13 +118,19 @@ function generate(config){
      var bestPath = findBestPath(maxIndex,matrix,rows,cols)
      
      var response = {
-         grid: matrix,
+         tableData: matrix,
          rows: rows,
          cols: cols,
          time: time,
          level: level,
+         score: 0,
          maxScore: maxScore,
-         bestPath: bestPath
+         bestPath: bestPath,
+         root: -1,
+         lastClicked: -1,
+         lastValue: 9999,
+         left:false,
+         newMatch: true
      }
     return response;
    }
@@ -309,9 +314,90 @@ function searchPath(x,y,sum, isChild, xp, yp, parentId, rows, cols){
   
     return;
  }
+
+ function * clicking_cell(action){
+    try {
+        var cellPayload = action.payload
+        var response = yield call(cellClick, cellPayload);
+
+        yield put(Actions.clicked_cell(response))
+    }catch(e){
+        yield put(Actions.click_cell_error());
+        console.error(e);
+    }
+ }
+ function checkWin(newScore,maxScore){
+    if(newScore>=maxScore)
+        return true
+
+   return false
+  }
+function isAdjacency(id,lastClicked,cols){
+    
+    
+    if(id == lastClicked+1 || id == lastClicked-1 || id == lastClicked+cols || id == lastClicked-cols){
+        return true;
+    }
+   return false;
+  }
+
+function cellClick(payload) {
+    var {id,clicked,number} = payload
+    var {lastClicked,cols,rows,score,maxScore,time,left,tableData,level} = Store.getState().Match.data
+
+    var reset = false
+          if(clicked)
+            value = -number
+          else
+            value = number
+      
+    if(lastClicked==-1){ // se è la prima cella cliccata
+      lastClicked = id
+      root = id
+    }else{
+      if(!isAdjacency(id,lastClicked,cols) || number>=lastValue){
+        reset = true
+        score = 0
+        root = id
+        if(value<0) // evita che il punteggio vada in negativo qualora si ricominciasse un percorso con una cella già cliccata
+          value = -value
+      }
+    }
+    lastClicked = id
+    if(reset){
+        clicked = true
+    }else{
+        clicked = !clicked
+    }
+    lastValue = number
+    newScore = score + value 
+    win = checkWin(newScore,maxScore)
+    const response = {
+        id: id,
+        clicked: clicked,
+        rows: rows,
+        cols: cols,
+        newScore: newScore,
+        lastClicked: lastClicked,
+        lastValue: lastValue,
+        root: root,
+        reset: reset,
+        score: newScore,
+        maxScore: maxScore,
+        tableData:tableData,
+        time: time,
+        left:left,
+        win: win,
+        level:level,
+        newMatch: false
+    }
+   return response
+  }
+ 
 export default function * root() {
     yield * 
     [
-        takeEvery(Actions.types.STARTING_GAME, starting_game)
+        takeEvery(Actions.types.STARTING_GAME, starting_game),
+        takeEvery(Actions.types.CLICKING_CELL, clicking_cell)
     ]
 }
