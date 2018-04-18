@@ -16,45 +16,41 @@ import {
     Spinner,
     Separator
   } from 'native-base';
-import {updatePlayBack} from './settingsActions'
 
 import * as actions from './settingsActions'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import TrackPlayer from 'react-native-track-player';
-  
+import Store from '../../redux/store';
 
 
-export default class App extends Component {
+
+class App extends Component {
     constructor(props){
       super(props)
+      console.log("initialState",Store.getState().Settings.data)
       this.state = {
-        pause:false,
-      };
-     }
-     
-        componentWillUnmount() {
-            AppState.removeEventListener('change', this._handleStateChange);
-        }
-    
-
-    
-     _playPause() {
-        if(this.props.state == TrackPlayer.STATE_PAUSED) {
-            TrackPlayer.play();
-        } else {
-            TrackPlayer.pause();
-        }
+        musicState:Store.getState().Settings.data
+      }
     }
+    
+    componentWillReceiveProps(nextProps){
+        var newState = {
+            musicState: Store.getState().Settings.data
+        }
+        console.log("new",newState)
+        this.setState(newState)
+    }
+   
      render() {
         return (
+            
             <View style={styles.container}>  
                 <View style={styles.musicView}>
                     <View style={styles.descriptionView}>
                         <Text style={styles.musicText}>Music</Text>
                     </View>
                     <View style={styles.buttonView}>
-                        <TouchableOpacity onPress={this._playPause.bind(this)} style={styles.button}><Text style={styles.buttonText}>{this.props.state == TrackPlayer.STATE_PAUSED?"ENABLE":"DISABLE"}</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={() => {this.props.actions.changing_music_state(2)}} ><Text style={styles.buttonText}>{this.state.musicState.disabled ? "ENABLE":"DISABLE"}</Text></TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.footer}>
@@ -65,14 +61,7 @@ export default class App extends Component {
      }
 }
 
-function mapStateToProps(state) {
-    console.log("state",state)
-    return {
-        state: state.Settings.state
-    };
-}
 
-module.exports = connect(mapStateToProps)(App);
 
 const styles = StyleSheet.create({
 
@@ -120,3 +109,17 @@ const styles = StyleSheet.create({
         textAlign:"center"
       }
 })
+
+
+function mapStateToProps(state) {
+    return {data: state.Settings.data, loading: state.Settings.loading};
+  }
+  
+  function mapDispatchToProps(dispatch) {
+    return {
+      actions: bindActionCreators(actions, dispatch)
+    };
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(App);
+  

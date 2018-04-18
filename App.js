@@ -8,60 +8,23 @@ import { Provider } from 'react-redux';
 import Store from './redux/store';
 import {Container} from 'native-base';
 import Banner from './components/banner';
+import Handler from './components/handler';
+import MusicPlayer from './components/musicPlayer';
 import { AppRegistry } from 'react-native';
-import TrackPlayer from 'react-native-track-player';
-import createEventHandler from './pages/Settings/player-handler';
-
-
+import Sound from 'react-native-sound';
+import * as settingsActions from './pages/Settings/settingsActions';
 
 export default class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      pause:false,
       appState: AppState.currentState
     }
-    
-      
-    AppRegistry.registerComponent('backgroundMusic', () => createApp(Store));
-    TrackPlayer.registerEventHandler(createEventHandler(Store));
-  
-    
-    // Creates the player
-    TrackPlayer.setupPlayer().then(async () => {
-    
-        // Adds a track to the queue
-        await TrackPlayer.add({
-            id: '1',
-            url: require('./music/background.mp3'),
-        });
-        TrackPlayer.updateOptions({
-          stopWithApp: true,
-          icon: null
-      });
-      TrackPlayer.setVolume(0.4);
-      // Starts playing it
-      TrackPlayer.play();
-  });
   }
- 
-     
-    componentDidMount(){
-      AppState.addEventListener('change', this._handleAppStateChange);
-    }
-    componentWillUnmount(){
-      AppState.removeEventListener('change', this._handleAppStateChange);
-    }
-    _handleAppStateChange(currentAppState) {
-      if(currentAppState == "background") {
-        TrackPlayer.setVolume(0);
-      } 
-      if(currentAppState == "active") {
-        TrackPlayer.setVolume(0.4);
-      }
-    }
-  render() {
 
+
+  render() {
+    console.disableYellowBox = true;
     return (
       <Container>
          <StatusBar
@@ -72,7 +35,8 @@ export default class App extends Component {
       <LinearGradient colors={['#164593', '#2b62bc', '#0073BB']} style={styles.linearGradient}>
       <Provider store={Store}>
         <Root style={styles.root}>
-           
+          <MusicPlayer />
+          <Handler />
           <Navigator/>
         </Root>
       </Provider>
@@ -82,7 +46,6 @@ export default class App extends Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
   linearGradient: {
     flex: 1,

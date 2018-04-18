@@ -24,7 +24,7 @@ function setLevel(level){
         return {   
             rows: 4,
             cols: 4,
-            time: 10,
+            time: 170,
             min: 1,
             max: 15,
             level: level

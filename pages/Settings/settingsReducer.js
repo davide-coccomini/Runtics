@@ -1,6 +1,6 @@
 import {types} from './settingsActions';
 
-
+console.log("types",types)
 const initialState = {
     data: [],
     loading: false,
@@ -10,15 +10,25 @@ const initialState = {
 const reducer = (state = initialState, action) => {
 
 switch (action.type){
-    case types.PLAYBACK_INIT:
+    case types.CHANGING_MUSIC_STATE:
     return {
         ...state,
-        init: true
+        error:false,
+        loading:true
     };
-    case types.PLAYBACK_STATE:
+    case types.CHANGED_MUSIC_STATE:
     return {
         ...state,
-        state: action.state
+        data: action.payload,
+        error:false,
+        loading:false
+    };
+    case types.CHANGE_MUSIC_STATE_ERROR: 
+    return {
+        ...state,
+        data: action.payload,
+        error:true,
+        loading:false
     };
    default:
     break;

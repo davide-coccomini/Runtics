@@ -1,34 +1,9 @@
 export const types = {
-    PLAYBACK_INIT: "PLAYBACK_INIT",
-    PLAYBACK_STATE: "PLAYBACK_STATE"
-}
-export const playback_state = (obj => ({type: types.PLAYBACK_STATE, payload: obj}));
-
-export function updatePlayback() {
-    return async (dispatch, getState) => {
-        try {
-            dispatch(playbackState(await TrackPlayer.getState()));
-            dispatch(playbackTrack(await TrackPlayer.getCurrentTrack()));
-        } catch(e) {
-            // The player is probably not yet initialized
-            // which means we don't have to update anything
-        }
-    };
-}
-export function initializePlayback() {//TODO
-    return async (dispatch, getState) => {
-        await TrackPlayer.setupPlayer({
-            maxCacheSize: 1024 * 5 // 5 mb
-        });
-        dispatch({
-            type: types.PLAYBACK_INIT
-        });
-    };
+    CHANGING_MUSIC_STATE: "CHANGING_MUSIC_STATE",
+    CHANGED_MUSIC_STATE: "CHANGED_MUSIC_STATE",
+    CHANGE_MUSIC_STATE_ERROR: "CHANGE_MUSIC_STATE_ERROR"
 }
 
-export function playbackState(state) {
-    return {
-        type: types.PLAYBACK_STATE,
-        state: state
-    };
-}
+export const changing_music_state = (obj => ({type: types.CHANGING_MUSIC_STATE, payload: obj}));
+export const changed_music_state = (obj => ({type: types.CHANGED_MUSIC_STATE, payload: obj}));
+export const change_music_state_error = (obj => ({type: types.CHANGE_MUSIC_STATE_ERROR, payload: obj}));
