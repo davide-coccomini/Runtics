@@ -50,7 +50,7 @@ class App extends Component {
                         <Text style={styles.musicText}>Music</Text>
                     </View>
                     <View style={styles.buttonView}>
-                        <TouchableOpacity onPress={() => {this.props.actions.changing_music_state(2)}} ><Text style={styles.buttonText}>{this.state.musicState.disabled ? "ENABLE":"DISABLE"}</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.button}onPress={() => {this.props.actions.changing_music_state(2)}} ><Text style={styles.buttonText}>{this.state.musicState.disabled ? "ENABLE":"DISABLE"}</Text></TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.footer}>
