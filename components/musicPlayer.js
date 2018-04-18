@@ -62,6 +62,7 @@ class App extends React.Component {
 
   playSound() {
     console.log("play",this.state.sound)
+    this.state.sound.setVolume(0.1)
     this.state.sound.play(() => {
       this.state.sound.release();
     });
