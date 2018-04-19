@@ -5,7 +5,6 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
-import guichaguri.trackplayer.TrackPlayer;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -29,7 +28,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new RNSoundPackage(),
             new RNAdMobPackage(),
-            new TrackPlayer(),
             new LinearGradientPackage()
       );
     }
