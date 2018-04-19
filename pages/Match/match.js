@@ -39,7 +39,7 @@ class App extends React.Component {
       left: props.data.left,
       newMatch: props.data.newMatch
     }
-    console.log("best",props.data.bestPath)
+    
     
   }
   componentWillReceiveProps(nextProps){
@@ -105,7 +105,6 @@ class App extends React.Component {
   }
 }
 render () {
-  console.log("rerendering")
   const state = this.state;
   const {navigate} = this.props.navigation;
   if(state.newMatch){

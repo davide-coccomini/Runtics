@@ -16,7 +16,6 @@ class App extends React.Component {
     }
 }
 
-     
   componentDidMount(){
     AppState.addEventListener('change', this._handleAppStateChange);
   }
@@ -25,12 +24,10 @@ class App extends React.Component {
   }
   _handleAppStateChange = (currentAppState) => {
     if(currentAppState == "background") {
-      console.log("background")
       this.props.actions.changing_music_state(0)
     }
     if(currentAppState == "active")
     {
-      console.log("active")
       this.props.actions.changing_music_state(1)
     }
   }

@@ -41,6 +41,9 @@ render () {
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Tutorial')}>
                 <Text style={styles.buttonText}>HOW TO PLAY</Text>
               </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Scores')}>
+                <Text style={styles.buttonText}>SCORES</Text>
+              </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Settings')}>
                 <Text style={styles.buttonText}>SETTINGS</Text>
               </TouchableOpacity>

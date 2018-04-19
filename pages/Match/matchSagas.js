@@ -24,7 +24,7 @@ function setLevel(level){
         return {   
             rows: 4,
             cols: 4,
-            time: 170,
+            time: 180,
             min: 1,
             max: 15,
             level: level
@@ -35,7 +35,7 @@ function setLevel(level){
         return {
             rows: 6,
             cols: 5,
-            time: 160,
+            time: 170,
             min: 1,
             max: 25,
             level: level
@@ -46,7 +46,7 @@ function setLevel(level){
          return{
             rows: 7,
             cols: 6,
-            time: 160,
+            time: 170,
             min: 10,
             max: 100,
             level: level
@@ -57,7 +57,7 @@ function setLevel(level){
          return {
             rows: 10,
             cols: 7,
-            time: 160,
+            time: 150,
             min: 20,
             max: 300,
             level: level
@@ -67,7 +67,7 @@ function setLevel(level){
          return {
             rows: 11,
             cols: 8,
-            time: 160,
+            time: 150,
             min: 35,
             max: 400,
             level: level
@@ -76,7 +76,7 @@ function setLevel(level){
          return {
             rows: 11,
             cols: 9,
-            time: 160,
+            time: 140,
             min: 50,
             max: 600,
             level: level

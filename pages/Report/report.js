@@ -27,40 +27,42 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.generateAd();
-    var matrix = this.generateResultTable(props.data.tableData,props.data.bestPath,props.data.rows,props.data.cols)
-    var pathLabel = this.generatePathLabel(props.data.tableData,props.data.bestPath)
+    var matrix = this.generateResultTable(props.data.matchInformations.tableData,props.data.matchInformations.bestPath,props.data.matchInformations.rows,props.data.matchInformations.cols)
+    var pathLabel = this.generatePathLabel(props.data.matchInformations.tableData,props.data.matchInformations.bestPath)
     
     this.state = {
-      score: props.data.score,
-      maxScore: props.data.maxScore,
-      win: props.data.win,
+      score: props.data.matchInformations.score,
+      maxScore: props.data.matchInformations.maxScore,
+      win: props.data.matchInformations.win,
       tableData: matrix,
-      rows: props.data.rows,
-      cols: props.data.cols,
-      level: props.data.level,
+      rows: props.data.matchInformations.rows,
+      cols: props.data.matchInformations.cols,
+      level: props.data.matchInformations.level,
       pathLabel: pathLabel
     }
   }
   componentWillReceiveProps(nextProps){
     this.generateAd();
-    var matrix = this.generateResultTable(nextProps.data.tableData,nextProps.data.bestPath,nextProps.data.rows,nextProps.data.cols)
-    var pathLabel = this.generatePathLabel(nextProps.data.tableData,nextProps.data.bestPath)
-    
+    var matrix = this.generateResultTable(nextProps.data.matchInformations.tableData,nextProps.data.matchInformations.bestPath,nextProps.data.matchInformations.rows,nextProps.data.matchInformations.cols)
+    var pathLabel = this.generatePathLabel(nextProps.data.matchInformations.tableData,nextProps.data.matchInformations.bestPath)
+    console.log("nextprops",nextProps)
     const newState = {
-      score: nextProps.data.score,
-      maxScore: nextProps.data.maxScore,
-      win:nextProps.data.win,
+      score: nextProps.data.matchInformations.score,
+      maxScore: nextProps.data.matchInformations.maxScore,
+      win:nextProps.data.matchInformations.win,
       tableData: matrix,
-      rows: nextProps.data.rows,
-      cols: nextProps.data.cols,
-      level: nextProps.data.level,
-      pathLabel: pathLabel
+      rows: nextProps.data.matchInformations.rows,
+      cols: nextProps.data.matchInformations.cols,
+      level: nextProps.data.matchInformations.level,
+      pathLabel: pathLabel,
+      
     }
     this.setState(newState)
   }
   generateAd(){
     
-    AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712');
+    AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); //TEST
+    //AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
     AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
     AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
   }
@@ -73,6 +75,7 @@ class App extends React.Component {
     return pathLabel
   }
   generateResultTable(grid,path,rows,cols){
+    console.log("grid",grid)
     for(var i=0; i<rows; i++){
       for(var j=0; j<cols; j++){
         if(this.isCellToCheck(path,i,j)){
@@ -85,6 +88,7 @@ class App extends React.Component {
     return grid
   }
   isCellToCheck(path,i,j){
+    console.log("path",path)
     for(var k=0; k<path.length; k++){
       if(path[k][0]==i && path[k][1]==j){
         return true
@@ -123,7 +127,6 @@ render () {
             <View key={index} style={[styles.rowContainer,  state.level==1 ? {height: 45}: state.level==2? {height:35}:state.level == 3 ? {height:25}:state.level == 4 ? {height:20}:{height:18}]}>
                 {
                   rowData.map((cellData, cellIndex) => (
-
                       <TouchableOpacity key={cellIndex}   disabled={true} style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer} > 
                         <Text style={[styles.cellText,state.level==1 ? {fontSize: 18}: state.level==2? {fontSize:14}:state.level == 3 ? {fontSize:10}:{fontSize:8}]}>{cellData.number}</Text>
                       </TouchableOpacity>
@@ -140,7 +143,9 @@ render () {
               <TouchableOpacity style={styles.button}  onPress={() => navigate('Levels')}>
                 <Text style={styles.buttonText}>PLAY AGAIN</Text>
               </TouchableOpacity>
-          
+              <TouchableOpacity style={styles.button}  onPress={() => navigate('Home')}>
+                <Text style={styles.buttonText}>BACK TO MENU</Text>
+              </TouchableOpacity>
           </View>
         </View>
        </Container>

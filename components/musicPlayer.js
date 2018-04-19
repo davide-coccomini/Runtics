@@ -30,8 +30,7 @@ class App extends React.Component {
         sound: this.state.sound,
         disabled: nextProps.data.disabled
       }
-      
-      console.log("sound",this.state.sound)
+    
       this.setState(newState)
       if(newState.disabled){
         this.stopSound()
@@ -47,7 +46,7 @@ class App extends React.Component {
       }
     }
   initSound(){
-    console.log("init")
+    
     const callback = (error, sound) => {
       if (error) {
         console.log(error)
@@ -61,7 +60,7 @@ class App extends React.Component {
   }
 
   playSound() {
-    console.log("play",this.state.sound)
+    
     this.state.sound.setVolume(0.1)
     this.state.sound.play(() => {
       this.state.sound.release();

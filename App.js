@@ -9,6 +9,7 @@ import Store from './redux/store';
 import {Container} from 'native-base';
 import Banner from './components/banner';
 import Handler from './components/handler';
+import ScoresHandler from './components/scoresHandler';
 import MusicPlayer from './components/musicPlayer';
 import { AppRegistry } from 'react-native';
 import Sound from 'react-native-sound';
@@ -36,7 +37,20 @@ export default class App extends Component {
       <Provider store={Store}>
         <Root style={styles.root}>
           <MusicPlayer />
-          <Handler />
+          <Handler/>
+          <ScoresHandler matches = {{   
+            winEasy:0,
+            lostEasy:0,
+            winMedium:0,
+            lostMedium:0,
+            winHard:0,
+            lostHard:0,
+            winVeryHard:0,
+            lostVeryHard:0,
+            winInsane:0,
+            lostInsane:0,
+            winImpossible:0,
+            lostImpossible:0}} />
           <Navigator/>
         </Root>
       </Provider>

@@ -27,7 +27,6 @@ import Store from '../../redux/store';
 class App extends Component {
     constructor(props){
       super(props)
-      console.log("initialState",Store.getState().Settings.data)
       this.state = {
         musicState:Store.getState().Settings.data
       }
@@ -37,7 +36,6 @@ class App extends Component {
         var newState = {
             musicState: Store.getState().Settings.data
         }
-        console.log("new",newState)
         this.setState(newState)
     }
    

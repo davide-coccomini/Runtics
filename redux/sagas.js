@@ -3,6 +3,7 @@ import {fork} from 'redux-saga/effects/';
 import Match from '../pages/Match/matchSagas';
 import Report from '../pages/Report/reportSagas';
 import Settings from '../pages/Settings/settingsSagas';
+import Scores from '../pages/Scores/scoresSagas';
 function * firstAppOpening() {
     console.log('====================================');
     console.log("APP_OPENED");
@@ -16,7 +17,8 @@ export default function * root() {
         takeEvery("APP_OPENED", firstAppOpening),
         fork(Match),
         fork(Report),
-        fork(Settings)
+        fork(Settings),
+        fork(Scores)
     ]
 
 }

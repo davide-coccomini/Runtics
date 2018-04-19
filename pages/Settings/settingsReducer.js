@@ -1,6 +1,5 @@
 import {types} from './settingsActions';
 
-console.log("types",types)
 const initialState = {
     data: [],
     loading: false,
