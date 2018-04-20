@@ -18,6 +18,13 @@ import {
   Spinner,
   Separator
 } from 'native-base';
+import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
+GoogleAnalyticsSettings.setDispatchInterval(30);
+export const tracker = new GoogleAnalyticsTracker('UA-117921514-1');
+
+tracker.trackScreenView("Home")
+
+
 
 class App extends React.Component {
 
@@ -35,16 +42,16 @@ render () {
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={require("../../images/logo.png")} />
             </View>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Levels')}>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Levels'); tracker.trackScreenView("Levels")}}>
                 <Text style={styles.buttonText}>NEW GAME</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Tutorial')}>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Tutorial'); tracker.trackScreenView("Tutorial")}}>
                 <Text style={styles.buttonText}>HOW TO PLAY</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Scores')}>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Scores'); tracker.trackScreenView("Scores")}}>
                 <Text style={styles.buttonText}>SCORES</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Settings')}>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Settings'); tracker.trackScreenView("Settings")}}>
                 <Text style={styles.buttonText}>SETTINGS</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={()=>{ return BackHandler.exitApp();}}>

@@ -19,6 +19,10 @@ import {
 import CountdownCircle from 'react-native-countdown-circle';
 import * as actions from '../Report/reportActions';
 import Cell from '../../components/cell';
+import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
+export const trackerMatch = new GoogleAnalyticsTracker('UA-117921514-1');
+trackerMatch.trackScreenView("Match");
+
 
 class App extends React.Component {
   constructor(props) {
@@ -39,8 +43,6 @@ class App extends React.Component {
       left: props.data.left,
       newMatch: props.data.newMatch
     }
-    
-    
   }
   shouldComponentUpdate(nextProps, nextState) {
     return nextState !== this.state
@@ -121,6 +123,7 @@ render () {
   });
 
     return(
+      
       <Container>
             {this.props.loading
             ? <Spinner/>

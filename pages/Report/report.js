@@ -21,7 +21,10 @@ import * as actions from '../Report/reportActions';
 import {
   AdMobInterstitial,
 } from 'react-native-admob'
-
+import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
+GoogleAnalyticsSettings.setDispatchInterval(30);
+export const tracker = new GoogleAnalyticsTracker('UA-117921514-1');
+tracker.trackScreenView("Report"); 
 
 class App extends React.Component {
   constructor(props) {

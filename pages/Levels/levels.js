@@ -18,6 +18,9 @@ import {
   Separator
 } from 'native-base';
 import * as actions from '../Match/matchActions';
+import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
+GoogleAnalyticsSettings.setDispatchInterval(30);
+export const tracker = new GoogleAnalyticsTracker('UA-117921514-1');
 
 class App extends React.Component {
 
@@ -39,22 +42,22 @@ render () {
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={require("../../images/logo.png")} />
             </View>
-              <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() =>{ navigate('Match'); this.props.actions.starting_game(1)}}>
+              <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Easy"); this.props.actions.starting_game(1)}}>
                 <Text style={styles.buttonText}>EASY</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerMedium}  onPress={() =>{ navigate('Match'); this.props.actions.starting_game(2)}}>
+              <TouchableOpacity style={styles.buttonContainerMedium}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Medium"); this.props.actions.starting_game(2)}}>
                 <Text style={styles.buttonText}>MEDIUM</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerHard}  onPress={() => { navigate('Match'); this.props.actions.starting_game(3)}}>
+              <TouchableOpacity style={styles.buttonContainerHard}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Hard"); this.props.actions.starting_game(3)}}>
                 <Text style={styles.buttonText}>HARD</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerVeryHard}  onPress={() => { navigate('Match'); this.props.actions.starting_game(4)}}>
+              <TouchableOpacity style={styles.buttonContainerVeryHard}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Very Hard"); this.props.actions.starting_game(4)}}>
                 <Text style={styles.buttonText}>VERY HARD</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerInsane}  onPress={() => { navigate('Match'); this.props.actions.starting_game(5)}}>
+              <TouchableOpacity style={styles.buttonContainerInsane}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Insane"); this.props.actions.starting_game(5)}}>
                 <Text style={styles.buttonText}>INSANE</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerImpossible}  onPress={() => { navigate('Match'); this.props.actions.starting_game(6)}}>
+              <TouchableOpacity style={styles.buttonContainerImpossible}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Impossible"); this.props.actions.starting_game(6)}}>
                 <Text style={styles.buttonText}>IMPOSSIBLE</Text>
               </TouchableOpacity>
           </View>
