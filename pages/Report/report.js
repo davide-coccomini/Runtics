@@ -45,7 +45,6 @@ class App extends React.Component {
     this.generateAd();
     var matrix = this.generateResultTable(nextProps.data.matchInformations.tableData,nextProps.data.matchInformations.bestPath,nextProps.data.matchInformations.rows,nextProps.data.matchInformations.cols)
     var pathLabel = this.generatePathLabel(nextProps.data.matchInformations.tableData,nextProps.data.matchInformations.bestPath)
-    console.log("nextprops",nextProps)
     const newState = {
       score: nextProps.data.matchInformations.score,
       maxScore: nextProps.data.matchInformations.maxScore,
@@ -75,7 +74,6 @@ class App extends React.Component {
     return pathLabel
   }
   generateResultTable(grid,path,rows,cols){
-    console.log("grid",grid)
     for(var i=0; i<rows; i++){
       for(var j=0; j<cols; j++){
         if(this.isCellToCheck(path,i,j)){
@@ -88,7 +86,6 @@ class App extends React.Component {
     return grid
   }
   isCellToCheck(path,i,j){
-    console.log("path",path)
     for(var k=0; k<path.length; k++){
       if(path[k][0]==i && path[k][1]==j){
         return true
@@ -233,7 +230,7 @@ const styles = StyleSheet.create({
         height:50,
         paddingVertical: 15,
         alignSelf:"center",
-        marginTop:"10%"
+        marginTop:"1%"
       },
     buttonText: {
       textAlign: "center",
