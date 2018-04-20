@@ -42,6 +42,12 @@ class App extends React.Component {
     
     
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("nextprops",this.state),
+    console.log("nextState",nextState)
+    return nextState !== this.state
+  }
+
   componentWillReceiveProps(nextProps){
     var newState
 
@@ -136,7 +142,7 @@ render () {
             textStyle={{ fontSize: 20, color:"white" }}
          
             onTimeElapsed={() => {
-                                if(!state.left){
+                                if(!state.left || !state.win){
                                   navigate('Report'); 
                                   const payload = {
                                                     score: state.score, 

@@ -95,7 +95,7 @@ function generate(config){
             var rand = Math.random() * max;
             var randomNumber = Math.floor(rand+min); 
 
-            var status = {id: index, x:i, y:j, number: randomNumber, clicked: false};
+            var status = {id: index, x:i, y:j, number: randomNumber};
             matrix[i][j] = status;
             index++;
         }
