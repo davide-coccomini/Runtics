@@ -29,6 +29,9 @@ class App extends React.Component {
             clicked: false
         }
       }
+      shouldComponentUpdate(nextProps, nextState) {
+        return nextState !== this.state
+      }
       componentWillReceiveProps(nextProps){
         if(nextProps.data.reset){
           var state
