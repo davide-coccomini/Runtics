@@ -41,7 +41,8 @@ class App extends React.Component {
       root: props.data.root,
       lastValue: props.data.lastValue,
       left: props.data.left,
-      newMatch: props.data.newMatch
+      newMatch: props.data.newMatch,
+      win: false
     }
   }
   shouldComponentUpdate(nextProps, nextState) {
@@ -65,7 +66,8 @@ class App extends React.Component {
         left: nextProps.data.left,
         newMatch: nextProps.data.newMatch,
         level: nextProps.data.level,
-        bestPath: nextProps.data.bestPath
+        bestPath: nextProps.data.bestPath,
+        win:nextProps.data.win
       }
     }else{
       newState = {
@@ -79,7 +81,8 @@ class App extends React.Component {
         time:nextProps.data.time,
         left: nextProps.data.left,
         newMatch: nextProps.data.newMatch,
-        level: nextProps.data.level
+        level: nextProps.data.level,
+        win:nextProps.data.win
       }
     }
     this.setState(newState)
@@ -94,6 +97,7 @@ class App extends React.Component {
   const {navigate} = this.props.navigation;
 
   if(newScore>=this.state.maxScore){
+    this.state.win = true
     navigate("Report")
     const payload = {
       endTime:this.countdown.getTimeRemained(),
@@ -144,7 +148,7 @@ render () {
             textStyle={{ fontSize: 20, color:"white" }}
          
             onTimeElapsed={() => {
-                                if(!state.left || !state.win){
+                                if(!state.left && !state.win){
                                   navigate('Report'); 
                                   const payload = {
                                                     endTime:this.countdown.getTimeRemained(),
