@@ -147,7 +147,7 @@ render () {
                         
                         </View>
                     <View style={styles.textContainer}>
-                        <Text  style={styles.text}>If you press a number higher then the last pressed or not adjacent to it, a new path will be started.</Text>
+                        <Text  style={styles.text}>If you press a number higher than the last pressed or not adjacent to it, a new path will be started.</Text>
                     </View>
                     <View behavior="padding" style={styles.buttonView}>
       
