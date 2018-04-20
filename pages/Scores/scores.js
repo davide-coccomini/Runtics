@@ -44,16 +44,29 @@ class App extends React.Component {
       matches = {   
         winEasy:0,
         lostEasy:0,
+        timeEasy:0,
+        bestTimeEasy:0,
         winMedium:0,
         lostMedium:0,
+        timeMedium:0,
+        bestTimeMedium:0,
         winHard:0,
         lostHard:0,
+        timeHard:0,
+        bestTimeHard:0,
         winVeryHard:0,
         lostVeryHard:0,
+        timeVeryHard:0,
+        bestTimeVeryHard:0,
         winInsane:0,
         lostInsane:0,
+        timeInsane:0,
+        bestTimeInsane:0,
         winImpossible:0,
-        lostImpossible:0}
+        lostImpossible:0,
+        timeImpossible:0,
+        bestTimeImpossible:0
+      }
     }
     return(
       <IndicatorViewPager
@@ -71,7 +84,13 @@ class App extends React.Component {
                 <Text style={styles.levelLabel}>- Win     {matches.winEasy}</Text>
               </View>
               <View>
-                <Text style={styles.levelLabel}>- Lost   {matches.lostEasy}</Text>
+                <Text style={styles.levelLabel}>- Lost    {matches.lostEasy}</Text>
+              </View>
+              <View>
+                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeEasy/(matches.lostEasy+matches.winEasy))?"//":Math.round(matches.timeEasy/(matches.lostEasy+matches.winEasy))}</Text>
+              </View>
+              <View>
+                <Text style={styles.levelLabel}>- Best time   {isNaN(matches.bestTimeEasy)?"//":matches.bestTimeEasy}</Text>
               </View>
             </View>
           </View>
@@ -90,6 +109,12 @@ class App extends React.Component {
             <View>
               <Text style={styles.levelLabel}>- Lost    {matches.lostMedium}</Text>
             </View>    
+            <View>
+                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeMedium/(matches.lostMedium+matches.winMedium))?"//":Math.round(matches.timeMedium/(matches.lostMedium+matches.winMedium))}</Text>
+            </View>
+            <View>
+                <Text style={styles.levelLabel}>- Best time   {isNaN(matches.bestTimeMedium)?"//":matches.bestTimeMedium}</Text>
+            </View>
       </View>
       <View style={styles.levelView}>
             <View>
@@ -105,7 +130,13 @@ class App extends React.Component {
             </View>
             <View>
               <Text style={styles.levelLabel}>- Lost    {matches.lostHard}</Text>
+            </View>
+            <View>
+                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeHard/(matches.lostHard+matches.winHard))?"//":Math.round(matches.timeHard/(matches.lostHard+matches.winHard))}</Text>
             </View>    
+            <View>
+                <Text style={styles.levelLabel}>- Best time   {isNaN(matches.bestTimeHard)?"//":matches.bestTimeHard}</Text>
+            </View>
       </View>
       <View style={styles.levelView}>
             <View>
@@ -121,7 +152,13 @@ class App extends React.Component {
             </View>
             <View>
               <Text style={styles.levelLabel}>- Lost    {matches.lostVeryHard}</Text>
-            </View>    
+            </View>   
+            <View>
+                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeVeryHard/(matches.winVeryHard+matches.winVeryHard))?"//":Math.round(matches.timeVeryHard/(matches.winVeryHard+matches.winVeryHard))}</Text>
+            </View> 
+            <View>
+                <Text style={styles.levelLabel}>- Best time   {isNaN(matches.bestTimeVeryHard)?"//":matches.bestTimeVeryHard}</Text>
+            </View>
       </View>
       <View style={styles.levelView}>
             <View>
@@ -138,6 +175,12 @@ class App extends React.Component {
             <View>
               <Text style={styles.levelLabel}>- Lost    {matches.lostInsane}</Text>
             </View>    
+            <View>
+                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeInsane/(matches.lostInsane+matches.winInsane))?"//":Math.round(matches.timeInsane/(matches.lostInsane+matches.winInsane))}</Text>
+            </View>
+            <View>
+                <Text style={styles.levelLabel}>- Best time   {isNaN(matches.bestTimeInsane)?"//":matches.bestTimeInsane}</Text>
+            </View>
       </View>
       <View style={styles.levelView}>
             <View>
@@ -154,6 +197,12 @@ class App extends React.Component {
             <View>
               <Text style={styles.levelLabel}>- Lost    {matches.lostImpossible}</Text>
             </View>    
+            <View>
+                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeImpossible/(matches.lostImpossible+matches.winImpossible))?"//":Math.round(matches.timeImpossible/(matches.lostImpossible+matches.winImpossible))}</Text>
+            </View>
+            <View>
+                <Text style={styles.levelLabel}>- Best time   {isNaN(matches.bestTimeImpossible)?"//":matches.bestTimeImpossible}</Text>
+           </View>
       </View>
 
      </IndicatorViewPager>

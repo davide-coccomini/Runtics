@@ -43,8 +43,6 @@ class App extends React.Component {
     
   }
   shouldComponentUpdate(nextProps, nextState) {
-    console.log("nextprops",this.state),
-    console.log("nextState",nextState)
     return nextState !== this.state
   }
 
@@ -96,6 +94,7 @@ class App extends React.Component {
   if(newScore>=this.state.maxScore){
     navigate("Report")
     const payload = {
+      endTime:this.countdown.getTimeRemained(),
       time: 99999,
       score: newScore, 
       maxScore: this.state.maxScore,
@@ -145,6 +144,7 @@ render () {
                                 if(!state.left || !state.win){
                                   navigate('Report'); 
                                   const payload = {
+                                                    endTime:this.countdown.getTimeRemained(),
                                                     score: state.score, 
                                                     maxScore: state.maxScore, 
                                                     win: false,
