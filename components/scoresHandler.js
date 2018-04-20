@@ -57,7 +57,6 @@ class App extends React.Component {
 
 
   componentWillReceiveProps(nextProps){
-    console.log("nextttt",nextProps)
     var newState = {
         winEasy: nextProps.matches.winEasy,
         lostEasy: nextProps.matches.lostEasy,
