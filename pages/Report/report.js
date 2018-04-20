@@ -63,8 +63,8 @@ class App extends React.Component {
   }
   generateAd(){
     
-    AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); //TEST
-    //AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
+    //AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); //TEST
+    AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
     AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
     AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
   }

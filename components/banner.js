@@ -15,8 +15,8 @@ export default class App extends Component {
             <View style={styles.bannerContent}>
             <AdMobBanner style={styles.banner}
             adSize="fullBanner"
-            //adUnitID="ca-app-pub-7269857134561204/8704787773"
-            adUnitID="ca-app-pub-3940256099942544/6300978111" //TEST
+            adUnitID="ca-app-pub-7269857134561204/8704787773"
+            //adUnitID="ca-app-pub-3940256099942544/6300978111" //TEST
             testDevices={[AdMobBanner.simulatorId]}
             onAdFailedToLoad={error => console.error(error)}/>
             </View>
