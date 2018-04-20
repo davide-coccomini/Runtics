@@ -86,7 +86,7 @@ render () {
                         }
                         </View>                          
                         <View style={styles.textContainer}>
-                            <Text style={styles.text}>The game's goal is to find the best path in the grid maded by numbers ordered in descending order ...</Text>
+                            <Text style={styles.text}>The game's goal is to find the best route in the grid made by numbers ordered in descending order ...</Text>
                         </View>
                     </View>
                     <View>
@@ -106,7 +106,7 @@ render () {
                         }
                         </View>
                         <View style={styles.textContainer}>
-                        <Text style={styles.text}>In this case 10 -> 9 -> 7 -> 6 -> 5 -> 3 -> 1 is the best path findable. It is decreasing and all the number are adjacent to each other. Diagonal is not admitted ...</Text>
+                        <Text style={styles.text}>In this case 10 -> 9 -> 7 -> 6 -> 5 -> 3 -> 1 is the best route findable. It is decreasing and all the numbers are adjacent to each other. Diagonal is not admitted ...</Text>
                         </View>
                     </View>
                     <View>
@@ -126,7 +126,7 @@ render () {
                         }
                         </View>
                         <View style={styles.textContainer}>
-                        <Text style={styles.text}>The score is the sum of the numbers in the path, in this case the score is 41 ...</Text>
+                        <Text style={styles.text}>The score is the sum of the numbers in the route, in this case the score is 41 ...</Text>
                         </View>
                     </View>
                     <View>
@@ -147,7 +147,7 @@ render () {
                         
                         </View>
                     <View style={styles.textContainer}>
-                        <Text  style={styles.text}>If you press a number higher than the last pressed or not adjacent to it, a new path will be started.</Text>
+                        <Text  style={styles.text}>If you press a number higher than the last pressed or not adjacent to it, a new route will be started.</Text>
                     </View>
                     <View behavior="padding" style={styles.buttonView}>
       
