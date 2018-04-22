@@ -16,9 +16,11 @@ import {
   Spinner,
   Separator
 } from 'native-base';
+import Store from '../../redux/store';
 import CountdownCircle from 'react-native-countdown-circle';
 import * as actions from '../Report/reportActions';
 import Cell from '../../components/cell';
+import ScoreCounter from '../../components/scoreCounter';
 import { GoogleAnalyticsTracker } from 'react-native-google-analytics-bridge';
 export const trackerMatch = new GoogleAnalyticsTracker('UA-117921514-1');
 trackerMatch.trackScreenView("Match");
@@ -30,7 +32,6 @@ class App extends React.Component {
     
     this.state = {
       tableData: props.data.tableData,
-      score: props.data.score,
       rows:props.data.rows,  
       cols: props.data.cols,
       time: props.data.time,
@@ -55,7 +56,6 @@ class App extends React.Component {
     if(nextProps.data.newMatch){
       newState = {
         tableData: nextProps.data.tableData,
-        score:nextProps.data.score,
         lastClicked: nextProps.data.lastClicked,
         lastValue: nextProps.data.lastValue,
         root: nextProps.data.root,
@@ -71,7 +71,6 @@ class App extends React.Component {
       }
     }else{
       newState = {
-        score:nextProps.data.score,
         lastClicked: nextProps.data.lastClicked,
         lastValue: nextProps.data.lastValue,
         root: nextProps.data.root,
@@ -92,17 +91,19 @@ class App extends React.Component {
     if(nextProps.data.win)
       this.win();
   }
-
+  getScore(){
+    return Store.getState().Match.data.newScore;
+  }
   win(){
   const {navigate} = this.props.navigation;
 
-  if(newScore>=this.state.maxScore){
+  if(Store.getState().Match.data.newScore>=this.state.maxScore){
     this.state.win = true
     navigate("Report")
     const payload = {
       endTime:this.countdown.getTimeRemained(),
       time: 99999,
-      score: newScore, 
+      score: this.getScore(), 
       maxScore: this.state.maxScore,
       win: true,
       rows: this.state.rows,
@@ -152,7 +153,7 @@ render () {
                                   navigate('Report'); 
                                   const payload = {
                                                     endTime:this.countdown.getTimeRemained(),
-                                                    score: state.score, 
+                                                    score: this.getScore(),
                                                     maxScore: state.maxScore, 
                                                     win: false,
                                                     rows: state.rows,
@@ -169,7 +170,7 @@ render () {
          
       </Left>
       <Right>
-            <Text style={styles.score}>{state.score}</Text>
+           <ScoreCounter score={0} ref = {ref => this.scoreCounter = ref} />
       </Right>
     </Header>
     
@@ -202,12 +203,6 @@ const styles = StyleSheet.create({
     borderWidth:0,
     shadowOpacity:1,
     marginTop:5
-  },
-  score: {
-    fontSize:23,
-    marginRight:15,
-    color:"white",
-    fontWeight: "bold"
   },
   
   tableContainer: { 
