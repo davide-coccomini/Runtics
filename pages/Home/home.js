@@ -18,6 +18,8 @@ import {
   Spinner,
   Separator
 } from 'native-base';
+import LocalizedStrings from 'react-native-localization';
+import Strings from '../../components/localization';
 import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
 GoogleAnalyticsSettings.setDispatchInterval(30);
 export const tracker = new GoogleAnalyticsTracker('UA-117921514-1');
@@ -43,19 +45,19 @@ render () {
               <Image style={styles.logo} source={require("../../images/logo.png")} />
             </View>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Levels'); tracker.trackScreenView("Levels")}}>
-                <Text style={styles.buttonText}>NEW GAME</Text>
+                <Text style={styles.buttonText}>{Strings.homeNewGame}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Tutorial'); tracker.trackScreenView("Tutorial")}}>
-                <Text style={styles.buttonText}>HOW TO PLAY</Text>
+                <Text style={styles.buttonText}>{Strings.homeHowToPlay}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Scores'); tracker.trackScreenView("Scores")}}>
-                <Text style={styles.buttonText}>SCORES</Text>
+                <Text style={styles.buttonText}>{Strings.homeScores}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Settings'); tracker.trackScreenView("Settings")}}>
-                <Text style={styles.buttonText}>SETTINGS</Text>
+                <Text style={styles.buttonText}>{Strings.homeSettings}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={()=>{ return BackHandler.exitApp();}}>
-                <Text style={styles.buttonText}>QUIT</Text>
+                <Text style={styles.buttonText}>{Strings.homeQuit}</Text>
               </TouchableOpacity>
           </View>
         </View>

@@ -16,7 +16,8 @@ import {
     Spinner,
     Separator
   } from 'native-base';
-
+import LocalizedStrings from 'react-native-localization';
+import Strings from '../../components/localization';
 import * as actions from './settingsActions'
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -45,10 +46,10 @@ class App extends Component {
             <View style={styles.container}>  
                 <View style={styles.musicView}>
                     <View style={styles.descriptionView}>
-                        <Text style={styles.musicText}>Music</Text>
+                        <Text style={styles.musicText}>{Strings.settingsMusic}</Text>
                     </View>
                     <View style={styles.buttonView}>
-                        <TouchableOpacity style={styles.button}onPress={() => {this.props.actions.changing_music_state(2)}} ><Text style={styles.buttonText}>{this.state.musicState.disabled ? "ENABLE":"DISABLE"}</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.button}onPress={() => {this.props.actions.changing_music_state(2)}} ><Text style={styles.buttonText}>{this.state.musicState.disabled ? Strings.settingsButtonEnable:Strings.settingsButtonDisable}</Text></TouchableOpacity>
                     </View>
                 </View>
                 <View style={styles.footer}>

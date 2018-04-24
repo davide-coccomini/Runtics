@@ -20,7 +20,9 @@ import {
 import * as actions from '../Report/reportActions';
 import {
   AdMobInterstitial,
-} from 'react-native-admob'
+} from 'react-native-admob';
+import LocalizedStrings from 'react-native-localization';
+import Strings from '../../components/localization';
 import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
 GoogleAnalyticsSettings.setDispatchInterval(30);
 export const tracker = new GoogleAnalyticsTracker('UA-117921514-1');
@@ -63,9 +65,9 @@ class App extends React.Component {
   }
   generateAd(){
     
-    //AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); //TEST
-    AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
-    AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+    AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); //TEST
+    //AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
+    AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId,"C662FD490DFFA8C7A5F955A5611FFF81","3AF4D8E43DC30789019E9C68B1DD784C"]);
     AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
   }
   generatePathLabel(grid,path){
@@ -108,18 +110,18 @@ render () {
             barStyle="light-content"
           />
           <Left style={styles.yourScore}>
-              <Text style={styles.textScore}>YOUR SCORE{"\n"}{state.score}</Text>
+              <Text style={styles.textScore}>{Strings.reportYour}{"\n"}{state.score}</Text>
           </Left>
           <Right style={styles.bestScore}>
-              <Text style={styles.textScore}>TO WIN{"\n"}{state.maxScore}</Text>
+              <Text style={styles.textScore}>{Strings.reportBest}{"\n"}{state.maxScore}</Text>
           </Right>
         </Header>
         <View>
-         <Text style={state.win ? styles.titleWin : styles.titleLose}>{state.win ? "You win" : "You lose"}</Text>
+         <Text style={state.win ? styles.titleWin : styles.titleLose}>{state.win ? Strings.reportTitleWin : Strings.reportTitleLose}</Text>
          </View>
         <View>
         <View>
-          <Text style={styles.label}>A good path was {state.pathLabel}...</Text>
+          <Text style={styles.label}>{Strings.reportRoute} {state.pathLabel}...</Text>
         </View>
         <View style={styles.tableContainer}>
         {
@@ -141,10 +143,10 @@ render () {
           <View behavior="padding" style={styles.buttonView}>
       
               <TouchableOpacity style={styles.button}  onPress={() => navigate('Levels')}>
-                <Text style={styles.buttonText}>PLAY AGAIN</Text>
+                <Text style={styles.buttonText}>{Strings.reportButtonPlay}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button}  onPress={() => navigate('Home')}>
-                <Text style={styles.buttonText}>BACK TO MENU</Text>
+                <Text style={styles.buttonText}>{Strings.reportButtonBack}</Text>
               </TouchableOpacity>
           </View>
         </View>

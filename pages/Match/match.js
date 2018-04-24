@@ -90,6 +90,7 @@ class App extends React.Component {
     }
     if(nextProps.data.win)
       this.win();
+
   }
   getScore(){
     return Store.getState().Match.data.newScore;
@@ -112,21 +113,24 @@ class App extends React.Component {
       bestPath: this.state.bestPath,
       level: this.state.level
     }
-    
+    this.backhandler.remove()
     this.props.actions.ending_game(payload)
   }
 }
 render () {
   const state = this.state;
   const {navigate} = this.props.navigation;
-  if(state.newMatch){
-    const cols =  state.cols
-    const rows =  state.rows
-  }
+
+
   BackHandler.addEventListener('hardwareBackPress', function() {
     state.left = true
   });
 
+  
+  if(state.newMatch){
+    const cols =  state.cols
+    const rows =  state.rows
+  }
     return(
       
       <Container>
@@ -162,6 +166,7 @@ render () {
                                                     bestPath: state.bestPath,
                                                     level: state.level
                                                   } 
+                                  this.backhandler.remove()
                                   this.props.actions.ending_game(payload)
                                 }
                               }

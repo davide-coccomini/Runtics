@@ -17,7 +17,8 @@ import {
   Separator,
   H1
 } from 'native-base';
-
+import LocalizedStrings from 'react-native-localization';
+import Strings from '../../components/localization';
 import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'rn-viewpager';
 import * as actions from './scoresActions';
 import Store from '../../redux/store';
@@ -78,19 +79,19 @@ class App extends React.Component {
             </View>
             <View style={styles.levelContent}>
               <View>
-                <Text style={styles.levelLabel}>- Total   {matches.lostEasy+matches.winEasy}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresTotal}   {matches.lostEasy+matches.winEasy}</Text>
               </View>
               <View>
-                <Text style={styles.levelLabel}>- Win     {matches.winEasy}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresWin}     {matches.winEasy}</Text>
               </View>
               <View>
-                <Text style={styles.levelLabel}>- Lost    {matches.lostEasy}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresLost}    {matches.lostEasy}</Text>
               </View>
               <View>
-                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeEasy/(matches.lostEasy+matches.winEasy))?"//":Math.round(matches.timeEasy/(matches.lostEasy+matches.winEasy))}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresAvg}   {isNaN(matches.timeEasy/(matches.lostEasy+matches.winEasy))?"//":Math.round(matches.timeEasy/(matches.lostEasy+matches.winEasy))}</Text>
               </View>
               <View>
-                <Text style={styles.levelLabel}>- Best time   {(isNaN(matches.bestTimeEasy)||matches.bestTimeEasy==0)?"//":matches.bestTimeEasy}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeEasy)||matches.bestTimeEasy==0)?"//":matches.bestTimeEasy}</Text>
               </View>
             </View>
           </View>
@@ -101,19 +102,19 @@ class App extends React.Component {
             <View>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Total   {matches.lostMedium+matches.winMedium}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresTotal}   {matches.lostMedium+matches.winMedium}</Text>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Win     {matches.winMedium}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresWin}     {matches.winMedium}</Text>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Lost    {matches.lostMedium}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresLost}    {matches.lostMedium}</Text>
             </View>    
             <View>
-                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeMedium/(matches.lostMedium+matches.winMedium))?"//":Math.round(matches.timeMedium/(matches.lostMedium+matches.winMedium))}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresAvg}   {isNaN(matches.timeMedium/(matches.lostMedium+matches.winMedium))?"//":Math.round(matches.timeMedium/(matches.lostMedium+matches.winMedium))}</Text>
             </View>
             <View>
-                <Text style={styles.levelLabel}>- Best time   {(isNaN(matches.bestTimeMedium)||matches.bestTimeMedium==0)?"//":matches.bestTimeMedium}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeMedium)||matches.bestTimeMedium==0)?"//":matches.bestTimeMedium}</Text>
             </View>
       </View>
       <View style={styles.levelView}>
@@ -123,19 +124,19 @@ class App extends React.Component {
             <View>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Total   {matches.lostHard+matches.winHard}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresTotal}   {matches.lostHard+matches.winHard}</Text>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Win     {matches.winHard}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresWin}     {matches.winHard}</Text>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Lost    {matches.lostHard}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresLost}    {matches.lostHard}</Text>
             </View>
             <View>
-                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeHard/(matches.lostHard+matches.winHard))?"//":Math.round(matches.timeHard/(matches.lostHard+matches.winHard))}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresAvg}   {isNaN(matches.timeHard/(matches.lostHard+matches.winHard))?"//":Math.round(matches.timeHard/(matches.lostHard+matches.winHard))}</Text>
             </View>    
             <View>
-                <Text style={styles.levelLabel}>- Best time   {(isNaN(matches.bestTimeHard)||matches.bestTimeHard==0)?"//":matches.bestTimeHard}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeHard)||matches.bestTimeHard==0)?"//":matches.bestTimeHard}</Text>
             </View>
       </View>
       <View style={styles.levelView}>
@@ -145,19 +146,19 @@ class App extends React.Component {
             <View>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Total   {matches.lostVeryHard+matches.winVeryHard}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresTotal}   {matches.lostVeryHard+matches.winVeryHard}</Text>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Win     {matches.winVeryHard}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresWin}     {matches.winVeryHard}</Text>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Lost    {matches.lostVeryHard}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresLost}    {matches.lostVeryHard}</Text>
             </View>   
             <View>
-                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeVeryHard/(matches.winVeryHard+matches.winVeryHard))?"//":Math.round(matches.timeVeryHard/(matches.winVeryHard+matches.winVeryHard))}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresAvg}   {isNaN(matches.timeVeryHard/(matches.winVeryHard+matches.winVeryHard))?"//":Math.round(matches.timeVeryHard/(matches.winVeryHard+matches.winVeryHard))}</Text>
             </View> 
             <View>
-                <Text style={styles.levelLabel}>- Best time   {(isNaN(matches.bestTimeVeryHard)||matches.bestTimeVeryHard==0)?"//":matches.bestTimeVeryHard}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeVeryHard)||matches.bestTimeVeryHard==0)?"//":matches.bestTimeVeryHard}</Text>
             </View>
       </View>
       <View style={styles.levelView}>
@@ -167,19 +168,19 @@ class App extends React.Component {
             <View>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Total   {matches.lostInsane+matches.winInsane}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresTotal}   {matches.lostInsane+matches.winInsane}</Text>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Win     {matches.winInsane}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresWin}     {matches.winInsane}</Text>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Lost    {matches.lostInsane}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresLost}    {matches.lostInsane}</Text>
             </View>    
             <View>
-                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeInsane/(matches.lostInsane+matches.winInsane))?"//":Math.round(matches.timeInsane/(matches.lostInsane+matches.winInsane))}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresAvg}   {isNaN(matches.timeInsane/(matches.lostInsane+matches.winInsane))?"//":Math.round(matches.timeInsane/(matches.lostInsane+matches.winInsane))}</Text>
             </View>
             <View>
-                <Text style={styles.levelLabel}>- Best time   {(isNaN(matches.bestTimeInsane)||matches.bestTimeInsane==0)?"//":matches.bestTimeInsane}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeInsane)||matches.bestTimeInsane==0)?"//":matches.bestTimeInsane}</Text>
             </View>
       </View>
       <View style={styles.levelView}>
@@ -189,19 +190,19 @@ class App extends React.Component {
             <View>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Total   {matches.lostImpossible+matches.winImpossible}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresTotal}   {matches.lostImpossible+matches.winImpossible}</Text>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Win     {matches.winImpossible}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresWin}     {matches.winImpossible}</Text>
             </View>
             <View>
-              <Text style={styles.levelLabel}>- Lost    {matches.lostImpossible}</Text>
+              <Text style={styles.levelLabel}>- {Strings.scoresLost}    {matches.lostImpossible}</Text>
             </View>    
             <View>
-                <Text style={styles.levelLabel}>- Average time   {isNaN(matches.timeImpossible/(matches.lostImpossible+matches.winImpossible))?"//":Math.round(matches.timeImpossible/(matches.lostImpossible+matches.winImpossible))}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresAvg}   {isNaN(matches.timeImpossible/(matches.lostImpossible+matches.winImpossible))?"//":Math.round(matches.timeImpossible/(matches.lostImpossible+matches.winImpossible))}</Text>
             </View>
             <View>
-                <Text style={styles.levelLabel}>- Best time   {(isNaN(matches.bestTimeImpossible)||matches.bestTimeImpossible==0)?"//":matches.bestTimeImpossible}</Text>
+                <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeImpossible)||matches.bestTimeImpossible==0)?"//":matches.bestTimeImpossible}</Text>
            </View>
       </View>
 

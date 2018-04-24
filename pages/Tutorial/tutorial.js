@@ -1,7 +1,8 @@
 import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity,StatusBar} from 'react-native';
 import React, {Component} from 'react';
 import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'rn-viewpager';
-
+import LocalizedStrings from 'react-native-localization';
+import Strings from '../../components/localization';
 import {
   Header,
   Content,
@@ -20,7 +21,7 @@ import {
 class App extends React.Component {
     constructor(props) {
         super(props);
-
+        
         const numbers = []
         numbers.push([4,1,10,8,1])
         numbers.push([2,7,9,1,2])
@@ -63,6 +64,7 @@ class App extends React.Component {
 render () {
     const {navigate} = this.props.navigation;
     const state = this.state;
+    console.log("strings",Strings)
     return (
         <View style={{flex:1}}>
             <IndicatorViewPager
@@ -86,7 +88,7 @@ render () {
                         }
                         </View>                          
                         <View style={styles.textContainer}>
-                            <Text style={styles.text}>The game's goal is to find the best route in the grid made by numbers ordered in descending order ...</Text>
+                            <Text style={styles.text}>{Strings.tutorial1}</Text>
                         </View>
                     </View>
                     <View>
@@ -106,7 +108,7 @@ render () {
                         }
                         </View>
                         <View style={styles.textContainer}>
-                        <Text style={styles.text}>In this case 10 -> 9 -> 7 -> 6 -> 5 -> 3 -> 1 is the best route findable. It is decreasing and all the numbers are adjacent to each other. Diagonal is not admitted ...</Text>
+                        <Text style={styles.text}>{Strings.tutorial2}</Text>
                         </View>
                     </View>
                     <View>
@@ -126,7 +128,7 @@ render () {
                         }
                         </View>
                         <View style={styles.textContainer}>
-                        <Text style={styles.text}>The score is the sum of the numbers in the route, in this case the score is 41 ...</Text>
+                        <Text style={styles.text}>{Strings.tutorial3}</Text>
                         </View>
                     </View>
                     <View>
@@ -147,12 +149,12 @@ render () {
                         
                         </View>
                     <View style={styles.textContainer}>
-                        <Text  style={styles.text}>If you press a number higher than the last pressed or not adjacent to it, a new route will be started.</Text>
+                        <Text  style={styles.text}>{Strings.tutorial4}</Text>
                     </View>
                     <View behavior="padding" style={styles.buttonView}>
       
                         <TouchableOpacity style={styles.button}  onPress={() => navigate('Levels')}>
-                            <Text style={styles.buttonText}>LET'S PLAY</Text>
+                            <Text style={styles.buttonText}>{Strings.tutorialButton}</Text>
                         </TouchableOpacity>
                     
                     </View>
