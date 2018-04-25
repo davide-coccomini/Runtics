@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         flexWrap: 'wrap',
-        marginTop: "5%"
+        marginTop: "5%",
+        paddingBottom: "8%"
     },
     buttonText: {
       textAlign: "center",
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     },
     buttonClicked: {
         backgroundColor: "#0097EC",
-        width:"14%",
+        width:"18%",
         marginTop: 10,
         aspectRatio: 1,
         justifyContent: "center",
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     },
     button: {
       backgroundColor: "#092D4B",
-      width:"14%",
+      width:"18%",
       marginTop: 10,
       aspectRatio: 1,
       justifyContent: "center",
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
     },
     buttonDisabled: {
         backgroundColor: "#336A8B",
-        width:"14%",
+        width:"18%",
         marginTop: 10,
         aspectRatio: 1,
         justifyContent: "center",
