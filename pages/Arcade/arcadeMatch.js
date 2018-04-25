@@ -17,6 +17,7 @@ import {
   Separator
 } from 'native-base';
 import Store from '../../redux/store';
+import Strings from '../../components/localization';
 import * as actions from './arcadeActions';
 import Cell from '../../components/cellArcade';
 import ScoreCounter from '../../components/scoreCounterArcade';
@@ -118,7 +119,7 @@ render () {
             barStyle="light-content"
         />
       <Left>
-          <Text>Livello</Text>
+          <Text style={styles.textLevel}>{Strings.arcadeLevel} {state.level}</Text>
       </Left>
       <Right>
            <ScoreCounter score={0} ref = {ref => this.scoreCounter = ref} />
@@ -166,7 +167,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     borderRadius:5
   },
-
+  textLevel: {
+    fontSize:20,
+    marginLeft:11,
+    color:"white",
+    fontWeight: "bold"
+  }
 });
 
 

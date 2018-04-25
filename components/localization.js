@@ -28,7 +28,8 @@ let Strings = new LocalizedStrings({
     reportTitleLose: "You lose",
     reportRoute: "A good route was",
     reportButtonPlay: "PLAY AGAIN",
-    reportButtonBack: "BACK TO MENU"
+    reportButtonBack: "BACK TO MENU",
+    arcadeLevel: "Level"
  },
  it: {
     homeNewGame: "NUOVA PARTITA",
@@ -56,7 +57,8 @@ let Strings = new LocalizedStrings({
     reportTitleLose: "Hai perso",
     reportRoute: "Un buon percorso era",
     reportButtonPlay: "RIPROVA",
-    reportButtonBack: "TORNA AL MENU"
+    reportButtonBack: "TORNA AL MENU",
+    arcadeLevel: "Livello"
 
  },
  de: {
@@ -85,7 +87,8 @@ let Strings = new LocalizedStrings({
     reportTitleLose: "Du hast verloren",
     reportRoute: "Eine gute Route war",
     reportButtonPlay: "VERSUCH ERNEUT",
-    reportButtonBack: "ZURUCK ZUM MENU"
+    reportButtonBack: "ZURUCK ZUM MENU",
+    arcadeLevel: "Ebene"
 },
 fr: {
     homeNewGame: "NOUVEAU JEU",
@@ -113,8 +116,8 @@ fr: {
     reportTitleLose: "Tu as perdu",
     reportRoute: "Un bon itinérarie ça aurait été",
     reportButtonPlay: "RÈESSAYER",
-    reportButtonBack: "RETOURNER AU MENU"
-
+    reportButtonBack: "RETOURNER AU MENU",
+    arcadeLevel: "Niveau"
  },
 cn: {
         homeNewGame: "开始新游戏",
@@ -142,7 +145,8 @@ cn: {
         reportTitleLose: "你输了",
         reportRoute: "最佳路线是",
         reportButtonPlay: "再玩一次",
-        reportButtonBack: "回到菜单"
+        reportButtonBack: "回到菜单",
+        arcadeLevel: "水平"
 },
 pn:{
     homeNewGame: "NOVO JOGO",
@@ -170,7 +174,8 @@ pn:{
     reportTitleLose: "Você perdeu",
     reportRoute: "O melhor caminho era",
     reportButtonPlay: "JOGAR DE NOVO",
-    reportButtonBack: "VOLTAR AO MENU"
+    reportButtonBack: "VOLTAR AO MENU",
+    arcadeLevel: "Nível"
  },
  ru:{
     homeNewGame: "НОВАЯ ИГРА",
@@ -198,7 +203,8 @@ pn:{
     reportTitleLose: "ВЫ проиграли",
     reportRoute: "Лучший маршрут был",
     reportButtonPlay: "СЫГРАТЬ СНОВА",
-    reportButtonBack: "НАЗАД В МЕНЮ"
+    reportButtonBack: "НАЗАД В МЕНЮ",
+    arcadeLevel: "уровень"
   }
 });
 
