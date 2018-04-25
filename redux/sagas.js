@@ -4,6 +4,7 @@ import Match from '../pages/Match/matchSagas';
 import Report from '../pages/Report/reportSagas';
 import Settings from '../pages/Settings/settingsSagas';
 import Scores from '../pages/Scores/scoresSagas';
+import Arcade from '../pages/Arcade/arcadeSagas';
 function * firstAppOpening() {
     console.log('====================================');
     console.log("APP_OPENED");
@@ -18,7 +19,8 @@ export default function * root() {
         fork(Match),
         fork(Report),
         fork(Settings),
-        fork(Scores)
+        fork(Scores),
+        fork(Arcade)
     ]
 
 }

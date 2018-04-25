@@ -5,6 +5,7 @@ import Report from '../pages/Report/reportReducer';
 import Match from '../pages/Match/matchReducer';
 import Scores from '../pages/Scores/scoresReducer';
 import Settings from '../pages/Settings/settingsReducer';
+import Arcade from '../pages/Arcade/arcadeReducer';
 
 
 export default combineReducers({
@@ -12,5 +13,6 @@ export default combineReducers({
     Match,
     Report,
     Scores,
-    Settings
+    Settings,
+    Arcade
 });

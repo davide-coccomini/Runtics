@@ -29,7 +29,7 @@ trackerMatch.trackScreenView("Match");
 class App extends React.Component {
   constructor(props) {
     super(props);
-    
+    console.log("props",props)
     this.state = {
       tableData: props.data.tableData,
       rows:props.data.rows,  
@@ -52,7 +52,25 @@ class App extends React.Component {
 
   componentWillReceiveProps(nextProps){
     var newState
-
+    var grid = "[";
+    for(var i=0; i<nextProps.data.rows;i++){
+      grid += "["
+      for(var j=0; j<nextProps.data.cols;j++){
+        if(j!=nextProps.data.cols-1)
+          grid += nextProps.data.tableData[i][j].number+","
+        else
+         grid += nextProps.data.tableData[i][j].number
+      }
+      grid += "]"
+    }
+    grid += "]"
+    var log = {
+      grid: grid,
+      rows: nextProps.data.rows,
+      cols: nextProps.data.cols,
+      maxScore: nextProps.data.maxScore
+    }
+    console.log("*************************************************************************************************",log)
     if(nextProps.data.newMatch){
       newState = {
         tableData: nextProps.data.tableData,
@@ -113,7 +131,7 @@ class App extends React.Component {
       bestPath: this.state.bestPath,
       level: this.state.level
     }
-    this.backhandler.remove()
+    
     this.props.actions.ending_game(payload)
   }
 }
@@ -166,8 +184,7 @@ render () {
                                                     bestPath: state.bestPath,
                                                     level: state.level
                                                   } 
-                                  this.backhandler.remove()
-                                  this.props.actions.ending_game(payload)
+                                     this.props.actions.ending_game(payload)
                                 }
                               }
                           }

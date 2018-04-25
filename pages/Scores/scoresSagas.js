@@ -12,8 +12,7 @@ function * storing_scores(action){
        
     }
 }
-function generate(payload){   
-     console.log("generate")
+function generate(payload){  
     var scores = Store.getState().Scores.data
     isNaN(scores.winEasy) ? 0:scores.winEasy
     isNaN(scores.lostEasy) ? 0:scores.lostEasy

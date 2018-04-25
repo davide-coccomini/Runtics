@@ -64,7 +64,6 @@ class App extends React.Component {
 render () {
     const {navigate} = this.props.navigation;
     const state = this.state;
-    console.log("strings",Strings)
     return (
         <View style={{flex:1}}>
             <IndicatorViewPager

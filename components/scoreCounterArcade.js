@@ -19,7 +19,7 @@ import {
 } from 'native-base';
 
 import Store from '../redux/store';
-import * as actions from '../pages/Match/matchActions';
+import * as actions from '../pages/Arcade/arcadeActions';
 
 class App extends React.Component {
     constructor(props) {
@@ -30,7 +30,7 @@ class App extends React.Component {
       }
       componentWillReceiveProps(nextProps){
           var newState = {
-            score: nextProps.data.newScore,
+            score: nextProps.data.score,
           }
           this.setState(newState)     
       }
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
 })
 
 function mapStateToProps(state) {
-  return {data: state.Match.data, loading: state.Match.loading};
+  return {data: state.Arcade.data, loading: state.Arcade.loading};
 }
 
 function mapDispatchToProps(dispatch) {

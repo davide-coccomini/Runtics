@@ -47,6 +47,9 @@ render () {
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Levels'); tracker.trackScreenView("Levels")}}>
                 <Text style={styles.buttonText}>{Strings.homeNewGame}</Text>
               </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Arcade'); tracker.trackScreenView("Arcade")}}>
+                <Text style={styles.buttonText}>{Strings.homeArcade}</Text>
+              </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Tutorial'); tracker.trackScreenView("Tutorial")}}>
                 <Text style={styles.buttonText}>{Strings.homeHowToPlay}</Text>
               </TouchableOpacity>
