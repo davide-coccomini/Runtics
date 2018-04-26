@@ -3,7 +3,7 @@ import LocalizedStrings from 'react-native-localization';
 
 let Strings = new LocalizedStrings({
  en:{
-    homeNewGame: "NEW GAME",
+    homeNewGame: "QUICK GAME",
     homeArcade: "ARCADE",
     homeHowToPlay: "HOW TO PLAY",
     homeScores: "SCORES",
@@ -32,7 +32,7 @@ let Strings = new LocalizedStrings({
     arcadeLevel: "Level"
  },
  it: {
-    homeNewGame: "NUOVA PARTITA",
+    homeNewGame: "PARTITA RAPIDA",
     homeArcade: "ARCADE",    
     homeHowToPlay: "COME GIOCARE",
     homeScores: "STATISTICHE",
@@ -62,7 +62,7 @@ let Strings = new LocalizedStrings({
 
  },
  de: {
-    homeNewGame: "NEUES SPIEL",
+    homeNewGame: "SCHNELLES SPIEL",
     homeArcade: "ARCADE",
     homeHowToPlay: "WIE MAN SPIELT",
     homeScores: "STATISTIK",
@@ -91,7 +91,7 @@ let Strings = new LocalizedStrings({
     arcadeLevel: "Ebene"
 },
 fr: {
-    homeNewGame: "NOUVEAU JEU",
+    homeNewGame: "JEU RAPIDE",
     homeArcade: "ARCADE",
     homeHowToPlay: "COMMENT JOUER",
     homeScores: "STATISTIQUES",
@@ -120,7 +120,7 @@ fr: {
     arcadeLevel: "Niveau"
  },
 cn: {
-        homeNewGame: "开始新游戏",
+        homeNewGame: "快速游戏",
         homeArcade: "拱廊",
         homeHowToPlay: "游戏规则",
         homeScores: "分数",
@@ -149,7 +149,7 @@ cn: {
         arcadeLevel: "水平"
 },
 pn:{
-    homeNewGame: "NOVO JOGO",
+    homeNewGame: "JOGO RÁPIDO",
     homeArcade: "ARCADE",
     homeHowToPlay: "COMO JOGAR",
     homeScores: "PONTUAÇÃO",
@@ -178,7 +178,7 @@ pn:{
     arcadeLevel: "Nível"
  },
  ru:{
-    homeNewGame: "НОВАЯ ИГРА",
+    homeNewGame: "БЫСТРАЯ ИГРА",
     homeArcade: "АРКАДА",
     homeHowToPlay: "ПРАВИЛА ИГРЫ",
     homeScores: "РЕЙТИНГ",
