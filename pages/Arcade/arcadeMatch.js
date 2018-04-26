@@ -16,6 +16,9 @@ import {
   Spinner,
   Separator
 } from 'native-base';
+import {
+  AdMobInterstitial,
+} from 'react-native-admob';
 import Store from '../../redux/store';
 import Strings from '../../components/localization';
 import * as actions from './arcadeActions';
@@ -81,6 +84,15 @@ class App extends React.Component {
       this.win();
 
   }
+  generateAd(){ 
+    if(this.state.level > 10 && this.state.level%3 == 0){
+       //AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); //TEST
+      AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
+      AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId,"C662FD490DFFA8C7A5F955A5611FFF81","3AF4D8E43DC30789019E9C68B1DD784C"]);
+      AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
+    }
+
+  }
   getScore(){
     return Store.getState().Arcade.data.newScore;
   }
@@ -99,6 +111,7 @@ class App extends React.Component {
       bestPath: this.state.bestPath,
       level: this.state.level
     }
+    this.generateAd()
     navigate("Arcade")
   }
 }

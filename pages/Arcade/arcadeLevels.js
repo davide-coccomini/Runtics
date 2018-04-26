@@ -18,6 +18,7 @@ import {
   Separator
 } from 'native-base';
 import * as actions from './arcadeActions';
+import Store from '../../redux/store';
 import Levels from "./arcadeGrids";
 import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
 GoogleAnalyticsSettings.setDispatchInterval(30);
@@ -27,12 +28,16 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
+        if(Store.getState().Arcade.data.level == undefined){
+          level = 0
+        }else{
+          level = Store.getState().Arcade.data.level
+        }
         this.state = {
-          level: 0
+          level: level
         }
       }
       componentWillReceiveProps(nextProps){
-          console.log("next",nextProps)
        if(nextProps.data.win && this.state.level<nextProps.data.level){
            var newState = {
                level: this.state.level+1
@@ -48,7 +53,7 @@ render () {
         <View style={styles.content}>
         {
           Levels.map((Levels, index)  => (
-            <TouchableOpacity style={this.state.level >= Levels.level ? styles.buttonClicked: this.state.level+1 == Levels.level ? styles.button:styles.buttonDisabled} disabled = {(this.state.level+1 < Levels.level) ? true:false } key={index} onPress={() =>{ navigate('ArcadeMatch'); tracker.trackScreenView("Arcade"); this.props.actions.starting_arcade(Levels.level)}}> 
+            <TouchableOpacity style={this.state.level >= Levels.level ? styles.buttonClicked: this.state.level+1 == Levels.level ? styles.button:styles.buttonDisabled} disabled = {(this.state.level+1 < Levels.level) ? true:false } key={index} onPress={() =>{ navigate('ArcadeMatch'); tracker.trackScreenView("Arcade Level "+Levels.level); this.props.actions.starting_arcade(Levels.level)}}> 
                 <Text style={this.state.level+1 < Levels.level ? styles.buttonTextDisabled:styles.buttonText}>{Levels.level}</Text>
             </TouchableOpacity> 
           ))
@@ -80,7 +85,7 @@ const styles = StyleSheet.create({
       fontWeight: "700"
     },
     buttonTextDisabled: {
-        color:"#CDDAE2",
+        color: "#CDDAE2",
         textAlign: "center",
     },
     buttonClicked: {

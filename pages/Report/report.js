@@ -63,8 +63,7 @@ class App extends React.Component {
     }
     this.setState(newState)
   }
-  generateAd(){
-    
+  generateAd(){ 
     //AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); //TEST
     AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
     AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId,"C662FD490DFFA8C7A5F955A5611FFF81","3AF4D8E43DC30789019E9C68B1DD784C"]);
