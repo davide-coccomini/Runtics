@@ -37,6 +37,7 @@ class App extends React.Component {
         rows:props.data.rows,  
         cols: props.data.cols,
         maxScore: props.data.maxScore,
+        curLevel: props.data.curLevel,
         level: props.data.level,
         difficulty: props.data.difficulty,
         lastClicked: props.data.lastClicked,
@@ -62,6 +63,7 @@ class App extends React.Component {
             cols: nextProps.data.cols,
             rows: nextProps.data.rows,
             newMatch: nextProps.data.newMatch,
+            curLevel: nextProps.data.curLevel,
             level: nextProps.data.level,
             difficulty: nextProps.data.difficulty,
             win:nextProps.data.win
@@ -74,6 +76,7 @@ class App extends React.Component {
             maxScore: nextProps.data.maxScore,
             cols: nextProps.data.cols,
             rows: nextProps.data.rows,
+            curLevel: nextProps.data.curLevel,
             level: nextProps.data.level,
             difficulty: nextProps.data.difficulty,
             newMatch: nextProps.data.newMatch
@@ -85,7 +88,7 @@ class App extends React.Component {
 
   }
   generateAd(){ 
-    if(this.state.level > 10 && this.state.level%3 == 0){
+    if(this.state.curLevel > 10 && this.state.curLevel%3 == 0){
        //AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); //TEST
       AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
       AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId,"C662FD490DFFA8C7A5F955A5611FFF81","3AF4D8E43DC30789019E9C68B1DD784C"]);
@@ -101,16 +104,6 @@ class App extends React.Component {
 
   if(Store.getState().Arcade.data.newScore>=this.state.maxScore){
     this.state.win = true
-    const payload = {
-      score: this.getScore(), 
-      maxScore: this.state.maxScore,
-      win: true,
-      rows: this.state.rows,
-      cols: this.state.cols,
-      tableData: this.state.tableData,
-      bestPath: this.state.bestPath,
-      level: this.state.level
-    }
     this.generateAd()
     navigate("Arcade")
   }
@@ -146,7 +139,7 @@ render () {
               {
                 rowData.map((cellData, cellIndex) => { 
                 return (
-                    <Cell key={cellIndex} level={state.difficulty} cellData={cellData}  />
+                    <Cell key={cellIndex} level={state.difficulty} cellData={cellData} levelReached={state.level}  />
                 )}) 
               }
           </View>

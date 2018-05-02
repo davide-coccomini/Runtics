@@ -18,6 +18,7 @@ import {
   Separator
 } from 'native-base';
 import * as actions from './arcadeActions';
+import * as storingActions from './LevelStorage/levelStorageActions'
 import Store from '../../redux/store';
 import Levels from "./arcadeGrids";
 import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
@@ -28,10 +29,12 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        if(Store.getState().Arcade.data.level == undefined){
-          level = 0
-        }else{
+        if(Store.getState().ArcadeStoring.data.level == undefined && Store.getState().Arcade.data.level != undefined){ //vecchi salvataggi
           level = Store.getState().Arcade.data.level
+        }else if(Store.getState().ArcadeStoring.data.level == undefined && Store.getState().Arcade.data.level == undefined){
+          level = 0
+        }else if(Store.getState().ArcadeStoring.data.level != undefined){
+          level = Store.getState().ArcadeStoring.data.level
         }
         this.state = {
           level: level
@@ -43,7 +46,8 @@ class App extends React.Component {
                level: this.state.level+1
            }
            this.setState(newState)
-       }
+           this.props.storingActions.storing_level(newState)
+       }  
       }
 render () {
     const {navigate} = this.props.navigation;
@@ -126,10 +130,11 @@ const styles = StyleSheet.create({
   
   function mapDispatchToProps(dispatch) {
     return {
-      actions: bindActionCreators(actions, dispatch)
+      actions: bindActionCreators(actions, dispatch),
+      storingActions: bindActionCreators(storingActions,dispatch)
+      
     };
   }
   
   
   export default connect(mapStateToProps, mapDispatchToProps)(App);
-  
