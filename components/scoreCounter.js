@@ -25,11 +25,13 @@ class App extends React.Component {
     constructor(props) {
       super(props);
         this.state = {
+            maxScore: props.maxScore,
             score: props.score
         }
       }
       componentWillReceiveProps(nextProps){
           var newState = {
+            maxScore: nextProps.data.maxScore,
             score: nextProps.data.newScore,
           }
           this.setState(newState)     
@@ -44,7 +46,7 @@ render () {
 
     return (
             <View>
-                 <Text style={styles.score}>{state.score}</Text>
+                 <Text style={[styles.score, state.score<state.maxScore/3?{color:"#c91e00"}:state.score<=state.maxScore/2?{color:"#c97500"}:state.score<=state.maxScore*3/4?{color:"#e0e800"}:state.score<=state.maxScore*5/6?{color:"#92e800"}:{color:"#17e800"}]}>{state.score}</Text>
             </View>
         )
 }
@@ -53,7 +55,7 @@ render () {
 
 const styles = StyleSheet.create({
     score: {
-        fontSize:23,
+        fontSize:27,
         marginRight:15,
         color:"white",
         fontWeight: "bold"

@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 import {BackHandler} from 'react-native'
+import * as tutorialActions from '../Tutorial/tutorialActions';
 import {
   Container,
   Header,
@@ -20,19 +21,19 @@ import {
 } from 'native-base';
 import LocalizedStrings from 'react-native-localization';
 import Strings from '../../components/localization';
+import * as actions from './homeActions';
+import Store from '../../redux/store';
+import {rehydration} from '../../redux/store';
 import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
 GoogleAnalyticsSettings.setDispatchInterval(30);
 export const tracker = new GoogleAnalyticsTracker('UA-117921514-1');
 
 tracker.trackScreenView("Home")
 
-
-
 class App extends React.Component {
-
 render () {
     const {navigate} = this.props.navigation;
-
+    
     return (
      
         <View style={styles.container}>
@@ -50,7 +51,7 @@ render () {
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Arcade'); tracker.trackScreenView("Arcade")}}>
                 <Text style={styles.buttonText}>{Strings.homeArcade}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Tutorial'); tracker.trackScreenView("Tutorial")}}>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Tutorial'); tracker.trackScreenView("Tutorial"); this.props.actions.making_tutorial(1)}}>
                 <Text style={styles.buttonText}>{Strings.homeHowToPlay}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Scores'); tracker.trackScreenView("Scores")}}>
@@ -100,5 +101,25 @@ const styles = StyleSheet.create({
       paddingVertical: 15,
     }
   });
+/* 
+  function mapStateToProps(state) {
+    return {data: state.Home.data, loading: state.Home.loading};
+  }
   
-export default App;
+  function mapDispatchToProps(dispatch) {
+    return {
+      actions: bindActionCreators(actions, dispatch)
+    };
+  }*/
+  
+  function mapStateToProps(state) {
+    return {data: state.Tutorial.data, loading: state.Tutorial.loading};
+  }
+  
+  function mapDispatchToProps(dispatch) {
+    return {
+      actions: bindActionCreators(tutorialActions, dispatch)
+    };
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(App);

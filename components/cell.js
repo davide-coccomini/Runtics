@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity,StatusBar} from 'react-native';
+import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity,StatusBar,Dimensions} from 'react-native';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
@@ -76,16 +76,20 @@ render () {
                       clicked: state.clicked,
                       number: state.number,
                     }
+    const {
+      width: SCREEN_WIDTH,
+      height: SCREEN_HEIGHT,
+    } = Dimensions.get('window');
     return (
           <TouchableOpacity  style={(state.clicked)?styles.cellContainerClicked:styles.cellContainer} onPress={() => {this.props.actions.clicking_cell(payload)}}>
             <Text style={[styles.cellText,
-                state.level==1 && state.id==this.props.data.root ? {fontSize:24, color:"#FEC011"}:
-                state.level==1 && state.id!=this.props.data.root ? {fontSize:20, color:"white"}:
-                state.level==2 && state.id==this.props.data.root ? {fontSize:22, color:"#FEC011"}:
-                state.level==2 && state.id!=this.props.data.root ? {fontSize:18, color:"white"}:
-                state.level==3 && state.id==this.props.data.root ? {fontSize:19, color:"#FEC011"}:
-                state.level==3 && state.id!=this.props.data.root ? {fontSize:15, color:"white"}:
-                state.id==state.root ? {fontSize:16, color:"#FEC011"}:{fontSize:12, color:"white"}]}
+                state.level==1 && state.id==this.props.data.root ? {fontSize:SCREEN_WIDTH*0.06, color:"#FEC011"}:
+                state.level==1 && state.id!=this.props.data.root ? {fontSize:SCREEN_WIDTH*0.05, color:"white"}:
+                state.level==2 && state.id==this.props.data.root ? {fontSize:SCREEN_WIDTH*0.05, color:"#FEC011"}:
+                state.level==2 && state.id!=this.props.data.root ? {fontSize:SCREEN_WIDTH*0.045, color:"white"}:
+                state.level==3 && state.id==this.props.data.root ? {fontSize:SCREEN_WIDTH*0.045, color:"#FEC011"}:
+                state.level==3 && state.id!=this.props.data.root ? {fontSize:SCREEN_WIDTH*0.04, color:"white"}:
+                state.id==this.props.data.root ? {fontSize:SCREEN_WIDTH*0.035, color:"#FEC011"}:{fontSize:SCREEN_WIDTH*0.03, color:"white"}]}
              >{state.number}</Text>
             </TouchableOpacity>
         )
@@ -104,7 +108,7 @@ const styles = StyleSheet.create({
     borderColor:"black"
   },
   cellContainerClicked: {
-    aspectRatio: 1,
+    aspectRatio:1,
     backgroundColor: "#0097EC",
     borderRadius: 5,
     justifyContent: 'center',

@@ -18,7 +18,10 @@ import {
   Separator
 } from 'native-base';
 import * as actions from './arcadeActions';
-import * as storingActions from './LevelStorage/levelStorageActions'
+import LocalizedStrings from 'react-native-localization';
+import Strings from '../../components/localization';
+import * as storingActions from './LevelStorage/levelStorageActions';
+import * as tutorialActions from '../Tutorial/tutorialActions';
 import Store from '../../redux/store';
 import Levels from "./arcadeGrids";
 import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
@@ -26,11 +29,14 @@ GoogleAnalyticsSettings.setDispatchInterval(30);
 export const tracker = new GoogleAnalyticsTracker('UA-117921514-1');
 
 class App extends React.Component {
-
     constructor(props) {
         super(props);
         if(Store.getState().ArcadeStoring.data.level == undefined && Store.getState().Arcade.data.level != undefined){ //vecchi salvataggi
           level = Store.getState().Arcade.data.level
+          var newState = {
+            level: level
+          }
+          this.props.storingActions.storing_level(newState)
         }else if(Store.getState().ArcadeStoring.data.level == undefined && Store.getState().Arcade.data.level == undefined){
           level = 0
         }else if(Store.getState().ArcadeStoring.data.level != undefined){
@@ -51,14 +57,20 @@ class App extends React.Component {
       }
 render () {
     const {navigate} = this.props.navigation;
+    if(Store.getState().Tutorial.data==0 || Store.getState().Tutorial.data==undefined){ // Chiedi se vuole fare il tutorial
+      navigate("FirstTutorial")
+    }
     return (
         
         <ScrollView style={styles.scrollView}>
         <View style={styles.content}>
+        <View style={styles.titleContent}>
+          <Text style={styles.titleText}>{Strings.arcadeLevelTitle}</Text>
+        </View>
         {
           Levels.map((Levels, index)  => (
-            <TouchableOpacity style={this.state.level >= Levels.level ? styles.buttonClicked: this.state.level+1 == Levels.level ? styles.button:styles.buttonDisabled} disabled = {(this.state.level+1 < Levels.level) ? true:false } key={index} onPress={() =>{ navigate('ArcadeMatch'); tracker.trackScreenView("Arcade Level "+Levels.level); this.props.actions.starting_arcade(Levels.level)}}> 
-                <Text style={this.state.level+1 < Levels.level ? styles.buttonTextDisabled:styles.buttonText}>{Levels.level}</Text>
+            <TouchableOpacity style={this.state.level >= Levels.level ? styles.buttonClicked: this.state.level+1 == Levels.level ? styles.button:styles.buttonDisabled} disabled = {(this.state.level+1 < Levels.level) ? true:false } key={index} onPress={() =>{ navigate('ArcadeMatch'); tracker.trackScreenView("Arcade Level "+Levels.level); this.props.actions.starting_arcade(Levels.level); this.props.tutorialActions.making_tutorial()}}> 
+                <Text style={this.state.level+1 < Levels.level ? styles.buttonTextDisabled:styles.buttonText}>{this.state.level+1 < Levels.level ? "🔒":Levels.level}</Text>
             </TouchableOpacity> 
           ))
         }
@@ -82,6 +94,15 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         marginTop: "5%",
         paddingBottom: "8%"
+    },
+    titleContent:{
+      width:"100%"
+    },
+    titleText:{
+      color:"white",
+      fontWeight:"700",
+      textAlign:"center",
+      fontSize:23
     },
     buttonText: {
       textAlign: "center",
@@ -131,8 +152,8 @@ const styles = StyleSheet.create({
   function mapDispatchToProps(dispatch) {
     return {
       actions: bindActionCreators(actions, dispatch),
-      storingActions: bindActionCreators(storingActions,dispatch)
-      
+      storingActions: bindActionCreators(storingActions,dispatch),
+      tutorialActions: bindActionCreators(tutorialActions,dispatch)
     };
   }
   

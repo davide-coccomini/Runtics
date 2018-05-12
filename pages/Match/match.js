@@ -29,7 +29,6 @@ trackerMatch.trackScreenView("Match");
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log("props",props)
     this.state = {
       tableData: props.data.tableData,
       rows:props.data.rows,  
@@ -52,7 +51,7 @@ class App extends React.Component {
 
   componentWillReceiveProps(nextProps){
     var newState
-    var grid = "[";
+  /*  var grid = "[";
     for(var i=0; i<nextProps.data.rows;i++){
       grid += "["
       for(var j=0; j<nextProps.data.cols;j++){
@@ -71,6 +70,7 @@ class App extends React.Component {
       maxScore: nextProps.data.maxScore
     }
     console.log("*************************************************************************************************",log)
+    */
     if(nextProps.data.newMatch){
       newState = {
         tableData: nextProps.data.tableData,
@@ -139,7 +139,6 @@ render () {
   const state = this.state;
   const {navigate} = this.props.navigation;
 
-
   BackHandler.addEventListener('hardwareBackPress', function() {
     state.left = true
   });
@@ -151,7 +150,7 @@ render () {
   }
     return(
       
-      <Container>
+      <Container style={styles.container}>
             {this.props.loading
             ? <Spinner/>
             : null}
@@ -169,7 +168,7 @@ render () {
             color="#092D4B"
             bgColor="#092D4B"
             textStyle={{ fontSize: 20, color:"white" }}
-         
+              
             onTimeElapsed={() => {
                                 if(!state.left && !state.win){
                                   navigate('Report'); 
@@ -192,14 +191,14 @@ render () {
          
       </Left>
       <Right>
-           <ScoreCounter score={0} ref = {ref => this.scoreCounter = ref} />
+           <ScoreCounter score={0} maxScore={state.maxScore} ref = {ref => this.scoreCounter = ref} />
       </Right>
     </Header>
     
-      <View style={[styles.tableContainer, state.level==1 ? {marginTop: 70}: state.level==2? {marginTop:55}:state.level == 3 ? {marginTop:40}: state.level == 4 ? {marginTop:5}:state.level == 5 ?{marginTop:10}:{marginTop:5} ]}>
+      <View style={[styles.tableContainer]}>
       {
         state.tableData.map((rowData, index)  => (
-          <View key={index} style={[styles.rowContainer,  state.level==1 ? {height: 75}: state.level==2? {height:50}:state.level == 3 ? {height:50}:state.level == 4 ? {height:40}:{height:35}]}>
+          <View key={index} style={[styles.rowContainer,  state.level==1 ? {height: "17%"}: state.level==2? {height:"12%"}:state.level == 3 ? {height:"10%"}:state.level == 4 ? {height:"8.5%"}:{height:"7%"}]}>
               {
                 rowData.map((cellData, cellIndex) => { 
                 return (
@@ -217,6 +216,9 @@ render () {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    width:"100%"
+  },
   header:{
     height:80,
     paddingBottom:5,
@@ -224,13 +226,15 @@ const styles = StyleSheet.create({
     backgroundColor:0,
     borderWidth:0,
     shadowOpacity:1,
-    marginTop:5
+    marginTop:15,
   },
   
   tableContainer: { 
     flexDirection: 'column',
-    alignItems: "center",
-    marginTop:5
+    paddingLeft: 15,
+    paddingRight:15,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   rowContainer:{
     flexDirection: 'row',

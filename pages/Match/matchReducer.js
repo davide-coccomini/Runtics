@@ -54,27 +54,6 @@ switch (action.type){
         error:true
     }
     break
-    case types.RESETTING_CELLS: 
-    state = {
-        ...state,
-        loading:true,
-        error:false
-    }
-    case types.RESETTED_CELLS:
-    state = {
-        ...state,
-        data: action.payload,
-        loading:false,
-        error:false
-    }
-    break
-    case types.RESET_CELLS_ERROR:
-    state = {
-        ...state,
-        loading:false,
-        error:true
-    }
-    break
    default:
     break;
 }

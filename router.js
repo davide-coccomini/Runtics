@@ -6,6 +6,9 @@ import Report from './pages/Report/report';
 import Tutorial from './pages/Tutorial/tutorial';
 import Settings from './pages/Settings/settings';
 import Scores from './pages/Scores/scores';
+import Arcade from './pages/Arcade/arcadeLevels';
+import ArcadeMatch from './pages/Arcade/arcadeMatch';
+import FirstTutorial from './pages/Tutorial/firstTutorial';
 
 export default Routes = TabNavigator({
     Home: {
@@ -28,6 +31,15 @@ export default Routes = TabNavigator({
     },
     Settings: {
         screen: Settings
+    },
+    Arcade:{
+        screen: Arcade
+    },
+    ArcadeMatch:{
+        screen: ArcadeMatch
+    },
+    FirstTutorial:{
+        screen: FirstTutorial
     }
 },{
     initialRouteName: 'Home',

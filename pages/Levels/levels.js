@@ -2,6 +2,7 @@ import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity} from 'react
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
+import Store from '../../redux/store';
 import {
   Container,
   Header,
@@ -18,9 +19,11 @@ import {
   Separator
 } from 'native-base';
 import * as actions from '../Match/matchActions';
+import * as tutorialActions from '../Tutorial/tutorialActions';
 import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
 GoogleAnalyticsSettings.setDispatchInterval(30);
 export const tracker = new GoogleAnalyticsTracker('UA-117921514-1');
+var Analytics = require('react-native-firebase-analytics');
 
 class App extends React.Component {
 
@@ -30,10 +33,16 @@ class App extends React.Component {
           matrix:[]
         }
       }
-
+componentWillMount(){
+  Analytics.logEvent('Levels', {
+    'Levels': 'Quick Match'
+  });
+}
 render () {
     const {navigate} = this.props.navigation;
-
+    if(Store.getState().Tutorial.data==0 || Store.getState().Tutorial.data==undefined){ // Chiedi se vuole fare il tutorial
+      navigate("FirstTutorial")
+    }
     return (
         <View style={styles.container}>
        {this.state.loading ? <Spinner /> : null} 
@@ -42,22 +51,22 @@ render () {
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={require("../../images/logo.png")} />
             </View>
-              <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Easy"); this.props.actions.starting_game(1)}}>
+              <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Easy"); this.props.actions.starting_game(1); this.props.tutorialActions.making_tutorial()}}>
                 <Text style={styles.buttonText}>EASY</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerMedium}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Medium"); this.props.actions.starting_game(2)}}>
+              <TouchableOpacity style={styles.buttonContainerMedium}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Medium"); this.props.actions.starting_game(2); this.props.tutorialActions.making_tutorial()}}>
                 <Text style={styles.buttonText}>MEDIUM</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerHard}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Hard"); this.props.actions.starting_game(3)}}>
+              <TouchableOpacity style={styles.buttonContainerHard}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Hard"); this.props.actions.starting_game(3); this.props.tutorialActions.making_tutorial()}}>
                 <Text style={styles.buttonText}>HARD</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerVeryHard}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Very Hard"); this.props.actions.starting_game(4)}}>
+              <TouchableOpacity style={styles.buttonContainerVeryHard}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Very Hard"); this.props.actions.starting_game(4); this.props.tutorialActions.making_tutorial()}}>
                 <Text style={styles.buttonText}>VERY HARD</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerInsane}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Insane"); this.props.actions.starting_game(5)}}>
+              <TouchableOpacity style={styles.buttonContainerInsane}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Insane"); this.props.actions.starting_game(5); this.props.tutorialActions.making_tutorial()}}>
                 <Text style={styles.buttonText}>INSANE</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerImpossible}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Impossible"); this.props.actions.starting_game(6)}}>
+              <TouchableOpacity style={styles.buttonContainerImpossible}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Impossible"); this.props.actions.starting_game(6); this.props.tutorialActions.making_tutorial()}}>
                 <Text style={styles.buttonText}>IMPOSSIBLE</Text>
               </TouchableOpacity>
           </View>
@@ -141,7 +150,8 @@ const styles = StyleSheet.create({
   
   function mapDispatchToProps(dispatch) {
     return {
-      actions: bindActionCreators(actions, dispatch)
+      actions: bindActionCreators(actions, dispatch),
+      tutorialActions: bindActionCreators(tutorialActions,dispatch)
     };
   }
   

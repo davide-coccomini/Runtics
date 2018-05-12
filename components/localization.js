@@ -29,7 +29,10 @@ let Strings = new LocalizedStrings({
     reportRoute: "A good route was",
     reportButtonPlay: "PLAY AGAIN",
     reportButtonBack: "BACK TO MENU",
-    arcadeLevel: "Level"
+    arcadeLevel: "Level",
+    arcadeLevelTitle: "SELECT THE LEVEL",
+    firstTutorialTitle: "DO YOU WANT TO SEE A TUTORIAL BEFORE THE GAME?",
+    firstTutorialText: "or just continue ..."
  },
  it: {
     homeNewGame: "PARTITA RAPIDA",
@@ -58,8 +61,10 @@ let Strings = new LocalizedStrings({
     reportRoute: "Un buon percorso era",
     reportButtonPlay: "RIPROVA",
     reportButtonBack: "TORNA AL MENU",
-    arcadeLevel: "Livello"
-
+    arcadeLevel: "Livello",
+    arcadeLevelTitle: "SELEZIONA IL LIVELLO",
+    firstTutorialTitle: "VUOI VEDERE UN TUTORIAL PRIMA DI COMINCIARE?",
+    firstTutorialText: "oppure continua ..."
  },
  de: {
     homeNewGame: "SCHNELLES SPIEL",
@@ -88,7 +93,11 @@ let Strings = new LocalizedStrings({
     reportRoute: "Eine gute Route war",
     reportButtonPlay: "VERSUCH ERNEUT",
     reportButtonBack: "ZURUCK ZUM MENU",
-    arcadeLevel: "Ebene"
+    arcadeLevel: "Ebene",
+    arcadeLevelTitle: "WÄHLEN SIE DIE EBENE",
+    firstTutorialTitle: "WOLLEN SIE EIN TUTORIAL VOR DEM SPIEL SEHEN?",
+    firstTutorialText: "oder einfach weitermachen ..."
+
 },
 fr: {
     homeNewGame: "JEU RAPIDE",
@@ -117,7 +126,10 @@ fr: {
     reportRoute: "Un bon itinérarie ça aurait été",
     reportButtonPlay: "RÈESSAYER",
     reportButtonBack: "RETOURNER AU MENU",
-    arcadeLevel: "Niveau"
+    arcadeLevel: "Niveau",
+    arcadeLevelTitle: "SÉLECTIONNEZ LE NIVEAU",
+    firstTutorialTitle: "VOULEZ-VOUS VOIR UN TUTORIAL AVANT LE JEU?",
+    firstTutorialText: "ou juste continuer ..."
  },
 cn: {
         homeNewGame: "快速游戏",
@@ -146,7 +158,10 @@ cn: {
         reportRoute: "最佳路线是",
         reportButtonPlay: "再玩一次",
         reportButtonBack: "回到菜单",
-        arcadeLevel: "水平"
+        arcadeLevel: "水平",
+        arcadeLevelTitle: "选择水平",
+        firstTutorialTitle: "你想在比赛前看到补习",
+        firstTutorialText: "或者继续"
 },
 pn:{
     homeNewGame: "JOGO RÁPIDO",
@@ -175,7 +190,10 @@ pn:{
     reportRoute: "O melhor caminho era",
     reportButtonPlay: "JOGAR DE NOVO",
     reportButtonBack: "VOLTAR AO MENU",
-    arcadeLevel: "Nível"
+    arcadeLevel: "Nível",
+    arcadeLevelTitle: "SELECIONE O NÍVEL",
+    firstTutorialTitle: "VOCÊ QUER VER UM TUTORIAL ANTES DO JOGO",
+    firstTutorialText: "ou apenas continuar ..."
  },
  ru:{
     homeNewGame: "БЫСТРАЯ ИГРА",
@@ -204,7 +222,10 @@ pn:{
     reportRoute: "Лучший маршрут был",
     reportButtonPlay: "СЫГРАТЬ СНОВА",
     reportButtonBack: "НАЗАД В МЕНЮ",
-    arcadeLevel: "уровень"
+    arcadeLevel: "уровень",
+    arcadeLevelTitle: "ВЫБЕРИТЕ УРОВЕНЬ",
+    firstTutorialTitle: "ВЫ ХОТИТЕ УВИДЕТЬ ОБРАЗОВАНИЕ ДО ИГРЫ",
+    firstTutorialText: "или просто продолжить ..."
   }
 });
 
