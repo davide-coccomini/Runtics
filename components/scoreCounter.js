@@ -27,14 +27,14 @@ class App extends React.Component {
         this.state = {
             maxScore: props.maxScore,
             score: props.score
-        }
+        }    
       }
       componentWillReceiveProps(nextProps){
           var newState = {
             maxScore: nextProps.data.maxScore,
             score: nextProps.data.newScore,
           }
-          this.setState(newState)     
+          this.setState(newState)   
       }
       getScore(){
         return this.score
