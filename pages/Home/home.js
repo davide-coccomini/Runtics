@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
       alignItems: "center",
-      flexGrow: 0.35,
+      flexGrow: 0.30,
       marginTop:35,
       justifyContent: "center",
       alignItems: "center",
