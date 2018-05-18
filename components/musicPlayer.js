@@ -62,8 +62,9 @@ class App extends React.Component {
   playSound() {
     
     this.state.sound.setVolume(0.1)
+    this.state.sound.setNumberOfLoops(-1)
     this.state.sound.play(() => {
-      this.state.sound.release();
+      this.state.sound.release()
     });
   }
   stopSound() {
