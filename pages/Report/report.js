@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity,StatusBar} from 'react-native';
+import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity,StatusBar,Dimensions} from 'react-native';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
@@ -101,6 +101,10 @@ class App extends React.Component {
 render () {
     const {navigate} = this.props.navigation;
     const state = this.state;
+    const {
+      width: SCREEN_WIDTH,
+      height: SCREEN_HEIGHT,
+    } = Dimensions.get('window');
     return (
       <Container>
         <Header style={[styles.header,state.win ? {backgroundColor:"#41A700"}:{backgroundColor:"#D32323"}]}>
@@ -125,11 +129,14 @@ render () {
         <View style={styles.tableContainer}>
         {
           state.tableData.map((rowData, index)  => (
-            <View key={index} style={[styles.rowContainer,  state.level==1 ? {height: 45}: state.level==2? {height:35}:state.level == 3 ? {height:25}:state.level == 4 ? {height:20}:{height:18}]}>
+            <View key={index} style={[styles.rowContainer, state.level==1 ? {height: "16%"}: state.level==2? {height:"11.5%"}:state.level == 3 ? {height:"9.5%"}:state.level == 4 ? {height:"6.8%"}:{height:"6.6%"}]}>
                 {
                   rowData.map((cellData, cellIndex) => (
                       <TouchableOpacity key={cellIndex}   disabled={true} style={cellData.clicked?styles.cellContainerClicked:styles.cellContainer} > 
-                        <Text style={[styles.cellText,state.level==1 ? {fontSize: 18}: state.level==2? {fontSize:14}:state.level == 3 ? {fontSize:10}:{fontSize:8}]}>{cellData.number}</Text>
+                        <Text style={[styles.cellText,
+                        state.level==1 ? {fontSize:SCREEN_WIDTH*0.05, color:"white"}:
+                        state.level==2 ? {fontSize:SCREEN_WIDTH*0.04, color:"white"}:
+                        state.level==3 ? {fontSize:SCREEN_WIDTH*0.03, color:"white"}:{fontSize:SCREEN_WIDTH*0.02, color:"white"}]}>{cellData.number}</Text>
                       </TouchableOpacity>
                   ))
                 }
@@ -137,10 +144,7 @@ render () {
           ))
         }
         </View>
-        <View >
-        </View>
-          <View behavior="padding" style={styles.buttonView}>
-      
+          <View style={styles.buttonView}>
               <TouchableOpacity style={styles.button}  onPress={() => navigate('Levels')}>
                 <Text style={styles.buttonText}>{Strings.reportButtonPlay}</Text>
               </TouchableOpacity>
@@ -225,8 +229,9 @@ const styles = StyleSheet.create({
       marginTop:5
     },
     buttonView: {
-      flex:1,
-      marginTop:0
+      padding:0,
+      marginTop: -55,
+      height:"5%"
     },
     button: {
         backgroundColor: "#092D4B",
@@ -234,7 +239,7 @@ const styles = StyleSheet.create({
         height:50,
         paddingVertical: 15,
         alignSelf:"center",
-        marginTop:"1%"
+        marginTop:5
       },
     buttonText: {
       textAlign: "center",
