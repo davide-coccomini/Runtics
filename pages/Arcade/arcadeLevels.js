@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity} from 'react-native';
+import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity,Dimensions} from 'react-native';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
@@ -57,6 +57,11 @@ class App extends React.Component {
       }
 render () {
     const {navigate} = this.props.navigation;
+    const {
+      width: SCREEN_WIDTH,
+      height: SCREEN_HEIGHT,
+    } = Dimensions.get('window');
+
     if(Store.getState().Tutorial.data==0 || Store.getState().Tutorial.data==undefined){ // Chiedi se vuole fare il tutorial
       navigate("FirstTutorial")
     }
@@ -70,7 +75,7 @@ render () {
         {
           Levels.map((Levels, index)  => (
             <TouchableOpacity style={this.state.level >= Levels.level ? styles.buttonClicked: this.state.level+1 == Levels.level ? styles.button:styles.buttonDisabled} disabled = {(this.state.level+1 < Levels.level) ? true:false } key={index} onPress={() =>{ navigate('ArcadeMatch'); tracker.trackScreenView("Arcade Level "+Levels.level); this.props.actions.starting_arcade(Levels.level); this.props.tutorialActions.making_tutorial()}}> 
-                <Text style={this.state.level+1 < Levels.level ? styles.buttonTextDisabled:styles.buttonText}>{this.state.level+1 < Levels.level ? "🔒":Levels.level}</Text>
+                <Text style={[this.state.level+1 < Levels.level ? styles.buttonTextDisabled:styles.buttonText,{fontSize:SCREEN_WIDTH*0.05}]}>{this.state.level+1 < Levels.level ? "🔒":Levels.level}</Text>
             </TouchableOpacity> 
           ))
         }
