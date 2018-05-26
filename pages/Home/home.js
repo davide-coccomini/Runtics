@@ -24,6 +24,7 @@ import Strings from '../../components/localization';
 import * as actions from './homeActions';
 import Store from '../../redux/store';
 import {rehydration} from '../../redux/store';
+import Zapic from '../../components/zapic';
 import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
 GoogleAnalyticsSettings.setDispatchInterval(30);
 export const tracker = new GoogleAnalyticsTracker('UA-117921514-1');
@@ -51,6 +52,9 @@ render () {
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Arcade'); tracker.trackScreenView("Arcade")}}>
                 <Text style={styles.buttonText}>{Strings.homeArcade}</Text>
               </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {Zapic.showDefaultPage();}}>
+                <Text style={styles.buttonText}>ZAPIC</Text>
+              </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Tutorial'); tracker.trackScreenView("Tutorial"); this.props.actions.making_tutorial(1)}}>
                 <Text style={styles.buttonText}>{Strings.homeHowToPlay}</Text>
               </TouchableOpacity>
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
       alignItems: "center",
-      flexGrow: 0.30,
+      flexGrow: 0.32,
       marginTop:35,
       justifyContent: "center",
       alignItems: "center",
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
       backgroundColor: "#092D4B",
-      paddingVertical: 15,
+      paddingVertical: 12,
       width:"80%",
       marginLeft:"10%",
       marginTop:5
