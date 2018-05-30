@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "975429676217",
+    "firebase_url": "https://runtics-a0d08.firebaseio.com",
+    "project_id": "runtics-a0d08",
+    "storage_bucket": "runtics-a0d08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975429676217:android:eb4eac0dde69f193",
+        "android_client_info": {
+          "package_name": "com.runtics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975429676217-h9kfb613h9sisvrihba74oggja6joo8k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPjgr6XsvPyI2Ja7EHDxnQOIaYdODjQ-Q"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
