@@ -76,9 +76,9 @@ function setLevel(level){
          return {
             rows: 11,
             cols: 9,
-            time: 140, //140
-            min: 50, //50
-            max: 600, //600
+            time: 10, //140
+            min: 1, //50
+            max: 998, //600
             level: level
          }
      
@@ -124,6 +124,7 @@ function generate(config){
          time: time,
          level: level,
          score: 0,
+         bestScore: 0,
          maxScore: maxScore,
          bestPath: bestPath,
          root: -1,
@@ -343,7 +344,7 @@ function isAdjacency(id,lastClicked,cols){
 
 function cellClick(payload) {
     var {id,clicked,number} = payload
-    var {lastClicked,cols,rows,score,maxScore,time,left,tableData,level} = Store.getState().Match.data
+    var {lastClicked,cols,rows,score,bestScore,maxScore,time,left,tableData,level} = Store.getState().Match.data
 
     var reset = false
           if(clicked)
@@ -371,12 +372,16 @@ function cellClick(payload) {
     }
     lastValue = number
     newScore = score + value 
+    if(newScore > bestScore){
+        bestScore = newScore
+    }
     win = checkWin(newScore,maxScore)
     const response = {
         id: id,
         clicked: clicked,
         rows: rows,
         cols: cols,
+        bestScore: bestScore,
         newScore: newScore,
         lastClicked: lastClicked,
         lastValue: lastValue,
