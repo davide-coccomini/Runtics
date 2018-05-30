@@ -31,12 +31,11 @@ tracker.trackScreenView("Report");
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.generateAd();
     var matrix = this.generateResultTable(props.data.matchInformations.tableData,props.data.matchInformations.bestPath,props.data.matchInformations.rows,props.data.matchInformations.cols)
     var pathLabel = this.generatePathLabel(props.data.matchInformations.tableData,props.data.matchInformations.bestPath)
     
     this.state = {
-      score: props.data.matchInformations.score,
+      bestScore: props.data.matchInformations.bestScore,
       maxScore: props.data.matchInformations.maxScore,
       win: props.data.matchInformations.win,
       tableData: matrix,
@@ -45,13 +44,15 @@ class App extends React.Component {
       level: props.data.matchInformations.level,
       pathLabel: pathLabel
     }
+    if(this.state.level > 1)
+     this.generateAd();
   }
   componentWillReceiveProps(nextProps){
-    this.generateAd();
+    
     var matrix = this.generateResultTable(nextProps.data.matchInformations.tableData,nextProps.data.matchInformations.bestPath,nextProps.data.matchInformations.rows,nextProps.data.matchInformations.cols)
     var pathLabel = this.generatePathLabel(nextProps.data.matchInformations.tableData,nextProps.data.matchInformations.bestPath)
     const newState = {
-      score: nextProps.data.matchInformations.score,
+      bestScore: nextProps.data.matchInformations.bestScore,
       maxScore: nextProps.data.matchInformations.maxScore,
       win:nextProps.data.matchInformations.win,
       tableData: matrix,
@@ -59,9 +60,11 @@ class App extends React.Component {
       cols: nextProps.data.matchInformations.cols,
       level: nextProps.data.matchInformations.level,
       pathLabel: pathLabel,
-      
     }
     this.setState(newState)
+    
+    if(this.state.level > 1)
+      this.generateAd();
   }
   generateAd(){ 
     //AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); //TEST
@@ -113,7 +116,7 @@ render () {
             barStyle="light-content"
           />
           <Left style={styles.yourScore}>
-              <Text style={styles.textScore}>{Strings.reportYour}{"\n"}{state.score}</Text>
+              <Text style={styles.textScore}>{Strings.reportYour}{"\n"}{state.bestScore}</Text>
           </Left>
           <Right style={styles.bestScore}>
               <Text style={styles.textScore}>{Strings.reportBest}{"\n"}{state.maxScore}</Text>

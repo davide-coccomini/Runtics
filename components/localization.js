@@ -8,6 +8,7 @@ let Strings = new LocalizedStrings({
     homeHowToPlay: "HOW TO PLAY",
     homeScores: "SCORES",
     homeSettings: "SETTINGS",
+    homeMultiplayer: "MULTIPLAYER",
     homeQuit: "QUIT", 
     tutorial1: "The game's goal is to find the best route in the grid made by numbers ordered in descending order ...",
     tutorial2: "In this case 10 -> 9 -> 7 -> 6 -> 5 -> 3 -> 1 is the best route findable. It is decreasing and all the numbers are adjacent to each other. Diagonal is not admitted ...",
@@ -22,7 +23,7 @@ let Strings = new LocalizedStrings({
     settingsMusic: "Music",
     settingsButtonEnable: "ENABLE",
     settingsButtonDisable: "DISABLE",
-    reportYour: "YOUR SCORE",
+    reportYour: "YOUR BEST",
     reportBest: "TO WIN",
     reportTitleWin: "You win",
     reportTitleLose: "You lose",
@@ -32,7 +33,8 @@ let Strings = new LocalizedStrings({
     arcadeLevel: "Level",
     arcadeLevelTitle: "SELECT THE LEVEL",
     firstTutorialTitle: "DO YOU WANT TO SEE A TUTORIAL BEFORE THE GAME?",
-    firstTutorialText: "or just continue ..."
+    firstTutorialText: "or just continue ...",
+    notification: "Hey! Don't you want to play Runtics?"
  },
  it: {
     homeNewGame: "PARTITA RAPIDA",
@@ -40,6 +42,7 @@ let Strings = new LocalizedStrings({
     homeHowToPlay: "COME GIOCARE",
     homeScores: "STATISTICHE",
     homeSettings: "IMPOSTAZIONI",
+    homeMultiplayer: "MULTIGIOCATORE",
     homeQuit: "ESCI", 
     tutorial1: "Lo scopo del gioco è trovare il miglior percorso sulla griglia, fatto da numeri in ordine decrescente ...",
     tutorial2: "In questo caso 10 -> 9 -> 7 -> 6 -> 5 -> 3 -> 1 è il miglior percorso individuabile. E' decrescente e tutti i numeri sono adiacenti l'un l'altro. Le diagonali non sono ammesse ...",
@@ -54,7 +57,7 @@ let Strings = new LocalizedStrings({
     settingsMusic: "Musica",
     settingsButtonEnable: "ATTIVA",
     settingsButtonDisable: "DISATTIVA",
-    reportYour: "PUNTEGGIO",
+    reportYour: "MIGLIOR PUNTEGGIO",
     reportBest: "PER VINCERE",
     reportTitleWin: "Hai vinto",
     reportTitleLose: "Hai perso",
@@ -64,7 +67,8 @@ let Strings = new LocalizedStrings({
     arcadeLevel: "Livello",
     arcadeLevelTitle: "SELEZIONA IL LIVELLO",
     firstTutorialTitle: "VUOI VEDERE UN TUTORIAL PRIMA DI COMINCIARE?",
-    firstTutorialText: "oppure continua ..."
+    firstTutorialText: "oppure continua ...",
+    notification: "Hey! Non ti andrebbe di fare una partita a Runtics?"
  },
  de: {
     homeNewGame: "SCHNELLES SPIEL",
@@ -72,6 +76,7 @@ let Strings = new LocalizedStrings({
     homeHowToPlay: "WIE MAN SPIELT",
     homeScores: "STATISTIK",
     homeSettings: "EINSTELLUNGEN",
+    homeMultiplayer: "MEHRSPIELERMODUS",
     homeQuit: "SCHLIESSEN", 
     tutorial1: "Das Ziel des Spiels ist es, die beste Route im Raster zu finden, die durch Zahlen in absteigender Reihenfolge erfolgt ...",
     tutorial2: "In diesem Fall ist 10 -> 9 -> 7 -> 6 -> 5 -> 3 -> 1 die beste nachweisbare Route. Es ist absteigend und alle Zahlen sind nebeneinander. Diagonalen sind nicht erlaubt ...",
@@ -86,7 +91,7 @@ let Strings = new LocalizedStrings({
     settingsMusic: "Musik",
     settingsButtonEnable: "AKTIV",
     settingsButtonDisable: "DEAKTIV",
-    reportYour: "PUNKTE",
+    reportYour: "BESTES",
     reportBest: "UM ZU GEWINNEN",
     reportTitleWin: "Du hast gewonnen",
     reportTitleLose: "Du hast verloren",
@@ -96,7 +101,8 @@ let Strings = new LocalizedStrings({
     arcadeLevel: "Ebene",
     arcadeLevelTitle: "WÄHLEN SIE DIE EBENE",
     firstTutorialTitle: "WOLLEN SIE EIN TUTORIAL VOR DEM SPIEL SEHEN?",
-    firstTutorialText: "oder einfach weitermachen ..."
+    firstTutorialText: "oder einfach weitermachen ...",
+    notification: "Willst du spielen?"
 
 },
 fr: {
@@ -105,6 +111,7 @@ fr: {
     homeHowToPlay: "COMMENT JOUER",
     homeScores: "STATISTIQUES",
     homeSettings: "PARAMÈTRES",
+    homeMultiplayer: "MULTIJOUEUR",
     homeQuit: "QUITTER", 
     tutorial1: "Le but du jeu c'est trouver le meilleur itinéraire sur la grille, composé de nombres en ordre décroissant  ...",
     tutorial2: "Dans ce cas 10 -> 9 -> 7 -> 6 -> 5 -> 3 -> 1 c'est le meilleur itinéraire. Il est decroissant et le chiffres sont tous près. Les diagonales ne sont pas autorisées ...",
@@ -119,7 +126,7 @@ fr: {
     settingsMusic: "Musique",
     settingsButtonEnable: "ACTIVE",
     settingsButtonDisable: "DÈSACTIVE",
-    reportYour: "SCORE",
+    reportYour: "MEILLEUR",
     reportBest: "POUR GAGNER",
     reportTitleWin: "Tu as gagné",
     reportTitleLose: "Tu as perdu",
@@ -129,7 +136,8 @@ fr: {
     arcadeLevel: "Niveau",
     arcadeLevelTitle: "SÉLECTIONNEZ LE NIVEAU",
     firstTutorialTitle: "VOULEZ-VOUS VOIR UN TUTORIAL AVANT LE JEU?",
-    firstTutorialText: "ou juste continuer ..."
+    firstTutorialText: "ou juste continuer ...",
+    notification: "Hey! Tu veux jouer?"
  },
 cn: {
         homeNewGame: "快速游戏",
@@ -137,6 +145,7 @@ cn: {
         homeHowToPlay: "游戏规则",
         homeScores: "分数",
         homeSettings: "设置",
+        homeMultiplayer: "多人",
         homeQuit: "退出", 
         tutorial1: "游戏的目标是在网格中找到最佳路径，网格中的数字是以逆序排列的......",
         tutorial2: "在这种情况下，10 -> 9 -> 7 -> 6 -> 5 -> 3 -> 1是最佳路径。数目逐渐降低，以及所有的数都是相邻的。不允许对角线…",
@@ -151,7 +160,7 @@ cn: {
         settingsMusic: "音乐",
         settingsButtonEnable: "启用",
         settingsButtonDisable: "禁用",
-        reportYour: "你的分数",
+        reportYour: "尽力而为",
         reportBest: "需要获胜的",
         reportTitleWin: "你赢了",
         reportTitleLose: "你输了",
@@ -161,7 +170,8 @@ cn: {
         arcadeLevel: "水平",
         arcadeLevelTitle: "选择水平",
         firstTutorialTitle: "你想在比赛前看到补习",
-        firstTutorialText: "或者继续"
+        firstTutorialText: "或者继续",
+        localization: "你想玩吗？"
 },
 pn:{
     homeNewGame: "JOGO RÁPIDO",
@@ -169,6 +179,7 @@ pn:{
     homeHowToPlay: "COMO JOGAR",
     homeScores: "PONTUAÇÃO",
     homeSettings: "CONFIGURAÇÕES",
+    homeMultiplayer: "MULTIJOGADOR",
     homeQuit: "SAIR", 
     tutorial1: "O objetivo do jogo é encontrar no ladrilho o melhor caminho feito pelos números, ordenados do maior para o menor...",
     tutorial2: "Nesse caso 10 -> 9 -> 7 -> 6 -> 5 -> 3 -> 1 é a melhor rota. Os números vão decrescendo e todos são próximos uns aos outros. Diagonais não são permitidas ...",
@@ -183,7 +194,7 @@ pn:{
     settingsMusic: "Musica",
     settingsButtonEnable: "HABILITAR",
     settingsButtonDisable: "DESABILITAR",
-    reportYour: "SUA PONTUAÇÃO",
+    reportYour: "MELHOR",
     reportBest: "PARA GANHAR",
     reportTitleWin: "Você venceu",
     reportTitleLose: "Você perdeu",
@@ -193,7 +204,8 @@ pn:{
     arcadeLevel: "Nível",
     arcadeLevelTitle: "SELECIONE O NÍVEL",
     firstTutorialTitle: "VOCÊ QUER VER UM TUTORIAL ANTES DO JOGO",
-    firstTutorialText: "ou apenas continuar ..."
+    firstTutorialText: "ou apenas continuar ...",
+    notification: "Você quer jogar?"
  },
  ru:{
     homeNewGame: "БЫСТРАЯ ИГРА",
@@ -201,6 +213,7 @@ pn:{
     homeHowToPlay: "ПРАВИЛА ИГРЫ",
     homeScores: "РЕЙТИНГ",
     homeSettings: "НАСТРОЙКИ",
+    homeMultiplayer: "Мультиплеер",
     homeQuit: "Выйти",
     tutorial1: "Цель игры найти наилучший маршрут, можно идти по квадратам только в порядке убывания",
     tutorial2: "Например 10 -> 9 -> 7 -> 6 -> 5 -> 3 -> 1 наилучший маршрут. Путь убывающий и мы двигаемся по соседним клеткам. Двигатся по диогонали нельзя.",
@@ -215,7 +228,7 @@ pn:{
     settingsMusic: "Музыка",
     settingsButtonEnable: "ВКЛЮЧИТЬ",
     settingsButtonDisable: "ВЫКЛЮЧИТЬ",
-    reportYour: "ВАШ СЧЕТ",
+    reportYour: "ТЫ ЛУЧШИЙ",
     reportBest: "ЧТОБЫ ПОБЕДИТЬ",
     reportTitleWin: "Вы победили",
     reportTitleLose: "ВЫ проиграли",
@@ -225,7 +238,8 @@ pn:{
     arcadeLevel: "уровень",
     arcadeLevelTitle: "ВЫБЕРИТЕ УРОВЕНЬ",
     firstTutorialTitle: "ВЫ ХОТИТЕ УВИДЕТЬ ОБРАЗОВАНИЕ ДО ИГРЫ",
-    firstTutorialText: "или просто продолжить ..."
+    firstTutorialText: "или просто продолжить ...",
+    notification: "Ты хочешь поиграть?"
   }
 });
 
