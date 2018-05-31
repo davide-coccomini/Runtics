@@ -53,7 +53,7 @@ render () {
                 <Text style={styles.buttonText}>{Strings.homeArcade}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {Zapic.showDefaultPage();}}>
-                <Text style={styles.buttonText}>ZAPIC</Text>
+                <Text style={styles.buttonText}>{Strings.homeMultiplayer}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Tutorial'); tracker.trackScreenView("Tutorial"); this.props.actions.making_tutorial(1)}}>
                 <Text style={styles.buttonText}>{Strings.homeHowToPlay}</Text>
