@@ -51,7 +51,7 @@ class App extends React.Component {
 
   componentWillReceiveProps(nextProps){
     var newState
-  /*  var grid = "[";
+   var grid = "[";
     for(var i=0; i<nextProps.data.rows;i++){
       grid += "["
       for(var j=0; j<nextProps.data.cols;j++){
@@ -70,7 +70,7 @@ class App extends React.Component {
       maxScore: nextProps.data.maxScore
     }
     console.log("*************************************************************************************************",log)
-    */
+    
     if(nextProps.data.newMatch){
       newState = {
         tableData: nextProps.data.tableData,
@@ -122,7 +122,7 @@ class App extends React.Component {
     const payload = {
       endTime:this.countdown.getTimeRemained(),
       time: 99999,
-      score: this.getScore(), 
+      bestScore: this.getScore(), 
       maxScore: this.state.maxScore,
       win: true,
       rows: this.state.rows,
@@ -173,8 +173,8 @@ render () {
                                 if(!state.left && !state.win){
                                   navigate('Report'); 
                                   const payload = {
-                                                    endTime:this.countdown.getTimeRemained(),
-                                                    score: this.getScore(),
+                                                    endTime:this.countdown.getTimeRemained(), 
+                                                    bestScore: Store.getState().Match.data.bestScore,
                                                     maxScore: state.maxScore, 
                                                     win: false,
                                                     rows: state.rows,
@@ -191,7 +191,7 @@ render () {
          
       </Left>
       <Right>
-           <ScoreCounter score={0} maxScore={state.maxScore} ref = {ref => this.scoreCounter = ref} />
+           <ScoreCounter score={0} bestScore={0} maxScore={state.maxScore} ref = {ref => this.scoreCounter = ref} />
       </Right>
     </Header>
     
