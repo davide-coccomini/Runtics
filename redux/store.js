@@ -6,6 +6,17 @@ import createSagaMiddleware from 'redux-saga';
 import {persistStore, autoRehydrate} from 'redux-persist';
 import {AsyncStorage} from 'react-native'
 
+const rehydrationPromise = new Promise((resolve, reject) => {
+    rehydrationComplete = resolve
+    rehydrationFailed = reject
+  })
+  
+  export function rehydration () {
+    return rehydrationPromise
+  }
+  
+
+
 const sagaMiddleware = createSagaMiddleware()
 
 const logger = createLogger();
@@ -17,3 +28,4 @@ export default store;
 
 persistStore(store, {storage: AsyncStorage})
 sagaMiddleware.run(sagas);
+

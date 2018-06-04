@@ -1,10 +1,14 @@
 import {put, takeEvery, select} from 'redux-saga/effects';
 import {fork} from 'redux-saga/effects/';
+
+//import Home from '../pages/Home/homeSagas';
 import Match from '../pages/Match/matchSagas';
 import Report from '../pages/Report/reportSagas';
 import Settings from '../pages/Settings/settingsSagas';
 import Scores from '../pages/Scores/scoresSagas';
 import Arcade from '../pages/Arcade/arcadeSagas';
+import ArcadeStoring from '../pages/Arcade/LevelStorage/levelStorageSagas';
+import Tutorial from '../pages/Tutorial/tutorialSagas';
 function * firstAppOpening() {
     console.log('====================================');
     console.log("APP_OPENED");
@@ -16,11 +20,14 @@ export default function * root() {
 
     yield[
         takeEvery("APP_OPENED", firstAppOpening),
+       // fork(Home),
         fork(Match),
         fork(Report),
         fork(Settings),
         fork(Scores),
-        fork(Arcade)
+        fork(Arcade),
+        fork(ArcadeStoring),
+        fork(Tutorial)
     ]
 
 }
