@@ -1,7 +1,7 @@
 import {call, put,takeEvery, select} from 'redux-saga/effects';
 import * as Actions from './reportActions';
 import * as scoresActions from '../Scores/scoresActions';
-
+import Zapic from '../../components/zapic';
 
 function * ending_game(action){
     try {

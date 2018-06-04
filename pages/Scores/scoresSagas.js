@@ -1,16 +1,70 @@
 import {call, put,takeEvery, select} from 'redux-saga/effects';
 import * as Actions from './scoresActions';
 import Store from '../../redux/store';
+import Zapic from '../../components/zapic';
 
 function * storing_scores(action){
     try {
         var response = yield call(generate,action.payload)
         yield put(Actions.stored_scores(response))
+        var responseStats = {
+            response: response,
+            level: action.payload.matchInformations.level,
+            endTime: action.payload.matchInformations.endTime,
+            win: action.payload.win
+        }
+        var stats = yield call(generateStats,responseStats)
+        Zapic.submitEvent(JSON.stringify(stats))
     }catch(e){
         console.error(e);
         yield put(Actions.store_scores_error());
        
     }
+}
+
+function generateStats(response){
+    var level = response.level
+    var startTime = level==1 ? 180: (level==2 || level==3) ? 170: (level==4 || level==5) ? 160:150
+    var endTime = response.endTime
+    var matchDuration = startTime - endTime
+        switch(level){
+            case 1:
+            return({
+                EASY_WINS: win ? 1:0,
+                EASY_TIME: matchDuration
+            })
+            break
+            case 2:
+            return({
+                MEDIUM_WINS: win ? 1:0,
+                MEDIUM_TIME: matchDuration
+            })
+            break
+            case 3:
+            return({
+                HARD_WINS: win ? 1:0,
+                HARD_TIME: matchDuration
+            })
+            break
+            case 4:
+            return({
+                VERYHARD_WINS: win ? 1:0,
+                VERYHARD_TIME: matchDuration
+            })
+            break
+            case 5:
+            return({
+                INSANE_WINS: win ? 1:0,
+                INSANE_TIME: matchDuration
+            })
+            break
+            case 6:
+            return({
+                IMPOSSIBLE_WINS: win ? 1:0,
+                IMPOSSIBLE_TIME: matchDuration
+            })
+            break
+        }
 }
 function generate(payload){  
     var scores = Store.getState().Scores.data

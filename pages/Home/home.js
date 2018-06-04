@@ -52,7 +52,7 @@ render () {
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Arcade'); tracker.trackScreenView("Arcade")}}>
                 <Text style={styles.buttonText}>{Strings.homeArcade}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {Zapic.showDefaultPage();}}>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {Zapic.showDefaultPage();  tracker.trackScreenView("Multiplayer")}}>
                 <Text style={styles.buttonText}>{Strings.homeMultiplayer}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Tutorial'); tracker.trackScreenView("Tutorial"); this.props.actions.making_tutorial(1)}}>
