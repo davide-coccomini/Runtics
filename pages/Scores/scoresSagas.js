@@ -31,37 +31,37 @@ function generateStats(response){
         switch(level){
             case 1:
             return({
-                EASY_WINS: win ? 1:0,
+                EASY_WINS: response.win ? 1:0,
                 EASY_TIME: matchDuration
             })
             break
             case 2:
             return({
-                MEDIUM_WINS: win ? 1:0,
+                MEDIUM_WINS: response.win ? 1:0,
                 MEDIUM_TIME: matchDuration
             })
             break
             case 3:
             return({
-                HARD_WINS: win ? 1:0,
+                HARD_WINS: response.win ? 1:0,
                 HARD_TIME: matchDuration
             })
             break
             case 4:
             return({
-                VERYHARD_WINS: win ? 1:0,
+                VERYHARD_WINS: response.win ? 1:0,
                 VERYHARD_TIME: matchDuration
             })
             break
             case 5:
             return({
-                INSANE_WINS: win ? 1:0,
+                INSANE_WINS: response.win ? 1:0,
                 INSANE_TIME: matchDuration
             })
             break
             case 6:
             return({
-                IMPOSSIBLE_WINS: win ? 1:0,
+                IMPOSSIBLE_WINS: response.win ? 1:0,
                 IMPOSSIBLE_TIME: matchDuration
             })
             break
