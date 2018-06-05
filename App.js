@@ -35,6 +35,7 @@ PushNotification.configure({
     popInitialNotification: true,
     requestPermissions: true,
 });
+PushNotification.cancelAllLocalNotifications()
 PushNotification.localNotificationSchedule({
   message: Strings.notification,
   date: new Date(Date.now() + (604800000)) // in 1 week
