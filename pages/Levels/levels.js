@@ -45,7 +45,6 @@ render () {
     }
     return (
         <View style={styles.container}>
-       {this.state.loading ? <Spinner /> : null} 
          
           <View behavior="padding" style={styles.container}>
             <View style={styles.logoContainer}>

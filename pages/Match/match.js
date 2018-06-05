@@ -151,9 +151,6 @@ render () {
     return(
       
       <Container style={styles.container}>
-            {this.props.loading
-            ? <Spinner/>
-            : null}
       <Header style={styles.header}>
         <StatusBar
             backgroundColor="#164593"

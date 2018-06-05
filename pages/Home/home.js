@@ -38,10 +38,6 @@ render () {
     return (
      
         <View style={styles.container}>
-        
-         {this.props.loading
-            ? <Spinner/>
-            : null}
           <View behavior="padding" style={styles.container}>
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={require("../../images/logo.png")} />
