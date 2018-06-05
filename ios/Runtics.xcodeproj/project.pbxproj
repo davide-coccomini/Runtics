@@ -52,6 +52,14 @@
 		42A2711087FA40B1A1EA1C1C /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FE89377C594A01BAB0CC2F /* libBVLinearGradient.a */; };
 		E806B00F578B4AC6B67CBFFB /* libRNAdMobManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1FF0910FB654BF590F99798 /* libRNAdMobManager.a */; };
 		66C02E29C3E448299F54503A /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFC10B80DAA489386E4B1E4 /* libRNSound.a */; };
+		3C5C560012904293898F8E5D /* libRCTGoogleAnalyticsBridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D34A740557C2416CBFA5C9B4 /* libRCTGoogleAnalyticsBridge.a */; };
+		ECB700BBC21646CABEE78533 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBB8D1C25D1B4EC7AE83F9F0 /* CoreData.framework */; };
+		39F134523E4946F8A3061F0B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A6C8D587824DF282798259 /* SystemConfiguration.framework */; };
+		A1697EB277B74A3BA5A9DB35 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 84B4AB31BC574DEDA53F537E /* libz.tbd */; };
+		E23B0FF10E074057A067371F /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2968E02A66349FDA2E4AD88 /* libsqlite3.0.tbd */; };
+		6C06321D269B4B6897AB6E90 /* libReactNativeLocalization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ACCE9C6647346C6BCCE14CC /* libReactNativeLocalization.a */; };
+		7F4EB7C52B25440EB3CB772F /* libRNFIRAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E88C310432964EE1B2405940 /* libRNFIRAnalytics.a */; };
+		FC89DB0A97DB48818AAFBED7 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36707F81AC7F482B8122C98C /* libSplashScreen.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -375,6 +383,18 @@
 		B1FF0910FB654BF590F99798 /* libRNAdMobManager.a */ = {isa = PBXFileReference; name = "libRNAdMobManager.a"; path = "libRNAdMobManager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		C6729193C04747B8AD802811 /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		ADFC10B80DAA489386E4B1E4 /* libRNSound.a */ = {isa = PBXFileReference; name = "libRNSound.a"; path = "libRNSound.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		C5DDBF504F964A4287BED30A /* RCTGoogleAnalyticsBridge.xcodeproj */ = {isa = PBXFileReference; name = "RCTGoogleAnalyticsBridge.xcodeproj"; path = "../node_modules/react-native-google-analytics-bridge/ios/RCTGoogleAnalyticsBridge/RCTGoogleAnalyticsBridge.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		D34A740557C2416CBFA5C9B4 /* libRCTGoogleAnalyticsBridge.a */ = {isa = PBXFileReference; name = "libRCTGoogleAnalyticsBridge.a"; path = "libRCTGoogleAnalyticsBridge.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		EBB8D1C25D1B4EC7AE83F9F0 /* CoreData.framework */ = {isa = PBXFileReference; name = "CoreData.framework"; path = "System/Library/Frameworks/CoreData.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		A3A6C8D587824DF282798259 /* SystemConfiguration.framework */ = {isa = PBXFileReference; name = "SystemConfiguration.framework"; path = "System/Library/Frameworks/SystemConfiguration.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		84B4AB31BC574DEDA53F537E /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		C2968E02A66349FDA2E4AD88 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; name = "libsqlite3.0.tbd"; path = "usr/lib/libsqlite3.0.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		1A6199486AA94B9CA1A19918 /* ReactNativeLocalization.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativeLocalization.xcodeproj"; path = "../node_modules/react-native-localization/ReactNativeLocalization.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		0ACCE9C6647346C6BCCE14CC /* libReactNativeLocalization.a */ = {isa = PBXFileReference; name = "libReactNativeLocalization.a"; path = "libReactNativeLocalization.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		33BA0F1F33974B40B977DF05 /* RNFIRAnalytics.xcodeproj */ = {isa = PBXFileReference; name = "RNFIRAnalytics.xcodeproj"; path = "../node_modules/react-native-firebase-analytics/ios/RNFIRAnalytics.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		E88C310432964EE1B2405940 /* libRNFIRAnalytics.a */ = {isa = PBXFileReference; name = "libRNFIRAnalytics.a"; path = "libRNFIRAnalytics.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		2DC5DC7F6A2241F08FCEE913 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; name = "SplashScreen.xcodeproj"; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		36707F81AC7F482B8122C98C /* libSplashScreen.a */ = {isa = PBXFileReference; name = "libSplashScreen.a"; path = "libSplashScreen.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,6 +426,14 @@
 				42A2711087FA40B1A1EA1C1C /* libBVLinearGradient.a in Frameworks */,
 				E806B00F578B4AC6B67CBFFB /* libRNAdMobManager.a in Frameworks */,
 				66C02E29C3E448299F54503A /* libRNSound.a in Frameworks */,
+				3C5C560012904293898F8E5D /* libRCTGoogleAnalyticsBridge.a in Frameworks */,
+				ECB700BBC21646CABEE78533 /* CoreData.framework in Frameworks */,
+				39F134523E4946F8A3061F0B /* SystemConfiguration.framework in Frameworks */,
+				A1697EB277B74A3BA5A9DB35 /* libz.tbd in Frameworks */,
+				E23B0FF10E074057A067371F /* libsqlite3.0.tbd in Frameworks */,
+				6C06321D269B4B6897AB6E90 /* libReactNativeLocalization.a in Frameworks */,
+				7F4EB7C52B25440EB3CB772F /* libRNFIRAnalytics.a in Frameworks */,
+				FC89DB0A97DB48818AAFBED7 /* libSplashScreen.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +583,10 @@
 			isa = PBXGroup;
 			children = (
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
+				EBB8D1C25D1B4EC7AE83F9F0 /* CoreData.framework */,
+				A3A6C8D587824DF282798259 /* SystemConfiguration.framework */,
+				84B4AB31BC574DEDA53F537E /* libz.tbd */,
+				C2968E02A66349FDA2E4AD88 /* libsqlite3.0.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -595,6 +627,10 @@
 				9986FB3A6D7C4A32911BD3B3 /* BVLinearGradient.xcodeproj */,
 				0CD7C202ACFA4D3A948C89B0 /* RNAdMobManager.xcodeproj */,
 				C6729193C04747B8AD802811 /* RNSound.xcodeproj */,
+				C5DDBF504F964A4287BED30A /* RCTGoogleAnalyticsBridge.xcodeproj */,
+				1A6199486AA94B9CA1A19918 /* ReactNativeLocalization.xcodeproj */,
+				33BA0F1F33974B40B977DF05 /* RNFIRAnalytics.xcodeproj */,
+				2DC5DC7F6A2241F08FCEE913 /* SplashScreen.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1257,12 +1293,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-admob\ios",
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-google-analytics-bridge\ios\RCTGoogleAnalyticsBridge/**",
+					"$(SRCROOT)\..\node_modules\react-native-localization",
+					"$(SRCROOT)\..\node_modules\react-native-firebase-analytics\ios",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Debug;
@@ -1286,12 +1330,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-admob\ios",
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-google-analytics-bridge\ios\RCTGoogleAnalyticsBridge/**",
+					"$(SRCROOT)\..\node_modules\react-native-localization",
+					"$(SRCROOT)\..\node_modules\react-native-firebase-analytics\ios",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Release;
@@ -1316,6 +1368,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-admob\ios",
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-google-analytics-bridge\ios\RCTGoogleAnalyticsBridge/**",
+					"$(SRCROOT)\..\node_modules\react-native-localization",
+					"$(SRCROOT)\..\node_modules\react-native-firebase-analytics\ios",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Debug;
@@ -1339,6 +1395,10 @@
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-admob\ios",
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-google-analytics-bridge\ios\RCTGoogleAnalyticsBridge/**",
+					"$(SRCROOT)\..\node_modules\react-native-localization",
+					"$(SRCROOT)\..\node_modules\react-native-firebase-analytics\ios",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Release;
@@ -1371,12 +1431,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-admob\ios",
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-google-analytics-bridge\ios\RCTGoogleAnalyticsBridge/**",
+					"$(SRCROOT)\..\node_modules\react-native-localization",
+					"$(SRCROOT)\..\node_modules\react-native-firebase-analytics\ios",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Debug;
@@ -1409,12 +1477,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-admob\ios",
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-google-analytics-bridge\ios\RCTGoogleAnalyticsBridge/**",
+					"$(SRCROOT)\..\node_modules\react-native-localization",
+					"$(SRCROOT)\..\node_modules\react-native-firebase-analytics\ios",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Release;
@@ -1446,12 +1522,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-admob\ios",
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-google-analytics-bridge\ios\RCTGoogleAnalyticsBridge/**",
+					"$(SRCROOT)\..\node_modules\react-native-localization",
+					"$(SRCROOT)\..\node_modules\react-native-firebase-analytics\ios",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Debug;
@@ -1483,12 +1567,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)\..\node_modules\react-native-linear-gradient\BVLinearGradient",
 					"$(SRCROOT)\..\node_modules\react-native-admob\ios",
 					"$(SRCROOT)\..\node_modules\react-native-sound\RNSound",
+					"$(SRCROOT)\..\node_modules\react-native-google-analytics-bridge\ios\RCTGoogleAnalyticsBridge/**",
+					"$(SRCROOT)\..\node_modules\react-native-localization",
+					"$(SRCROOT)\..\node_modules\react-native-firebase-analytics\ios",
+					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
 				);
 			};
 			name = Release;

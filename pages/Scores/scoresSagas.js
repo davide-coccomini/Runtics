@@ -14,6 +14,7 @@ function * storing_scores(action){
             win: action.payload.win
         }
         var stats = yield call(generateStats,responseStats)
+        console.log("stats",stats)
         Zapic.submitEvent(JSON.stringify(stats))
     }catch(e){
         console.error(e);

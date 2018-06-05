@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Runtics</string>
+    <string name="play_games_app_id">313747890345</string>
+    <string name="play_games_web_client_id">313747890345-spfn6cfgtje0ojrtj6h1lrt98b7p84n9.apps.googleusercontent.com</string>
 </resources>

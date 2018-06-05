@@ -52,18 +52,21 @@ render () {
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Arcade'); tracker.trackScreenView("Arcade")}}>
                 <Text style={styles.buttonText}>{Strings.homeArcade}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {Zapic.showDefaultPage();  tracker.trackScreenView("Multiplayer")}}>
-                <Text style={styles.buttonText}>{Strings.homeMultiplayer}</Text>
-              </TouchableOpacity>
+              
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Tutorial'); tracker.trackScreenView("Tutorial"); this.props.actions.making_tutorial(1)}}>
                 <Text style={styles.buttonText}>{Strings.homeHowToPlay}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Scores'); tracker.trackScreenView("Scores")}}>
                 <Text style={styles.buttonText}>{Strings.homeScores}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Settings'); tracker.trackScreenView("Settings")}}>
-                <Text style={styles.buttonText}>{Strings.homeSettings}</Text>
-              </TouchableOpacity>
+              <View style={{flexDirection: 'row',alignItems:"center", alignSelf:"center", width:"80%"}}>
+                <TouchableOpacity style={styles.buttonContainerHalf}  onPress={() => {Zapic.showDefaultPage();  tracker.trackScreenView("Multiplayer")}}>
+                  <Image style={styles.buttonImage} source={require("../../images/zapic.png")}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.buttonContainerHalf, {marginLeft:"1%"}]}  onPress={() => {navigate('Settings'); tracker.trackScreenView("Settings")}}>
+                 <Image style={styles.buttonImage} source={require("../../images/gear.png")}/>
+                </TouchableOpacity>
+              </View>
               <TouchableOpacity style={styles.buttonContainer}  onPress={()=>{ return BackHandler.exitApp();}}>
                 <Text style={styles.buttonText}>{Strings.homeQuit}</Text>
               </TouchableOpacity>
@@ -90,9 +93,16 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
       backgroundColor: "#092D4B",
-      paddingVertical: 12,
+      paddingVertical: 15,
       width:"80%",
       marginLeft:"10%",
+      marginTop:5
+    },
+    buttonContainerHalf: {
+      backgroundColor: "#092D4B",
+      paddingVertical: 12,
+      width:"49%",
+    
       marginTop:5
     },
     buttonText: {
@@ -103,6 +113,12 @@ const styles = StyleSheet.create({
     button: {
       backgroundColor: "#092D4B",
       paddingVertical: 15,
+    },
+    buttonImage: {
+      alignSelf:"center",
+      width: 25,
+      height: 25,
+      resizeMode: 'contain' 
     }
   });
 /* 

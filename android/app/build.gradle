@@ -136,10 +136,10 @@ android {
         googlePlayServicesVersion = "+" // default: "+"
 
         // Other settings
-        compileSdkVersion = "27" // default: 23
-        buildToolsVersion = "27.0.3" // default: "23.0.1"
+        compileSdkVersion = "23" // default: 23
+        buildToolsVersion = "23.0.1" // default: "23.0.1"
         targetSdkVersion = "22" // default: 23
-        supportLibVersion = "23.1.1" // default: 23.1.1
+        supportLibVersion = "27.1.1" // default: 23.1.1
     }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
@@ -158,6 +158,7 @@ android {
 repositories {
     mavenCentral()
 }
+
 dependencies {
     compile project(':react-native-push-notification')
     compile project(':react-native-splash-screen')
@@ -167,7 +168,7 @@ dependencies {
     compile project(':react-native-sound')
     compile project(':react-native-admob')
     compile project(':react-native-linear-gradient')
-     compile project(':react-native-localization')
+    compile project(':react-native-localization')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:27.1.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
