@@ -76,9 +76,9 @@ function setLevel(level){
          return {
             rows: 11,
             cols: 9,
-            time: 10, //140
-            min: 1, //50
-            max: 998, //600
+            time: 140, //140
+            min: 50, //50
+            max: 600, //600
             level: level
          }
      
