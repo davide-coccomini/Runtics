@@ -9,7 +9,7 @@ import Settings from '../pages/Settings/settingsReducer';
 import Arcade from '../pages/Arcade/arcadeReducer';
 import ArcadeStoring from '../pages/Arcade/LevelStorage/levelStorageReducer';
 import Tutorial from '../pages/Tutorial/tutorialReducer';
-
+import Zapic from '../components/ZapicHandler/zapicHandlerReducer';
 
 
 
@@ -22,5 +22,6 @@ export default combineReducers({
     Settings,
     Arcade,
     ArcadeStoring,
-    Tutorial
+    Tutorial,
+    Zapic
 });

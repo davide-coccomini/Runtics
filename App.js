@@ -10,6 +10,7 @@ import {Container} from 'native-base';
 import Banner from './components/banner';
 import Handler from './components/handler';
 import ScoresHandler from './components/scoresHandler';
+import ZapicHandler from './components/ZapicHandler/zapicHandler';
 import MusicPlayer from './components/musicPlayer';
 import { AppRegistry } from 'react-native';
 import LocalizedStrings from 'react-native-localization';
@@ -64,6 +65,7 @@ export default class App extends Component {
       <LinearGradient colors={['#164593', '#2b62bc', '#0073BB']} style={styles.linearGradient}>
       <Provider store={Store}>
         <Root style={styles.root}>
+          <ZapicHandler />
           <MusicPlayer />
           <Handler/>
           <ScoresHandler matches = {{   

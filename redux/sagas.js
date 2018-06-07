@@ -9,6 +9,7 @@ import Scores from '../pages/Scores/scoresSagas';
 import Arcade from '../pages/Arcade/arcadeSagas';
 import ArcadeStoring from '../pages/Arcade/LevelStorage/levelStorageSagas';
 import Tutorial from '../pages/Tutorial/tutorialSagas';
+import Zapic from '../components/ZapicHandler/zapicHandlerSagas';
 function * firstAppOpening() {
     console.log('====================================');
     console.log("APP_OPENED");
@@ -27,7 +28,8 @@ export default function * root() {
         fork(Scores),
         fork(Arcade),
         fork(ArcadeStoring),
-        fork(Tutorial)
+        fork(Tutorial),
+        fork(Zapic)
     ]
 
 }

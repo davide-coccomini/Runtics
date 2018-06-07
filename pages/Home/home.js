@@ -22,6 +22,7 @@ import {
 import LocalizedStrings from 'react-native-localization';
 import Strings from '../../components/localization';
 import * as actions from './homeActions';
+import * as zapicActions from '../../components/ZapicHandler/zapicHandlerActions';
 import Store from '../../redux/store';
 import {rehydration} from '../../redux/store';
 import Zapic from '../../components/zapic';
@@ -42,7 +43,7 @@ render () {
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={require("../../images/logo.png")} />
             </View>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Levels'); tracker.trackScreenView("Levels")}}>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Levels'); tracker.trackScreenView("Levels"); this.props.zapicActions.processing_first_upload();}}>
                 <Text style={styles.buttonText}>{Strings.homeNewGame}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Arcade'); tracker.trackScreenView("Arcade")}}>
@@ -56,7 +57,7 @@ render () {
                 <Text style={styles.buttonText}>{Strings.homeScores}</Text>
               </TouchableOpacity>
               <View style={{flexDirection: 'row',alignItems:"center", alignSelf:"center", width:"80%"}}>
-                <TouchableOpacity style={styles.buttonContainerHalf}  onPress={() => {Zapic.showDefaultPage();  tracker.trackScreenView("Multiplayer")}}>
+                <TouchableOpacity style={styles.buttonContainerHalf}  onPress={() => {Zapic.showDefaultPage();  tracker.trackScreenView("Multiplayer");  this.props.zapicActions.processing_first_upload()}}>
                   <Image style={styles.buttonImage} source={require("../../images/zapic.png")}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={[styles.buttonContainerHalf, {marginLeft:"1%"}]}  onPress={() => {navigate('Settings'); tracker.trackScreenView("Settings")}}>
@@ -134,7 +135,8 @@ const styles = StyleSheet.create({
   
   function mapDispatchToProps(dispatch) {
     return {
-      actions: bindActionCreators(tutorialActions, dispatch)
+      actions: bindActionCreators(tutorialActions, dispatch),
+      zapicActions: bindActionCreators(zapicActions,dispatch)
     };
   }
   
