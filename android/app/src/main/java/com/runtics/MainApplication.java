@@ -60,17 +60,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
-
-    Zapic.start(new Zapic.AuthenticationHandler() {
-        @Override
-        public void onLogin(@NonNull ZapicPlayer player) {
-            Log.d("ZAPIC", "Player logged in: " + player.getPlayerId());        }
-
-        @Override
-        public void onLogout(@NonNull ZapicPlayer player) {
-            Log.d("ZAPIC", "Player logged out: " + player.getPlayerId());
-        }
-    });
+    Zapic.start(this);
     SoLoader.init(this, /* native exopackage */ false);
   }
 }

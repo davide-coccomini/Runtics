@@ -24,8 +24,8 @@ public class ZapicModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void getPlayer(final Callback callback) {
-        final ZapicPlayer player = Zapic.getPlayer();
+    public void getCurrentPlayer(final Callback callback) {
+        final ZapicPlayer player = Zapic.getCurrentPlayer();
         if (player == null) {
             callback.invoke((Object) null);
         } else {
@@ -37,26 +37,26 @@ public class ZapicModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void handleData(String data) {
+    public void handleInteraction(String data) {
         try {
             final JSONObject json = new JSONObject(data);
-            Zapic.handleData(this.getCurrentActivity(), json);
+            Zapic.handleInteraction(json);
         } catch (JSONException ignored) {
         }
     }
 
     @ReactMethod
     public void showDefaultPage() {
-        Zapic.show(this.getCurrentActivity());
+        Zapic.showDefaultPage(this.getCurrentActivity());
     }
 
     @ReactMethod
     public void showPage(final String page) {
-        Zapic.show(this.getCurrentActivity(), page);
+        Zapic.showPage(this.getCurrentActivity(), page);
     }
 
     @ReactMethod
     public void submitEvent(final String parameters) {
-        Zapic.submitEvent(this.getCurrentActivity(), parameters);
+        Zapic.submitEvent(parameters);
     }
 }
