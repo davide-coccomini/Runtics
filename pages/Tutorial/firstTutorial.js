@@ -28,9 +28,6 @@ render () {
     const state = this.state;
     return (
         <Container style={styles.container}>
-            <View style={styles.topText}>
-            <Text style={styles.buttonText}>{Strings.firstTutorialTitle}</Text>
-            </View>
             <View style={styles.buttonView}>
               <TouchableOpacity style={styles.button}  onPress={() => {navigate('Tutorial'); this.props.actions.making_tutorial()}}>
                 <Text style={styles.buttonText}>{Strings.homeHowToPlay}</Text>
@@ -60,7 +57,7 @@ const styles = StyleSheet.create({
       flex: 1
     },
     topText:{
-        marginTop:"20%"
+        marginTop:"10%"
     },
     text: {
         marginTop:0,

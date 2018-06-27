@@ -16,6 +16,8 @@ import {
   Spinner,
   Separator
 } from 'native-base';
+import LocalizedStrings from 'react-native-localization';
+import Strings from '../../components/localization';
 import Store from '../../redux/store';
 import CountdownCircle from 'react-native-countdown-circle';
 import * as actions from '../Report/reportActions';
@@ -206,6 +208,9 @@ render () {
         ))
       }
       </View>
+      <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();this.state.left = true}} >
+          <Text style={styles.buttonText}>{Strings.goBack}</Text>
+      </TouchableOpacity>
       </Container>
     )
 }
@@ -238,7 +243,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     borderRadius:5
   },
-
+  buttonContainer: {
+    backgroundColor: "#092D4B",
+    paddingVertical: 15,
+    width:"80%",
+    marginLeft:"10%",
+    marginTop:5
+  },
+  buttonText: {
+    textAlign: "center",
+    color: "#FFF",
+    fontWeight: "700"
+  },
 });
 
 

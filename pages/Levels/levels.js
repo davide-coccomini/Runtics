@@ -18,12 +18,13 @@ import {
   Spinner,
   Separator
 } from 'native-base';
+import LocalizedStrings from 'react-native-localization';
+import Strings from '../../components/localization';
 import * as actions from '../Match/matchActions';
 import * as tutorialActions from '../Tutorial/tutorialActions';
 import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
 GoogleAnalyticsSettings.setDispatchInterval(30);
 export const tracker = new GoogleAnalyticsTracker('UA-117921514-1');
-var Analytics = require('react-native-firebase-analytics');
 
 class App extends React.Component {
 
@@ -32,12 +33,7 @@ class App extends React.Component {
         this.state = {
           matrix:[]
         }
-      }
-componentWillMount(){
-  Analytics.logEvent('Levels', {
-    'Levels': 'Quick Match'
-  });
-}
+      } 
 render () {
     const {navigate} = this.props.navigation;
     if(Store.getState().Tutorial.data==0 || Store.getState().Tutorial.data==undefined){ // Chiedi se vuole fare il tutorial
@@ -48,7 +44,7 @@ render () {
          
           <View behavior="padding" style={styles.container}>
             <View style={styles.logoContainer}>
-              <Image style={styles.logo} source={require("../../images/logo.png")} />
+            
             </View>
               <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Easy"); this.props.actions.starting_game(1); this.props.tutorialActions.making_tutorial()}}>
                 <Text style={styles.buttonText}>EASY</Text>
@@ -68,6 +64,9 @@ render () {
               <TouchableOpacity style={styles.buttonContainerImpossible}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Impossible"); this.props.actions.starting_game(6); this.props.tutorialActions.making_tutorial()}}>
                 <Text style={styles.buttonText}>IMPOSSIBLE</Text>
               </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+                <Text style={styles.buttonText}>{Strings.goBack}</Text>
+              </TouchableOpacity>
           </View>
         </View>
       );
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
     logoContainer: {
       alignItems: "center",
       flexGrow: 0.30,
-      marginTop:35,
+      marginTop:5,
       justifyContent: "center",
       alignItems: "center",
       paddingBottom:15
@@ -89,6 +88,13 @@ const styles = StyleSheet.create({
     logo: {
       flex: 0.7,
       resizeMode: 'contain',
+    },
+    buttonContainer: {
+      backgroundColor: "#092D4B",
+      paddingVertical: 8,
+      width:"80%",
+      marginLeft:"10%",
+      marginTop:15
     },
     buttonContainerEasy: {
       backgroundColor: "#29c100",

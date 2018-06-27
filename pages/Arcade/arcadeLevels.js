@@ -80,6 +80,9 @@ render () {
           ))
         }
         </View>
+        <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+                <Text style={styles.buttonText}>{Strings.goBack}</Text>
+        </TouchableOpacity>
         </ScrollView>
       );
 }
@@ -108,6 +111,13 @@ const styles = StyleSheet.create({
       fontWeight:"700",
       textAlign:"center",
       fontSize:23
+    },
+    buttonContainer: {
+      backgroundColor: "#092D4B",
+      paddingVertical: 15,
+      width:"80%",
+      marginLeft:"10%",
+      marginTop:5
     },
     buttonText: {
       textAlign: "center",

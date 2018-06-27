@@ -1,4 +1,4 @@
-import {StyleSheet, ScrollView,Image, View, Button, BackgroundImage,StatusBar,AppState,Alert} from 'react-native';
+import {StyleSheet, SafeAreaView, ScrollView,Image, View, Button, BackgroundImage,StatusBar,AppState,Alert} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import React, {Component} from 'react';
 import Navigation from './router';
@@ -18,29 +18,6 @@ import Strings from './components/localization';
 import Sound from 'react-native-sound';
 import * as settingsActions from './pages/Settings/settingsActions';
 import SplashScreen from 'react-native-splash-screen';
-var PushNotification = require('react-native-push-notification');
-
-PushNotification.configure({
-    onRegister: function(token) {
-        console.log( 'TOKEN:', token );
-    },
-    onNotification: function(notification) {
-        console.log( 'NOTIFICATION:', notification );
-        notification.finish(PushNotificationIOS.FetchResult.NoData);
-    },
-    permissions: {
-        alert: true,
-        badge: true,
-        sound: true
-    },
-    popInitialNotification: true,
-    requestPermissions: true,
-});
-PushNotification.cancelAllLocalNotifications()
-PushNotification.localNotificationSchedule({
-  message: Strings.notification,
-  date: new Date(Date.now() + (604800000)) // in 1 week
-});
 export default class App extends Component {
   constructor(props){
     super(props)
@@ -56,6 +33,7 @@ export default class App extends Component {
   render() {
     console.disableYellowBox = true;
     return (
+      <SafeAreaView style={{flex: 1, backgroundColor: '#164593'}}>
       <Container>
          <StatusBar
             backgroundColor="#164593"
@@ -100,6 +78,7 @@ export default class App extends Component {
       </LinearGradient>
       <Banner />
        </Container>
+      </SafeAreaView>
     );
   }
 }

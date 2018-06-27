@@ -1,0 +1,11 @@
+framework module Zapic {
+  umbrella header "Zapic.h"
+
+  export *
+  module * { export * }
+}
+
+module Zapic.Swift {
+    header "Zapic-Swift.h"
+    requires objc
+}

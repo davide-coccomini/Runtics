@@ -89,6 +89,9 @@ render () {
                         <View style={styles.textContainer}>
                             <Text style={styles.text}>{Strings.tutorial1}</Text>
                         </View>
+                        <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+                            <Text style={styles.buttonText}>{Strings.goBack}</Text>
+                        </TouchableOpacity>
                     </View>
                     <View>
                         <View style={styles.tableContainer}>
@@ -109,6 +112,9 @@ render () {
                         <View style={styles.textContainer}>
                         <Text style={styles.text}>{Strings.tutorial2}</Text>
                         </View>
+                        <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+                            <Text style={styles.buttonText}>{Strings.goBack}</Text>
+                        </TouchableOpacity>
                     </View>
                     <View>
                     <View style={styles.tableContainer}>
@@ -129,6 +135,9 @@ render () {
                         <View style={styles.textContainer}>
                         <Text style={styles.text}>{Strings.tutorial3}</Text>
                         </View>
+                        <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+                            <Text style={styles.buttonText}>{Strings.goBack}</Text>
+                        </TouchableOpacity>
                     </View>
                     <View>
                     <View style={styles.tableContainer}>
@@ -152,13 +161,15 @@ render () {
                     </View>
                     <View behavior="padding" style={styles.buttonView}>
       
-                        <TouchableOpacity style={styles.button}  onPress={() => navigate('Levels')}>
+                        <TouchableOpacity style={styles.buttonContainer}  onPress={() => navigate('Levels')}>
                             <Text style={styles.buttonText}>{Strings.tutorialButton}</Text>
                         </TouchableOpacity>
                     
                     </View>
                     </View>
+                    
             </IndicatorViewPager>
+            
         </View>
     );
 }
@@ -175,13 +186,25 @@ const styles = StyleSheet.create({
     image: {
         flex: 1,
         width: null,
-        height: "80%",
+        height: "70%",
         resizeMode: 'contain'
     },
     textContainer: {
         height:"15%",
         marginTop:"10%"
     },
+    buttonContainer: {
+        backgroundColor: "#092D4B",
+        paddingVertical: 8,
+        width:"80%",
+        marginLeft:"10%",
+        marginTop:2
+      },
+      buttonText: {
+        textAlign: "center",
+        color: "#FFF",
+        fontWeight: "700"
+      },
     text: {
         marginTop:0,
         alignSelf:"center",
@@ -191,7 +214,7 @@ const styles = StyleSheet.create({
     tableContainer: { 
         flexDirection: 'column',
         alignItems: "center",
-        marginTop:"10%"
+        marginTop:"5%"
       },
       rowContainer:{
         height:50,
@@ -228,7 +251,7 @@ const styles = StyleSheet.create({
       button: {
           backgroundColor: "#092D4B",
           width:"80%",
-          height:50,
+          height:40,
           paddingVertical: 15,
           alignSelf:"center",
           marginTop:0

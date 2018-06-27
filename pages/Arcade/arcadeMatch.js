@@ -146,6 +146,9 @@ render () {
         ))
       }
       </View>
+      <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+                <Text style={styles.buttonText}>{Strings.goBack}</Text>
+              </TouchableOpacity>
       </Container>
     )
 }
@@ -165,7 +168,18 @@ const styles = StyleSheet.create({
     shadowOpacity:1,
     marginTop:15
   },
-  
+  buttonContainer: {
+    backgroundColor: "#092D4B",
+    paddingVertical: 15,
+    width:"80%",
+    marginLeft:"10%",
+    marginTop:5
+  },
+  buttonText: {
+    textAlign: "center",
+    color: "#FFF",
+    fontWeight: "700"
+  },
   tableContainer: { 
     flexDirection: 'column',
     paddingLeft: 15,

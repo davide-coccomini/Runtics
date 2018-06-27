@@ -64,9 +64,6 @@ render () {
                  <Image style={styles.buttonImage} source={require("../../images/gear.png")}/>
                 </TouchableOpacity>
               </View>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={()=>{ return BackHandler.exitApp();}}>
-                <Text style={styles.buttonText}>{Strings.homeQuit}</Text>
-              </TouchableOpacity>
           </View>
         </View>
       );
@@ -95,17 +92,17 @@ const styles = StyleSheet.create({
       marginLeft:"10%",
       marginTop:5
     },
+    buttonText: {
+      textAlign: "center",
+      color: "#FFF",
+      fontWeight: "700"
+    },
     buttonContainerHalf: {
       backgroundColor: "#092D4B",
       paddingVertical: 12,
       width:"49%",
     
       marginTop:5
-    },
-    buttonText: {
-      textAlign: "center",
-      color: "#FFF",
-      fontWeight: "700"
     },
     button: {
       backgroundColor: "#092D4B",

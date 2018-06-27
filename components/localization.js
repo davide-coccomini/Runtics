@@ -1,4 +1,3 @@
-
 import LocalizedStrings from 'react-native-localization';
 
 let Strings = new LocalizedStrings({
@@ -34,7 +33,8 @@ let Strings = new LocalizedStrings({
     arcadeLevelTitle: "SELECT THE LEVEL",
     firstTutorialTitle: "DO YOU WANT TO SEE A TUTORIAL BEFORE THE GAME?",
     firstTutorialText: "or just continue ...",
-    notification: "Hey! Don't you want to play Runtics?"
+    notification: "Hey! Don't you want to play Runtics?",
+    goBack: "BACK"
  },
  it: {
     homeNewGame: "PARTITA RAPIDA",
@@ -68,7 +68,8 @@ let Strings = new LocalizedStrings({
     arcadeLevelTitle: "SELEZIONA IL LIVELLO",
     firstTutorialTitle: "VUOI VEDERE UN TUTORIAL PRIMA DI COMINCIARE?",
     firstTutorialText: "oppure continua ...",
-    notification: "Hey! Non ti andrebbe di fare una partita a Runtics?"
+    notification: "Hey! Non ti andrebbe di fare una partita a Runtics?",
+    goBack: "INDIETRO"
  },
  de: {
     homeNewGame: "SCHNELLES SPIEL",
@@ -102,8 +103,8 @@ let Strings = new LocalizedStrings({
     arcadeLevelTitle: "WÄHLEN SIE DIE EBENE",
     firstTutorialTitle: "WOLLEN SIE EIN TUTORIAL VOR DEM SPIEL SEHEN?",
     firstTutorialText: "oder einfach weitermachen ...",
-    notification: "Willst du spielen?"
-
+    notification: "Willst du spielen?",
+    goBack: "ZURÜCK"
 },
 fr: {
     homeNewGame: "JEU RAPIDE",
@@ -137,7 +138,8 @@ fr: {
     arcadeLevelTitle: "SÉLECTIONNEZ LE NIVEAU",
     firstTutorialTitle: "VOULEZ-VOUS VOIR UN TUTORIAL AVANT LE JEU?",
     firstTutorialText: "ou juste continuer ...",
-    notification: "Hey! Tu veux jouer?"
+    notification: "Hey! Tu veux jouer?",
+    goBack: "ARRIÈRE"
  },
 cn: {
         homeNewGame: "快速游戏",
@@ -171,7 +173,8 @@ cn: {
         arcadeLevelTitle: "选择水平",
         firstTutorialTitle: "你想在比赛前看到补习",
         firstTutorialText: "或者继续",
-        localization: "你想玩吗？"
+        localization: "你想玩吗？",
+        goBack: "背部"
 },
 pn:{
     homeNewGame: "JOGO RÁPIDO",
@@ -205,7 +208,8 @@ pn:{
     arcadeLevelTitle: "SELECIONE O NÍVEL",
     firstTutorialTitle: "VOCÊ QUER VER UM TUTORIAL ANTES DO JOGO",
     firstTutorialText: "ou apenas continuar ...",
-    notification: "Você quer jogar?"
+    notification: "Você quer jogar?",
+    goBack: "COSTAS"
  },
  ru:{
     homeNewGame: "БЫСТРАЯ ИГРА",
@@ -239,7 +243,8 @@ pn:{
     arcadeLevelTitle: "ВЫБЕРИТЕ УРОВЕНЬ",
     firstTutorialTitle: "ВЫ ХОТИТЕ УВИДЕТЬ ОБРАЗОВАНИЕ ДО ИГРЫ",
     firstTutorialText: "или просто продолжить ...",
-    notification: "Ты хочешь поиграть?"
+    notification: "Ты хочешь поиграть?",
+    goBack: "НАЗАД"
   }
 });
 
