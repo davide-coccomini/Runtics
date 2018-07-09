@@ -52,6 +52,9 @@ class App extends Component {
                         <TouchableOpacity style={styles.button}onPress={() => {this.props.actions.changing_music_state(2)}} ><Text style={styles.buttonText}>{this.state.musicState.disabled ? Strings.settingsButtonEnable:Strings.settingsButtonDisable}</Text></TouchableOpacity>
                     </View>
                 </View>
+                <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+                <Text style={styles.buttonText}>{Strings.goBack}</Text>
+              </TouchableOpacity>
                 <View style={styles.footer}>
                     <Text style={styles.footerText}>Royalty Free Music from Bensound{"\n"}App created by Davide Coccomini</Text>
                 </View>
@@ -98,9 +101,17 @@ const styles = StyleSheet.create({
         color: "#FFF",
         fontWeight: "700"
       },
+      buttonContainer: {
+        backgroundColor: "#092D4B",
+        paddingVertical: 8,
+        width:"80%",
+        marginLeft:"10%",
+        marginTop:5
+      },
       footer: {
         alignSelf:"center",
-        marginTop:"120%"
+        marginTop:"10%",
+        minHeight:30
       },
       footerText: {
         color:"white",
@@ -121,4 +132,3 @@ function mapStateToProps(state) {
   }
   
   export default connect(mapStateToProps, mapDispatchToProps)(App);
-  

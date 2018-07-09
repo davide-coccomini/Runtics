@@ -94,6 +94,9 @@ class App extends React.Component {
                 <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeEasy)||matches.bestTimeEasy==0)?"//":matches.bestTimeEasy}</Text>
               </View>
             </View>
+            <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+          <Text style={styles.buttonText}>{Strings.goBack}</Text>
+      </TouchableOpacity>
           </View>
       <View style={styles.levelView}>
             <View>
@@ -116,6 +119,9 @@ class App extends React.Component {
             <View>
                 <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeMedium)||matches.bestTimeMedium==0)?"//":matches.bestTimeMedium}</Text>
             </View>
+            <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+          <Text style={styles.buttonText}>{Strings.goBack}</Text>
+      </TouchableOpacity>
       </View>
       <View style={styles.levelView}>
             <View>
@@ -138,6 +144,9 @@ class App extends React.Component {
             <View>
                 <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeHard)||matches.bestTimeHard==0)?"//":matches.bestTimeHard}</Text>
             </View>
+            <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+          <Text style={styles.buttonText}>{Strings.goBack}</Text>
+      </TouchableOpacity>
       </View>
       <View style={styles.levelView}>
             <View>
@@ -160,6 +169,9 @@ class App extends React.Component {
             <View>
                 <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeVeryHard)||matches.bestTimeVeryHard==0)?"//":matches.bestTimeVeryHard}</Text>
             </View>
+            <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+          <Text style={styles.buttonText}>{Strings.goBack}</Text>
+      </TouchableOpacity>
       </View>
       <View style={styles.levelView}>
             <View>
@@ -182,6 +194,9 @@ class App extends React.Component {
             <View>
                 <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeInsane)||matches.bestTimeInsane==0)?"//":matches.bestTimeInsane}</Text>
             </View>
+            <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+          <Text style={styles.buttonText}>{Strings.goBack}</Text>
+      </TouchableOpacity>
       </View>
       <View style={styles.levelView}>
             <View>
@@ -204,9 +219,12 @@ class App extends React.Component {
             <View>
                 <Text style={styles.levelLabel}>- {Strings.scoresBest}   {(isNaN(matches.bestTimeImpossible)||matches.bestTimeImpossible==0)?"//":matches.bestTimeImpossible}</Text>
            </View>
+           <TouchableOpacity style={styles.buttonContainer}  onPress={() => {this.props.navigation.goBack();}} >
+          <Text style={styles.buttonText}>{Strings.goBack}</Text>
+      </TouchableOpacity>
       </View>
-
      </IndicatorViewPager>
+     
     )
   }
   _renderDotIndicator() {
@@ -239,7 +257,19 @@ const styles = StyleSheet.create({
     fontSize:25,
     textAlign:"center",
     alignSelf: "center",
-  }
+  },
+  buttonContainer: {
+    backgroundColor: "#092D4B",
+    paddingVertical: 8,
+    width:"80%",
+    marginLeft:"10%",
+    marginTop:5
+  },
+  buttonText: {
+    textAlign: "center",
+    color: "#FFF",
+    fontWeight: "700"
+  },
 }); 
 
 
