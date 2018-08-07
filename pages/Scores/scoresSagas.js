@@ -11,10 +11,10 @@ function * storing_scores(action){
             response: response,
             level: action.payload.matchInformations.level,
             endTime: action.payload.matchInformations.endTime,
-            win: action.payload.win
+            win: action.payload.matchInformations.win
         }
         var stats = yield call(generateStats,responseStats)
-        console.log("stats",stats)
+
         Zapic.submitEvent(JSON.stringify(stats))
     }catch(e){
         console.error(e);
