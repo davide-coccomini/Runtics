@@ -7,6 +7,7 @@ import Report from '../pages/Report/reportSagas';
 import Settings from '../pages/Settings/settingsSagas';
 import Scores from '../pages/Scores/scoresSagas';
 import Arcade from '../pages/Arcade/arcadeSagas';
+import Modality from '../pages/Modality/modalitySagas';
 import ArcadeStoring from '../pages/Arcade/LevelStorage/levelStorageSagas';
 import Tutorial from '../pages/Tutorial/tutorialSagas';
 import Zapic from '../components/ZapicHandler/zapicHandlerSagas';
@@ -23,6 +24,7 @@ export default function * root() {
         takeEvery("APP_OPENED", firstAppOpening),
        // fork(Home),
         fork(Match),
+        fork(Modality),
         fork(Report),
         fork(Settings),
         fork(Scores),

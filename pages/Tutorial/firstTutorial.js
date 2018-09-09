@@ -40,7 +40,7 @@ render () {
               <Text style={styles.buttonText}>{Strings.firstTutorialText}</Text>
             </View>
             <View style={styles.buttonView}>
-              <TouchableOpacity style={styles.button}  onPress={() => {navigate('Levels'); this.props.actions.making_tutorial()}}>
+              <TouchableOpacity style={styles.button}  onPress={() => {navigate('Modality'); this.props.actions.making_tutorial()}}>
                 <Text style={styles.buttonText}>{Strings.homeNewGame}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button}  onPress={() => {navigate('Arcade'); this.props.actions.making_tutorial()}}>

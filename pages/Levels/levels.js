@@ -19,7 +19,6 @@ import {
   Separator
 } from 'native-base';
 import * as actions from '../Match/matchActions';
-import * as tutorialActions from '../Tutorial/tutorialActions';
 import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
 GoogleAnalyticsSettings.setDispatchInterval(30);
 export const tracker = new GoogleAnalyticsTracker('UA-117921514-1');
@@ -30,6 +29,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+          modality: props.data.payload,
           matrix:[]
         }
       }
@@ -40,9 +40,7 @@ componentWillMount(){
 }
 render () {
     const {navigate} = this.props.navigation;
-    if(Store.getState().Tutorial.data==0 || Store.getState().Tutorial.data==undefined){ // Chiedi se vuole fare il tutorial
-      navigate("FirstTutorial")
-    }
+    const state = this.state;
     return (
         <View style={styles.container}>
          
@@ -50,22 +48,22 @@ render () {
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={require("../../images/logo.png")} />
             </View>
-              <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Easy"); this.props.actions.starting_game(1); this.props.tutorialActions.making_tutorial()}}>
+              <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Easy"); this.props.actions.starting_game({level: 1,modality: state.modality});}}>
                 <Text style={styles.buttonText}>EASY</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerMedium}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Medium"); this.props.actions.starting_game(2); this.props.tutorialActions.making_tutorial()}}>
+              <TouchableOpacity style={styles.buttonContainerMedium}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Medium"); this.props.actions.starting_game({level: 2,modality: state.modality});}}>
                 <Text style={styles.buttonText}>MEDIUM</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerHard}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Hard"); this.props.actions.starting_game(3); this.props.tutorialActions.making_tutorial()}}>
+              <TouchableOpacity style={styles.buttonContainerHard}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Hard"); this.props.actions.starting_game({level: 3,modality: state.modality});}}>
                 <Text style={styles.buttonText}>HARD</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerVeryHard}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Very Hard"); this.props.actions.starting_game(4); this.props.tutorialActions.making_tutorial()}}>
+              <TouchableOpacity style={styles.buttonContainerVeryHard}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Very Hard"); this.props.actions.starting_game({level: 4,modality: state.modality});}}>
                 <Text style={styles.buttonText}>VERY HARD</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerInsane}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Insane"); this.props.actions.starting_game(5); this.props.tutorialActions.making_tutorial()}}>
+              <TouchableOpacity style={styles.buttonContainerInsane}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Insane"); this.props.actions.starting_game({level: 5,modality: state.modality});}}>
                 <Text style={styles.buttonText}>INSANE</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainerImpossible}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Impossible"); this.props.actions.starting_game(6); this.props.tutorialActions.making_tutorial()}}>
+              <TouchableOpacity style={styles.buttonContainerImpossible}  onPress={() => { navigate('Match'); tracker.trackScreenView("Match Impossible"); this.props.actions.starting_game({level: 6,modality: state.modality});}}>
                 <Text style={styles.buttonText}>IMPOSSIBLE</Text>
               </TouchableOpacity>
           </View>
@@ -144,13 +142,12 @@ const styles = StyleSheet.create({
   });
   
   function mapStateToProps(state) {
-    return {data: state.Match.data, loading: state.Match.loading};
+    return {data: state.Modality.data, loading: state.Modality.loading};
   }
   
   function mapDispatchToProps(dispatch) {
     return {
-      actions: bindActionCreators(actions, dispatch),
-      tutorialActions: bindActionCreators(tutorialActions,dispatch)
+      actions: bindActionCreators(actions, dispatch)
     };
   }
   

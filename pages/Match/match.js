@@ -29,6 +29,7 @@ trackerMatch.trackScreenView("Match");
 class App extends React.Component {
   constructor(props) {
     super(props);
+    console.log("pepepepepep",props)
     this.state = {
       tableData: props.data.tableData,
       rows:props.data.rows,  

@@ -17,14 +17,17 @@ function * starting_game(action){
         console.error(e);
     }
 }
-function setLevel(level){
+function setLevel(payload){
+    level = payload.level;
+    modality = payload.modality;
     switch(level)
     {
         case 1:
-        return {   
+        return {  
+            modality: modality,
             rows: 4,
             cols: 4,
-            time: 180,
+            time: 3,
             min: 1,
             max: 15,
             level: level
@@ -33,6 +36,7 @@ function setLevel(level){
         break
         case 2:
         return {
+            modality: modality,
             rows: 6,
             cols: 5,
             time: 170,
@@ -44,6 +48,7 @@ function setLevel(level){
         break
         case 3:
          return{
+            modality: modality,
             rows: 7,
             cols: 6,
             time: 170,
@@ -55,6 +60,7 @@ function setLevel(level){
         break
         case 4:
          return {
+            modality: modality,
             rows: 10,
             cols: 7,
             time: 150, 
@@ -65,6 +71,7 @@ function setLevel(level){
         break;
         case 5:
          return {
+            modality: modality,
             rows: 11,
             cols: 8,
             time: 150, 
@@ -74,6 +81,7 @@ function setLevel(level){
          }
         case 6:
          return {
+            modality: modality,
             rows: 11,
             cols: 9,
             time: 140, //140
@@ -86,7 +94,7 @@ function setLevel(level){
     }
 }
 function generate(config){
-    var {rows, cols, time,min,max, level} = config;
+    var {modality, rows, cols, time,min,max, level} = config;
     matrix = new Array();
     var index = 0;
     for(var i = 0; i<rows; i++){
@@ -103,7 +111,7 @@ function generate(config){
      pathCounter = 0
      for(var i=0; i<rows; i++){
          for(var j=0; j<cols;j++){
-           searchPath(i,j,matrix[i][j].number,false,-1,-1,-1, rows, cols); // Ricerca di tutti i possibili percorsi
+           searchPath(modality,i,j,matrix[i][j].number,false,-1,-1,-1, rows, cols); // Ricerca di tutti i possibili percorsi
          }
      }
      maxScore = 0;
@@ -115,7 +123,7 @@ function generate(config){
        }
      }
      
-     var bestPath = findBestPath(maxIndex,matrix,rows,cols)
+     var bestPath = findBestPath(modality,maxIndex,matrix,rows,cols)
      
      var response = {
          tableData: matrix,
@@ -136,7 +144,7 @@ function generate(config){
     return response;
    }
    
-function findBestPath(index,matrix,rows,cols){
+function findBestPath(modality, index,matrix,rows,cols){
     var bestPath = new Array();
     var leaf = [paths[index].coordX,paths[index].coordY];
     bestPath.push(leaf)
@@ -151,6 +159,33 @@ function findBestPath(index,matrix,rows,cols){
     var y = node[1]
     var max = 0
     var coordMax = [0,0]
+    if(modality == 2){
+        if(x+1<rows && y+1<cols){ // Diagonale in basso a destra
+            if(matrix[x+1][y+1].number>max){
+                max = matrix[x+1][y+1].number
+                coordMax = [x+1,y+1]
+            }
+        }
+    
+        if(x-1>0 && y-1>0){ // Diagonale in alto a sinistra
+            if(matrix[x-1][y-1].number>max){
+                max = matrix[x-1][y-1].number
+                coordMax = [x-1,y-1]
+            }
+        }
+        if(x-1>0 && y+1<cols){ // Diagonale in alto a destra
+            if(matrix[x-1][y+1].number>max){
+                max = matrix[x-1][y+1].number
+                coordMax = [x-1,y+1]
+            }
+        }
+        if(x+1<rows && y-1>0){ // Diagonale in basso a sinistra
+            if(matrix[x+1][y-1].number>max){
+                max = matrix[x+1][y-1].number
+                coordMax = [x+1,y-1]
+            }
+        }
+    }
     if(x+1 < rows){
         if(matrix[x+1][y].number>max){
             max = matrix[x+1][y].number
@@ -175,16 +210,142 @@ function findBestPath(index,matrix,rows,cols){
             coordMax = [x,y-1]
         }
     }
+   
     bestPath.push(coordMax) // la root
  return bestPath 
 }
-function searchPath(x,y,sum, isChild, xp, yp, parentId, rows, cols){
+function searchPath(modality, x, y, sum, isChild, xp, yp, parentId, rows, cols){
 
 
     if(x>=rows || y>=cols || x<0 || y<0){
         return;
     }
-    
+    if(modality == 2){
+        if(x+1<rows && y+1<cols){ // Diagonale in basso a destra
+            if((matrix[x][y].number>matrix[x+1][y+1].number)){
+             var pSum = sum + matrix[x+1][y+1].number;
+             if(!isChild){
+                var pathElementRoot = {
+                    id: pathCounter,
+                    coordX: x,
+                    coordY: y,
+                    parentX: x,
+                    parentY: y,
+                    parentId: -1,
+                    pointSum: matrix[x][y].number
+                }
+                paths.push(pathElementRoot);
+                pathCounter++
+             }
+           
+             var pathElement = {
+                 id: pathCounter,
+                 coordX: x+1,
+                 coordY: y+1,
+                 parentX: x,
+                 parentY: y,
+                 parentId: parentId,
+                 pointSum: pSum
+             }
+             paths.push(pathElement);
+             pathCounter++
+             searchPath(modality,x+1,y+1,pSum,true,x,y,pathCounter-1, rows, cols);
+            }
+        }
+        if(x-1>0 && y-1>0){ // Diagonale in alto a sinistra
+            if((matrix[x][y].number>matrix[x-1][y-1].number)){
+             var pSum = sum + matrix[x-1][y-1].number;
+             if(!isChild){
+                var pathElementRoot = {
+                    id: pathCounter,
+                    coordX: x,
+                    coordY: y,
+                    parentX: x,
+                    parentY: y,
+                    parentId: -1,
+                    pointSum: matrix[x][y].number
+                }
+                paths.push(pathElementRoot);
+                pathCounter++
+             }
+           
+             var pathElement = {
+                 id: pathCounter,
+                 coordX: x-1,
+                 coordY: y-1,
+                 parentX: x,
+                 parentY: y,
+                 parentId: parentId,
+                 pointSum: pSum
+             }
+             paths.push(pathElement);
+             pathCounter++
+             searchPath(modality,x-1,y-1,pSum,true,x,y,pathCounter-1, rows, cols);
+            }
+        }
+        if(x-1>0 && y+1<cols){ // Diagonale in alto a destra
+            if((matrix[x][y].number>matrix[x-1][y+1].number)){
+             var pSum = sum + matrix[x-1][y+1].number;
+             if(!isChild){
+                var pathElementRoot = {
+                    id: pathCounter,
+                    coordX: x,
+                    coordY: y,
+                    parentX: x,
+                    parentY: y,
+                    parentId: -1,
+                    pointSum: matrix[x][y].number
+                }
+                paths.push(pathElementRoot);
+                pathCounter++
+             }
+           
+             var pathElement = {
+                 id: pathCounter,
+                 coordX: x-1,
+                 coordY: y+1,
+                 parentX: x,
+                 parentY: y,
+                 parentId: parentId,
+                 pointSum: pSum
+             }
+             paths.push(pathElement);
+             pathCounter++
+             searchPath(modality,x-1,y+1,pSum,true,x,y,pathCounter-1, rows, cols);
+            }
+        }
+        if(x+1<rows && y-1>0){ // Diagonale in basso a sinistra
+            if((matrix[x][y].number>matrix[x+1][y-1].number)){
+             var pSum = sum + matrix[x+1][y-1].number;
+             if(!isChild){
+                var pathElementRoot = {
+                    id: pathCounter,
+                    coordX: x,
+                    coordY: y,
+                    parentX: x,
+                    parentY: y,
+                    parentId: -1,
+                    pointSum: matrix[x][y].number
+                }
+                paths.push(pathElementRoot);
+                pathCounter++
+             }
+           
+             var pathElement = {
+                 id: pathCounter,
+                 coordX: x+1,
+                 coordY: y-1,
+                 parentX: x,
+                 parentY: y,
+                 parentId: parentId,
+                 pointSum: pSum
+             }
+             paths.push(pathElement);
+             pathCounter++
+             searchPath(modality,x+1,y-1,pSum,true,x,y,pathCounter-1, rows, cols);
+            }
+        }
+    }
     if(x+1<rows){
         if((matrix[x][y].number>matrix[x+1][y].number)){
          var pSum = sum + matrix[x+1][y].number;
@@ -213,7 +374,7 @@ function searchPath(x,y,sum, isChild, xp, yp, parentId, rows, cols){
          }
          paths.push(pathElement);
          pathCounter++
-         searchPath(x+1,y,pSum,true,x,y,pathCounter-1, rows, cols);
+         searchPath(modality,x+1,y,pSum,true,x,y,pathCounter-1, rows, cols);
          
         }
     }
@@ -244,7 +405,7 @@ function searchPath(x,y,sum, isChild, xp, yp, parentId, rows, cols){
          }
          paths.push(pathElement);
          pathCounter++
-         searchPath(x-1,y,pSum,true,x,y,pathCounter-1, rows, cols);
+         searchPath(modality,x-1,y,pSum,true,x,y,pathCounter-1, rows, cols);
         }
     
     }
@@ -276,7 +437,7 @@ function searchPath(x,y,sum, isChild, xp, yp, parentId, rows, cols){
             }
             paths.push(pathElement);
             pathCounter++
-            searchPath(x,y+1,pSum,true,x,y,pathCounter-1, rows, cols);
+            searchPath(modality,x,y+1,pSum,true,x,y,pathCounter-1, rows, cols);
         }
     }
    
@@ -309,9 +470,11 @@ function searchPath(x,y,sum, isChild, xp, yp, parentId, rows, cols){
          
          paths.push(pathElement);
          pathCounter++
-         searchPath(x,y-1,pSum,true,x,y,pathCounter-1, rows, cols);
+         searchPath(modality,x,y-1,pSum,true,x,y,pathCounter-1, rows, cols);
         }
     }
+    
+    
   
     return;
  }
@@ -333,17 +496,22 @@ function searchPath(x,y,sum, isChild, xp, yp, parentId, rows, cols){
 
    return false
   }
-function isAdjacency(id,lastClicked,cols){
-    
-    
+
+function isAdjacency(modality,id,lastClicked,cols){
+    console.log("id:", id)
     if(id == lastClicked+1 || id == lastClicked-1 || id == lastClicked+cols || id == lastClicked-cols){
+        console.log("1");
+        return true;
+    }else if(modality == 2 && (id==lastClicked-1-cols || id == lastClicked+1-cols || id == lastClicked-1+cols || id == lastClicked+1+cols)){
+        console.log("2")
         return true;
     }
+console.log("3")
    return false;
   }
 
 function cellClick(payload) {
-    var {id,clicked,number} = payload
+    var {id,clicked,number,modality} = payload
     var {lastClicked,cols,rows,score,bestScore,maxScore,time,left,tableData,level} = Store.getState().Match.data
 
     var reset = false
@@ -356,7 +524,7 @@ function cellClick(payload) {
       lastClicked = id
       root = id
     }else{
-      if(!isAdjacency(id,lastClicked,cols) || number>=lastValue){
+      if(!isAdjacency(modality,id,lastClicked,cols) || number>=lastValue){
         reset = true
         score = 0
         root = id

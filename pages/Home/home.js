@@ -43,7 +43,7 @@ render () {
             <View style={styles.logoContainer}>
               <Image style={styles.logo} source={require("../../images/logo.png")} />
             </View>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Levels'); tracker.trackScreenView("Levels"); this.props.zapicActions.processing_first_upload();}}>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Modality'); tracker.trackScreenView("Modality"); this.props.zapicActions.processing_first_upload();}}>
                 <Text style={styles.buttonText}>{Strings.homeNewGame}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Arcade'); tracker.trackScreenView("Arcade")}}>

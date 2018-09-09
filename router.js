@@ -4,6 +4,7 @@ import Levels from './pages/Levels/levels';
 import Match from './pages/Match/match';
 import Report from './pages/Report/report';
 import Tutorial from './pages/Tutorial/tutorial';
+import Modality from './pages/Modality/modality';
 import Settings from './pages/Settings/settings';
 import Scores from './pages/Scores/scores';
 import Arcade from './pages/Arcade/arcadeLevels';
@@ -22,6 +23,9 @@ export default Routes = TabNavigator({
     },
     Report: {
         screen: Report
+    },
+    Modality: {
+        screen: Modality
     },
     Tutorial: {
         screen: Tutorial
