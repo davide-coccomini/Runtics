@@ -1,6 +1,7 @@
 import {call, put,takeEvery, select} from 'redux-saga/effects';
 import * as Actions from './arcadeActions';
-import Levels from './arcadeGrids';
+import Levels1 from './Grids/arcadeGrids1';
+import Levels2 from './Grids/arcadeGrids2';
 import Store from '../../redux/store';
 
 
@@ -14,9 +15,11 @@ function * starting_arcade(action){
        
     }
 }
-function generate(payload){  
+function generate(payload){ 
+    var modality = payload.modality
+    var Levels = modality == 1 ? Levels1:Levels2
     
-    var {rows,cols,level,maxScore,grid} = Levels[payload-1]
+    var {rows,cols,level,maxScore,grid} = Levels[payload.level-1]
     var index = 0; 
     var matrix = []
     for(var i=0; i<rows; i++){
@@ -66,17 +69,19 @@ function * clicking_cell_arcade(action){
 
    return false
   }
-function isAdjacency(id,lastClicked,cols){
-    
-    
+function isAdjacency(modality,id,lastClicked,cols){
+    console.log("moda",modality)    
     if(id == lastClicked+1 || id == lastClicked-1 || id == lastClicked+cols || id == lastClicked-cols){
+        return true;
+    }else if(modality == 2 && (id==lastClicked-1-cols || id == lastClicked+1-cols || id == lastClicked-1+cols || id == lastClicked+1+cols)){
         return true;
     }
    return false;
   }
 
 function cellClick(payload) {
-    var {id,clicked,number} = payload
+    console.log("payload",payload)
+    var {id,clicked,number,modality} = payload
     var {lastClicked,cols,rows,score,maxScore,tableData,level,difficulty} = Store.getState().Arcade.data
     
     var reset = false
@@ -89,7 +94,7 @@ function cellClick(payload) {
       lastClicked = id
       root = id
     }else{
-      if(!isAdjacency(id,lastClicked,cols) || number>=lastValue){
+      if(!isAdjacency(modality,id,lastClicked,cols) || number>=lastValue){
         reset = true
         score = 0
         root = id
@@ -122,15 +127,29 @@ function cellClick(payload) {
         level:level,
         difficulty: difficulty,
         win: win,
-        newMatch: false
+        newMatch: false,
+        modality: modality
     }
    return response
   }
+
+  function * setting_modality(action){
+        try {
+            response = {
+                modality: action
+            }
+            yield put(Actions.set_modality(action));
+        }catch(e){
+            yield put(Actions.set_modality_error());
+            console.error(e);
+        }
+    }
 
 export default function * root() {
     yield * 
     [
         takeEvery(Actions.types.STARTING_ARCADE, starting_arcade),
-        takeEvery(Actions.types.CLICKING_CELL_ARCADE, clicking_cell_arcade)
+        takeEvery(Actions.types.CLICKING_CELL_ARCADE, clicking_cell_arcade),
+        takeEvery(Actions.types.SETTING_MODALITY, setting_modality)
     ]
 }

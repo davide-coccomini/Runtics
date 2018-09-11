@@ -83,6 +83,7 @@ class App extends React.Component {
         }
     }
     this.setState(newState)
+    
     if(nextProps.data.win)
       this.win();
 
@@ -105,7 +106,7 @@ class App extends React.Component {
   if(Store.getState().Arcade.data.newScore>=this.state.maxScore){
     this.state.win = true
     this.generateAd()
-    navigate("Arcade")
+    navigate("ArcadeLevels")
   }
 }
 render () {

@@ -7,7 +7,10 @@ export const types = {
     CLICK_CELL_ARCADE_ERROR: "CLICK_CELL_ARCADE_ERROR",
     STORING_LEVEL: "STORING_LEVEL",
     STORED_LEVEL: "STORED_LEVEL",
-    STORE_LEVEL_ERROR:"STORE_LEVEL_ERROR"
+    STORE_LEVEL_ERROR:"STORE_LEVEL_ERROR",
+    SETTING_MODALITY: "SETTING_MODALITY",
+    SET_MODALITY: "SET_MODALITY",
+    SET_MODALITY_ERROR: "SET_MODALITY_ERROR"
 }
 
 export const starting_arcade = (obj => ({type: types.STARTING_ARCADE, payload: obj}));
@@ -16,3 +19,6 @@ export const start_arcade_error = (obj => ({type: types.START_ARCADE_ERROR, payl
 export const clicking_cell_arcade = (obj => ({type: types.CLICKING_CELL_ARCADE, payload: obj}));
 export const clicked_cell_arcade = (obj => ({type: types.CLICKED_CELL_ARCADE, payload: obj}));
 export const click_cell_arcade_error = (obj => ({type: types.CLICK_CELL_ARCADE_ERROR, payload: obj}));
+export const setting_modality = (obj => ({type: types.SETTING_MODALITY, payload: obj}));
+export const set_modality = (obj => ({type: types.SET_MODALITY, payload: obj}));
+export const set_modality_error = (obj => ({type: types.SET_MODALITY_ERROR, payload: obj}));

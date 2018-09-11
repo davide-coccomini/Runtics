@@ -46,7 +46,7 @@ render () {
               <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Modality'); tracker.trackScreenView("Modality"); this.props.zapicActions.processing_first_upload();}}>
                 <Text style={styles.buttonText}>{Strings.homeNewGame}</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('Arcade'); tracker.trackScreenView("Arcade")}}>
+              <TouchableOpacity style={styles.buttonContainer}  onPress={() => {navigate('ArcadeModality'); tracker.trackScreenView("Arcade Modality")}}>
                 <Text style={styles.buttonText}>{Strings.homeArcade}</Text>
               </TouchableOpacity>
               
