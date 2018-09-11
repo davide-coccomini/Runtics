@@ -40,7 +40,6 @@ componentWillMount(){
   });
 }
 componentWillReceiveProps(nextProps){
-  console.log("call")
   state = {modality: nextProps.data.payload}
   this.setState(state)
 }

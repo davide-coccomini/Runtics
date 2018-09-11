@@ -9,7 +9,6 @@ var pathCounter = 0;
 function * starting_game(action){
     try {
         paths = []
-        console.log("aaa",action)
         var config = yield call(setLevel, action.payload);
         var response = yield call(generate, config);
         yield put(Actions.started_game(response))
@@ -501,15 +500,11 @@ function searchPath(modality, x, y, sum, isChild, xp, yp, parentId, rows, cols){
   }
 
 function isAdjacency(modality,id,lastClicked,cols){
-    console.log("id:", id)
     if(id == lastClicked+1 || id == lastClicked-1 || id == lastClicked+cols || id == lastClicked-cols){
-        console.log("1");
         return true;
     }else if(modality == 2 && (id==lastClicked-1-cols || id == lastClicked+1-cols || id == lastClicked-1+cols || id == lastClicked+1+cols)){
-        console.log("2")
         return true;
     }
-console.log("3")
    return false;
   }
 

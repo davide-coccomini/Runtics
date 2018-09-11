@@ -5,19 +5,7 @@ import {bindActionCreators} from 'redux';
 import Strings from '../../components/localization';
 import Store from '../../redux/store';
 import {
-  Container,
-  Header,
-  Content,
-  List,
-  Toast,
-  ListItem,
-  Text,
-  Icon,
-  Left,
-  Body,
-  Right,
-  Spinner,
-  Separator
+  Text
 } from 'native-base';
 import * as actions from '../Modality/modalityActions';
 import * as tutorialActions from '../Tutorial/tutorialActions';
@@ -34,11 +22,6 @@ class App extends React.Component {
           matrix:[]
         }
       }
-componentWillMount(){
-  Analytics.logEvent('Levels', {
-    'Levels': 'Quick Match'
-  });
-}
 render () {
     const {navigate} = this.props.navigation;
     if(Store.getState().Tutorial.data==0 || Store.getState().Tutorial.data==undefined){ // Chiedi se vuole fare il tutorial
