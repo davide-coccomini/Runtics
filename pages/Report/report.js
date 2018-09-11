@@ -147,14 +147,14 @@ render () {
           ))
         }
         </View>
-          <View style={styles.buttonView}>
-              <TouchableOpacity style={styles.button}  onPress={() => navigate('Levels')}>
-                <Text style={styles.buttonText}>{Strings.reportButtonPlay}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.button}  onPress={() => navigate('Home')}>
-                <Text style={styles.buttonText}>{Strings.reportButtonBack}</Text>
-              </TouchableOpacity>
-          </View>
+          <View style={{flexDirection: 'row',alignItems:"center", alignSelf:"center", width:"80%"}}>
+                <TouchableOpacity style={styles.buttonContainerHalf}  onPress={() => navigate('Home')}>
+                  <Image style={styles.buttonImage} source={require("../../images/home.png")}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={[styles.buttonContainerHalf, {marginLeft:"1%"}]}  onPress={() => navigate('Levels')}>
+                 <Image style={styles.buttonImage} source={require("../../images/retry.png")}/>
+                </TouchableOpacity>
+           </View>
         </View>
        </Container>
       );
@@ -177,6 +177,18 @@ const styles = StyleSheet.create({
     },
     titleView: {
       marginTop:0
+    },
+    buttonContainerHalf: {
+      backgroundColor: "#092D4B",
+      paddingVertical: 12,
+      width:"49%",
+      marginTop:5
+    },
+    buttonImage: {
+      alignSelf:"center",
+      width: 25,
+      height: 25,
+      resizeMode: 'contain' 
     },
     titleWin: {
       fontWeight: "bold",
