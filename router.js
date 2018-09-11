@@ -15,6 +15,9 @@ export default Routes = TabNavigator({
     Home: {
         screen: Home
     },
+    Modality: {
+        screen: Modality
+    },
     Levels: {
         screen: Levels
     },
@@ -23,9 +26,6 @@ export default Routes = TabNavigator({
     },
     Report: {
         screen: Report
-    },
-    Modality: {
-        screen: Modality
     },
     Tutorial: {
         screen: Tutorial

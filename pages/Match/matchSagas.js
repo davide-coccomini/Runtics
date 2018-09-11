@@ -9,6 +9,7 @@ var pathCounter = 0;
 function * starting_game(action){
     try {
         paths = []
+        console.log("aaa",action)
         var config = yield call(setLevel, action.payload);
         var response = yield call(generate, config);
         yield put(Actions.started_game(response))
@@ -27,7 +28,7 @@ function setLevel(payload){
             modality: modality,
             rows: 4,
             cols: 4,
-            time: 3,
+            time: 180,
             min: 1,
             max: 15,
             level: level
@@ -159,31 +160,14 @@ function findBestPath(modality, index,matrix,rows,cols){
     var y = node[1]
     var max = 0
     var coordMax = [0,0]
-    if(modality == 2){
-        if(x+1<rows && y+1<cols){ // Diagonale in basso a destra
-            if(matrix[x+1][y+1].number>max){
-                max = matrix[x+1][y+1].number
-                coordMax = [x+1,y+1]
-            }
-        }
+       
     
-        if(x-1>0 && y-1>0){ // Diagonale in alto a sinistra
-            if(matrix[x-1][y-1].number>max){
-                max = matrix[x-1][y-1].number
-                coordMax = [x-1,y-1]
-            }
-        }
-        if(x-1>0 && y+1<cols){ // Diagonale in alto a destra
-            if(matrix[x-1][y+1].number>max){
-                max = matrix[x-1][y+1].number
-                coordMax = [x-1,y+1]
-            }
-        }
-        if(x+1<rows && y-1>0){ // Diagonale in basso a sinistra
-            if(matrix[x+1][y-1].number>max){
-                max = matrix[x+1][y-1].number
-                coordMax = [x+1,y-1]
-            }
+       
+   
+    if(x+1<rows && y+1<cols && modality == 2){ // Diagonale in basso a destra
+        if(matrix[x+1][y+1].number>max){
+            max = matrix[x+1][y+1].number
+            coordMax = [x+1,y+1]
         }
     }
     if(x+1 < rows){
@@ -192,16 +176,35 @@ function findBestPath(modality, index,matrix,rows,cols){
             coordMax = [x+1,y]
         }
     }
+    if(x-1>=0 && y-1>=0 && modality == 2){ // Diagonale in alto a sinistra
+        if(matrix[x-1][y-1].number>max){
+            max = matrix[x-1][y-1].number
+            coordMax = [x-1,y-1]
+        }
+    }
+
     if(x-1 >= 0){
         if(matrix[x-1][y].number>max){
             max = matrix[x-1][y].number
             coordMax = [x-1,y]
         }
     }
+    if(x-1>=0 && y+1<cols && modality == 2){ // Diagonale in alto a destra
+        if(matrix[x-1][y+1].number>max){
+            max = matrix[x-1][y+1].number
+            coordMax = [x-1,y+1]
+        }
+    }
     if(y+1 < cols){
         if(matrix[x][y+1].number>max){
             max = matrix[x][y+1].number
             coordMax = [x,y+1]
+        }
+    }
+    if(x+1<rows && y-1>=0 && modality == 2){ // Diagonale in basso a sinistra
+        if(matrix[x+1][y-1].number>max){
+            max = matrix[x+1][y-1].number
+            coordMax = [x+1,y-1]
         }
     }
     if(y-1 >= 0){
@@ -252,7 +255,7 @@ function searchPath(modality, x, y, sum, isChild, xp, yp, parentId, rows, cols){
              searchPath(modality,x+1,y+1,pSum,true,x,y,pathCounter-1, rows, cols);
             }
         }
-        if(x-1>0 && y-1>0){ // Diagonale in alto a sinistra
+        if(x-1>=0 && y-1>=0){ // Diagonale in alto a sinistra
             if((matrix[x][y].number>matrix[x-1][y-1].number)){
              var pSum = sum + matrix[x-1][y-1].number;
              if(!isChild){
@@ -283,7 +286,7 @@ function searchPath(modality, x, y, sum, isChild, xp, yp, parentId, rows, cols){
              searchPath(modality,x-1,y-1,pSum,true,x,y,pathCounter-1, rows, cols);
             }
         }
-        if(x-1>0 && y+1<cols){ // Diagonale in alto a destra
+        if(x-1>=0 && y+1<cols){ // Diagonale in alto a destra
             if((matrix[x][y].number>matrix[x-1][y+1].number)){
              var pSum = sum + matrix[x-1][y+1].number;
              if(!isChild){
@@ -314,7 +317,7 @@ function searchPath(modality, x, y, sum, isChild, xp, yp, parentId, rows, cols){
              searchPath(modality,x-1,y+1,pSum,true,x,y,pathCounter-1, rows, cols);
             }
         }
-        if(x+1<rows && y-1>0){ // Diagonale in basso a sinistra
+        if(x+1<rows && y-1>=0){ // Diagonale in basso a sinistra
             if((matrix[x][y].number>matrix[x+1][y-1].number)){
              var pSum = sum + matrix[x+1][y-1].number;
              if(!isChild){

@@ -2,6 +2,7 @@ import {StyleSheet, ScrollView, View,Image, Button,TouchableOpacity} from 'react
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
+import Strings from '../../components/localization';
 import Store from '../../redux/store';
 import {
   Container,
@@ -47,14 +48,20 @@ render () {
         <View style={styles.container}>
          
           <View behavior="padding" style={styles.container}>
-            <View style={styles.logoContainer}>
-              <Image style={styles.logo} source={require("../../images/logo.png")} />
+          <View style={styles.titleContent}>
+            <Text style={styles.titleText}>{Strings.modalityTitle}</Text>
+          </View>
+            <View style={styles.titleContent}>
+              <Text style={styles.subTitleText}>{Strings.modalitySubTitle1}</Text>
             </View>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() =>{ navigate('Levels'); tracker.trackScreenView("Levels"); this.props.actions.setting_modality(1); this.props.tutorialActions.making_tutorial()}}>
-                <Text style={styles.buttonText}>CLASSIC</Text>
+              <TouchableOpacity style={styles.buttonContainerHalf}  onPress={() =>{ navigate('Levels'); tracker.trackScreenView("Levels"); this.props.actions.setting_modality(1); this.props.tutorialActions.making_tutorial()}}>
+               <Image style={styles.buttonImage} source={require("../../images/modality1.png")}/>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.buttonContainer}  onPress={() =>{ navigate('Levels'); tracker.trackScreenView("Levels"); this.props.actions.setting_modality(2); this.props.tutorialActions.making_tutorial()}}>
-                <Text style={styles.buttonText}>WITH DIAGONAL</Text>
+              <View style={styles.titleContent}>
+                <Text style={styles.subTitleText}>{Strings.modalitySubTitle2}</Text>
+              </View>
+              <TouchableOpacity style={styles.buttonContainerHalf}  onPress={() =>{ navigate('Levels'); tracker.trackScreenView("Levels"); this.props.actions.setting_modality(2); this.props.tutorialActions.making_tutorial()}}>
+              <Image style={styles.buttonImage} source={require("../../images/modality2.png")}/>
               </TouchableOpacity>
           </View>
         </View>
@@ -66,17 +73,21 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
       },
-      logoContainer: {
-        alignItems: "center",
-        flexGrow: 0.32,
-        marginTop:35,
-        justifyContent: "center",
-        alignItems: "center",
-        paddingBottom:15
+      titleContent:{
+        width:"100%",
+        marginTop: 25
       },
-      logo: {
-        flex: 0.7,
-        resizeMode: 'contain',
+      titleText:{
+        color:"white",
+        fontWeight:"700",
+        textAlign:"center",
+        fontSize:23
+      },
+      subTitleText:{
+        color:"white",
+        fontWeight:"700",
+        textAlign:"center",
+        fontSize:17
       },
       buttonContainer: {
         backgroundColor: "#092D4B",
@@ -86,10 +97,9 @@ const styles = StyleSheet.create({
         marginTop:5
       },
       buttonContainerHalf: {
-        backgroundColor: "#092D4B",
+        //backgroundColor: "#092D4B",
         paddingVertical: 12,
-        width:"49%",
-      
+        width:"100%",
         marginTop:5
       },
       buttonText: {
@@ -103,10 +113,11 @@ const styles = StyleSheet.create({
       },
       buttonImage: {
         alignSelf:"center",
-        width: 25,
-        height: 25,
+        width: 155,
+        height: 155,
         resizeMode: 'contain' 
       }
+      
   });
   
   function mapStateToProps(state) {

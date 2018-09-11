@@ -18,6 +18,7 @@ import {
   Spinner,
   Separator
 } from 'native-base';
+import Strings from '../../components/localization';
 import * as actions from '../Match/matchActions';
 import { GoogleAnalyticsTracker,GoogleAnalyticsSettings } from 'react-native-google-analytics-bridge';
 GoogleAnalyticsSettings.setDispatchInterval(30);
@@ -38,6 +39,11 @@ componentWillMount(){
     'Levels': 'Quick Match'
   });
 }
+componentWillReceiveProps(nextProps){
+  console.log("call")
+  state = {modality: nextProps.data.payload}
+  this.setState(state)
+}
 render () {
     const {navigate} = this.props.navigation;
     const state = this.state;
@@ -45,9 +51,9 @@ render () {
         <View style={styles.container}>
          
           <View behavior="padding" style={styles.container}>
-            <View style={styles.logoContainer}>
-              <Image style={styles.logo} source={require("../../images/logo.png")} />
-            </View>
+          <View style={styles.titleContent}>
+            <Text style={styles.titleText}>{Strings.levelsTitle}</Text>
+          </View>
               <TouchableOpacity style={styles.buttonContainerEasy}  onPress={() =>{ navigate('Match'); tracker.trackScreenView("Match Easy"); this.props.actions.starting_game({level: 1,modality: state.modality});}}>
                 <Text style={styles.buttonText}>EASY</Text>
               </TouchableOpacity>
@@ -76,24 +82,22 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
     },
-    logoContainer: {
-      alignItems: "center",
-      flexGrow: 0.30,
-      marginTop:35,
-      justifyContent: "center",
-      alignItems: "center",
-      paddingBottom:15
+    titleContent:{
+      width:"100%",
+      marginTop: 35
     },
-    logo: {
-      flex: 0.7,
-      resizeMode: 'contain',
+    titleText:{
+      color:"white",
+      fontWeight:"700",
+      textAlign:"center",
+      fontSize:23
     },
     buttonContainerEasy: {
       backgroundColor: "#29c100",
       paddingVertical: 15,
       width:"80%",
       marginLeft:"10%",
-      marginTop:5
+      marginTop:25
     },
     buttonContainerMedium: {
         backgroundColor: "#e57914",
