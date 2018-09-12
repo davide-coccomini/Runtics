@@ -68,9 +68,9 @@ class App extends React.Component {
   }
   generateAd(){ 
     //AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712'); //TEST
-    AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
+   /* AdMobInterstitial.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
     AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId,"C662FD490DFFA8C7A5F955A5611FFF81","3AF4D8E43DC30789019E9C68B1DD784C"]);
-    AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
+    AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());*/
   }
   generatePathLabel(grid,path){
     var pathLabel = ""
@@ -125,7 +125,7 @@ render () {
         <View>
          <Text style={state.win ? styles.titleWin : styles.titleLose}>{state.win ? Strings.reportTitleWin : Strings.reportTitleLose}</Text>
          </View>
-        <View>
+    
         <View>
           <Text style={styles.label}>{Strings.reportRoute} {state.pathLabel}...</Text>
         </View>
@@ -147,7 +147,7 @@ render () {
           ))
         }
         </View>
-          <View style={{flexDirection: 'row',alignItems:"center", alignSelf:"center", width:"80%"}}>
+          <View style={{flexDirection: 'row',alignItems:"center", alignSelf:"center", width:"80%", marginTop:0}}>
                 <TouchableOpacity style={styles.buttonContainerHalf}  onPress={() => navigate('Home')}>
                   <Image style={styles.buttonImage} source={require("../../images/home.png")}/>
                 </TouchableOpacity>
@@ -155,7 +155,7 @@ render () {
                  <Image style={styles.buttonImage} source={require("../../images/retry.png")}/>
                 </TouchableOpacity>
            </View>
-        </View>
+      
        </Container>
       );
 }
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
       backgroundColor: "#092D4B",
       paddingVertical: 12,
       width:"49%",
-      marginTop:5
+      marginTop:-15
     },
     buttonImage: {
       alignSelf:"center",
@@ -206,12 +206,14 @@ const styles = StyleSheet.create({
     tableContainer: { 
       flexDirection: 'column',
       alignItems: "center",
-      marginTop:5
+      marginTop:3,
+      height: "50%",
+      padding:0
     },
   rowContainer:{
     flexDirection: 'row',
     backgroundColor: 'black',
-    borderRadius:5
+    borderRadius:5,
   },
   cellContainer: {
     aspectRatio: 1,
