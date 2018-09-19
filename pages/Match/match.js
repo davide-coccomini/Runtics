@@ -1,21 +1,16 @@
-import {StyleSheet, ScrollView, View,Image, Button,BackHandler,TouchableOpacity,Alert,Text,StatusBar} from 'react-native';
+import {StyleSheet, View,Image, Button,BackHandler,TouchableOpacity,Text,StatusBar} from 'react-native';
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 import {
   Container,
   Header,
-  Content,
-  List,
-  Toast,
-  ListItem,
-  Icon,
   Left,
-  Body,
   Right,
-  Spinner,
-  Separator
 } from 'native-base';
+import {
+  AdMobRewarded
+} from 'react-native-admob';
 import Store from '../../redux/store';
 import CountdownCircle from 'react-native-countdown-circle';
 import * as actions from '../Report/reportActions';
@@ -116,25 +111,31 @@ class App extends React.Component {
   win(){
   const {navigate} = this.props.navigation;
 
-  if(Store.getState().Match.data.newScore>=this.state.maxScore){
-    this.state.win = true
-    navigate("Report")
-    const payload = {
-      endTime:this.countdown.getTimeRemained(),
-      time: 99999,
-      bestScore: this.getScore(), 
-      maxScore: this.state.maxScore,
-      win: true,
-      rows: this.state.rows,
-      cols: this.state.cols,
-      tableData: this.state.tableData,
-      bestPath: this.state.bestPath,
-      level: this.state.level
+    if(Store.getState().Match.data.newScore>=this.state.maxScore){
+      this.state.win = true
+      navigate("Report")
+      const payload = {
+        endTime:this.countdown.getTimeRemained(),
+        time: 99999,
+        bestScore: this.getScore(), 
+        maxScore: this.state.maxScore,
+        win: true,
+        rows: this.state.rows,
+        cols: this.state.cols,
+        tableData: this.state.tableData,
+        bestPath: this.state.bestPath,
+        level: this.state.level
+      }
+      
+      this.props.actions.ending_game(payload)
     }
-    
-    this.props.actions.ending_game(payload)
   }
-}
+  pressGetHint(){
+    AdMobRewarded.setAdUnitID('ca-app-pub-7269857134561204/1953345461');
+    AdMobRewarded.setTestDevices([AdMobRewarded.simulatorId,"C662FD490DFFA8C7A5F955A5611FFF81","3AF4D8E43DC30789019E9C68B1DD784C"]);
+    AdMobRewarded.showAd();
+    console.log("ciao")
+  }
 render () {
   const state = this.state;
   const {navigate} = this.props.navigation;
@@ -186,6 +187,7 @@ render () {
                           }
         />
          
+        <View><TouchableOpacity><Text onPress = {() => {this.pressGetHint()}}>Hint</Text></TouchableOpacity></View>
       </Left>
       <Right>
            <ScoreCounter score={0} bestScore={0} maxScore={state.maxScore} ref = {ref => this.scoreCounter = ref} />
