@@ -19,6 +19,7 @@ Another variable is the direction of the paths. The player can decide to play wi
 <img src="https://user-images.githubusercontent.com/20495003/61072927-9b1a3d00-a414-11e9-8a43-b66cc60082ec.png" width="20%">
 <img src="https://user-images.githubusercontent.com/20495003/61073555-f1d44680-a415-11e9-96ce-42ec4fb1c44e.png" width="20%">
 </p>
+
 ## Other Information
 * The game is available in English, Italian, French, German, Chinese, Portuguese and Russian. Made possible by many volunteer mother tongue translators;
 * The game also integrates a multiplayer system called Zapic that has the objective to create a community of game creators and players;
