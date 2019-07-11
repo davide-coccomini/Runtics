@@ -1,4 +1,4 @@
-![Runtics Header](https://ibb.co/51t6tY1)
+![Runtics Header](https://imgur.com/H3fU4oH)
 
 # Runtics
 This is a simple brain teaser developed using React Native and React Redux. It is available for both Android and iOS deviced.
@@ -7,16 +7,16 @@ iOS: https://itunes.apple.com/us/app/runtics-brain-train/id1402223825
 
 
 ## Goal
-Given a grid of integer numbers, the scope of the game is to find the concatenated path to obtain the best possible sum, among all the possible combinations.
+Given a grid of integer numbers, the scope of the game is to find the decreasing concatenated path to obtain the best possible sum, among all the possible combinations.
 The game could be played in quick match, with auto-generated grids on several difficulty levels, or on arcade mode, with hundreds of pre-solved levels with an increasing difficulty.
 Another variable is the direction of the paths. The player can decide to play with only vertical and horizontal paths or to include the diagonals too (increasing the difficulty).
 
 ## Images
-![Runtics](https://ibb.co/j444pKH)
-![Runtics](https://ibb.co/g45SMTY)
-![Runtics](https://ibb.co/tcjnmfx)
-![Runtics](https://ibb.co/Y7cWp8R)
-![Runtics](https://ibb.co/hR9C4gH)
+![Runtics](https://imgur.com/0ghNBE1)
+![Runtics](https://imgur.com/sVj4IP0)
+![Runtics](https://imgur.com/IVDAGTY)
+![Runtics](https://imgur.com/aJdf51I)
+![Runtics](https://imgur.com/lAwMzqz)
 
 
 ## Other Information
